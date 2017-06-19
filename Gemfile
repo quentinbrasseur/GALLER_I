@@ -10,7 +10,8 @@ gem 'rails', '5.0.3'
 gem 'redis'
 gem 'devise'
 gem 'figaro'
-
+gem 'cloudinary'
+gem 'faker'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

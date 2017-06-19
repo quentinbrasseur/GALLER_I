@@ -54,6 +54,7 @@ mona_lisa = Artwork.new(
   location: "Madrid",
   owner: quentin
   )
+mona_lisa.save!
 
 king_kong = Artwork.new(
   title: 'King Kong',
@@ -65,6 +66,7 @@ king_kong = Artwork.new(
   location: "Sevilla",
   owner: joe
   )
+king_kong.save!
 
 barcelona = Artwork.new(
   title: 'Cityscapper',
@@ -76,10 +78,11 @@ barcelona = Artwork.new(
   location: "Barcelona",
   owner: cedric
   )
+barcelona.save!
 
 fruits = Artwork.new(
-  title: 'Sculpture',
-  category: 'Nature morte',
+  title: 'Cesar',
+  category: 'Sculpture',
   height: 100,
   width: 360,
   depth: 2,
@@ -87,9 +90,53 @@ fruits = Artwork.new(
   location: "Bilbao",
   owner: kilian
   )
-
-mona_lisa.save!
-barcelona.save!
 fruits.save!
-king_kong.save!
-p fruits
+
+
+###### FAKER ARTWORK ######
+
+# category = [ "Painting", "Sculpture", "Photography", "Drawing", "Miscellaneous" ]
+# city = [ "Barcelona", "Madrid", "Sevilla", "Bilbao", "Toledo" ]
+# owner = [ cedric, kilian, joe, quentin ]
+
+# 10.times do
+#   artwork = Artwork.new(
+#     title: Faker::RockBand.name,
+#     category: category.sample,
+#     height: rand(200..1000),
+#     width: rand(200..1000),
+#     depth: rand(1..50),
+#     weight: rand(1..10),
+#     location: city.sample,
+#     owner: owner.sample
+#     )
+#   artwork.save!
+#   # p artwork
+# end
+
+
+###### END FAKER ######
+
+
+
+###### FAKER VENUES (not working --> employee) ######
+
+# category = [ "Restaurant", "Co-workiung", "Hotels", "Companies", "School" ]
+# city = [ "Barcelona", "Madrid", "Sevilla", "Bilbao", "Toledo" ]
+# admin = [ cedric, kilian, joe, quentin ]
+
+# 10.times do
+#   venue = Venue.new(
+#     title: Faker::Company.name,
+#     category: category.sample,
+#     location: city.sample,
+#     employee: admin.sample
+#     )
+#   venue.save!
+#   p venue
+# end
+
+
+###### END FAKER ######
+
+
