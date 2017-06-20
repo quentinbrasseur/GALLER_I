@@ -1,5 +1,9 @@
 <% @artworks.each do |artwork|%>
   <li>
     <%= link_to artwork.title, artwork_path(artwork) %>
+    <% if artwork.photo %>
+      <%= cl_image_tag artwork.photo.path, width: 300, height: 200, crop: :fill %>
+    <% end %>
+
   </li>
 <% end %>

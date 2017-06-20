@@ -8,7 +8,9 @@
 
 p "seeding..."
 
+UserVenue.destroy_all
 Artwork.destroy_all
+Venue.destroy_all
 User.destroy_all
 
 quentin = User.new(
@@ -43,54 +45,10 @@ joe = User.new(
   )
 joe.save!
 
-
-mona_lisa = Artwork.new(
-  title: 'Mona Lisa',
-  category: 'Painting',
-  height: 100,
-  width: 300,
-  depth: 20,
-  weight: 5,
-  location: "Madrid",
-  owner: quentin
-  )
-mona_lisa.save!
-
-king_kong = Artwork.new(
-  title: 'King Kong',
-  category: 'Painting',
-  height: 100,
-  width: 200,
-  depth: 5,
-  weight: 9,
-  location: "Sevilla",
-  owner: joe
-  )
-king_kong.save!
-
-barcelona = Artwork.new(
-  title: 'Cityscapper',
-  category: 'Photography',
-  height: 100,
-  width: 100,
-  depth: 9,
-  weight: 2,
-  location: "Barcelona",
-  owner: cedric
-  )
-barcelona.save!
-
-fruits = Artwork.new(
-  title: 'Cesar',
-  category: 'Sculpture',
-  height: 100,
-  width: 360,
-  depth: 2,
-  weight: 3,
-  location: "Bilbao",
-  owner: kilian
-  )
-fruits.save!
+p quentin.id
+p joe.id
+p kilian.id
+p cedric.id
 
 
 ###### FAKER ARTWORK ######
@@ -99,8 +57,8 @@ category = [ "Painting", "Sculpture", "Photography", "Drawing", "Miscellaneous" 
 city = [ "Barcelona", "Madrid", "Sevilla", "Bilbao", "Toledo" ]
 owner = [ cedric, kilian, joe, quentin ]
 
-10.times do
-  artwork = Artwork.new(
+5.times do
+  artwork = Artwork.create(
     title: Faker::RockBand.name,
     category: category.sample,
     height: rand(200..1000),
@@ -108,14 +66,83 @@ owner = [ cedric, kilian, joe, quentin ]
     depth: rand(1..50),
     weight: rand(1..10),
     location: city.sample,
+    photo_url: "https://lorempixel.com/300/200/",
     owner: owner.sample
     )
-  artwork.save!
-  # p artwork
+
 end
 
 ###### END FAKER ######
 
+
+##### venues ######
+
+mcdo = Venue.create(
+ title: Faker::Company.name,
+ category: category.sample,
+ location: city.sample,
+ photo_url: "http://lorempixel.com/300/200/business/",
+ )
+
+kfc = Venue.create(
+ title: Faker::Company.name,
+ category: category.sample,
+ location: city.sample,
+ photo_url: "http://lorempixel.com/300/200/business/",
+  )
+
+pizzahut = Venue.create(
+ title: Faker::Company.name,
+ category: category.sample,
+ location: city.sample,
+ photo_url: "http://lorempixel.com/300/200/business/",
+  )
+
+chipotle = Venue.create(
+ title: Faker::Company.name,
+ category: category.sample,
+ location: city.sample,
+ photo_url: "http://lorempixel.com/300/200/business/",
+  )
+
+p mcdo
+p kfc
+p pizzahut
+p chipotle
+
+###### end venues #####
+
+
+
+##### user_venues ######
+
+a1 = UserVenue.create(
+  user_id: quentin.id,
+  venue_id: mcdo.id
+  )
+
+a2 = UserVenue.create(
+  user_id: joe.id,
+  venue_id: kfc.id
+  )
+
+a3 = UserVenue.create(
+  user_id: kilian.id,
+  venue_id: pizzahut.id
+  )
+
+a4 = UserVenue.create(
+  user_id: cedric.id,
+  venue_id: pizzahut.id
+  )
+
+p a1
+p a2
+p a3
+p a4
+
+
+###### end user-venues #####
 
 
 ###### FAKER VENUES (not working --> employee) ######
@@ -124,14 +151,14 @@ end
 # city = [ "Barcelona", "Madrid", "Sevilla", "Bilbao", "Toledo" ]
 # admin = [ cedric, kilian, joe, quentin ]
 
-# 10.times do
-#   venue = Venue.new(
+# 5.times do
+#   venue = Venue.create(
 #     title: Faker::Company.name,
 #     category: category.sample,
 #     location: city.sample,
-#     employee: admin.sample
+#     photo_url: "http://lorempixel.com/300/200/business/",
+#     # employee: admin.sample
 #     )
-#   venue.save!
 #   p venue
 # end
 
