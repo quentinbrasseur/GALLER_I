@@ -12,6 +12,7 @@ gem 'devise'
 gem 'figaro'
 gem 'cloudinary'
 gem 'faker'
+gem 'omniauth-facebook'
 
 gem 'attachinary', github: 'assembler/attachinary'
 gem 'jquery-fileupload-rails'
