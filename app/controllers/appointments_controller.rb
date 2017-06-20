@@ -12,35 +12,51 @@ class AppointmentsController < ApplicationController
      # @appointment = Appointment.new
    end
 
+
+
+
+
+
+
+
+
+
    def create
-  #   @artwork = Artwork.find(params[:artwork_id])
-  #   @appointment = Appointment.new(appointment_params)
-  #   @appointment.artwork = @artwork
-  #   @appointment.user = current_user  #user_venue?
-  # @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
-  #   @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
 
-  #   @appointment.save
-  #   if @appointment.save
-  #     redirect_to appointment_path(@appointment)
-  #   else
-  #     render :new
-  #   end
-  # end
+    venue = Venue.find(params[:venue_id])
 
-end
+    if venue.employee?(current_user)
+
+      @artwork = Artwork.find(params[:artwork_id])
+      @appointment = Appointment.new(appointment_params)
+      @appointment.artwork = @artwork
+
+
+      @appointment.user = current_user  #this needs to represent the user and the venue
+      @appointment.venue = venue
+
+      @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
+      @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
+
+      @appointment.save
+      redirect_to appointment_path(@appointment)
+    else
+      redirect_to :root_path
+    end
+
+  end
 
 def edit
-    # @appointment = Appointment.find(params[:id])
+     @appointment = Appointment.find(params[:id])
   end
 
   def update
-    # @appointment = Appointment.find(params[:id])
-    # @appointment.update(appointment_params)
-    # @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
-    # @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
-    # @appointment.save
-    # redirect_to appointment_path(@appointment)
+    @appointment = Appointment.find(params[:id])
+    @appointment.update(appointment_params)
+    @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
+    @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
+    @appointment.save
+    redirect_to appointment_path(@appointment)
   end
 
   def destroy
