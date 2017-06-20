@@ -1,3 +1,4 @@
+<p>hello</p>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,17 +19,34 @@
     </head>
     <body>
       <br>
+
       <br>
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-md-8">
             <div class="row">
+              <div class="search-bar">
+                <form class="form-inline" action="/search" method="GET">
+                  <label class="sr-only" for="inlineFormInput">City</label>
+                  <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Barcelona" value='<%= params[:city] %>'>
 
+                  <label class="sr-only" for="inlineFormInputGroup">Art</label>
+                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <input name="category" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Paint" value='<%= params[:category] %>'>
+                  </div>
+
+                  <label class="sr-only" for="inlineFormInputGroup">When</label>
+                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <input name="date_range" type="text" class="form-control" id="dateRange" placeholder="When">
+                  </div>
+                  <input type="submit"  class="btn btn-primary" value="Search!">
+
+                  <p></p>
+
+                </form>
+              </div>
               <br>
-<!-- Search control -->
-          <div class="row search-row">What are you looking for?
-                <input type="text" class="filtr-search" name="filtr-search" data-search placeholder="City?  Or a genre?  Or an Artist perhaps?" >
-          </div>
+
 
               <div class="container">
                 <!-- Filter Controls - Simple Mode -->
@@ -44,7 +62,6 @@
               <li data-filter= 4 >Photography</li>
               <li data-filter= 5 >Installations</li>
               <li data-filter= 5 >Miscellaneous</li>
-
             </ul>
           </div>
 
@@ -70,11 +87,23 @@
               <!-- Basic shuffle control -->
               <li class="shuffle-btn" data-shuffle>Shuffle</li>
               <!-- Basic sort controls consisting of asc/desc button and a select -->
-
+              <li class="sort-btn active" data-sortAsc>Asc</li>
+              <li class="sort-btn" data-sortDesc>Desc</li>
+              <select data-sortOrder>
+                <option value="domIndex">
+                  Position
+                </option>
+                <option value="sortData">
+                  Description
+                </option>
+              </select>
             </ul>
           </div>
 
-
+          <!-- Search control -->
+          <div class="row search-row">
+                <input type="text" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
+          </div>
 
           <div class="row">
             <!-- This is the set up of a basic gallery, your items must have the categories they belong to in a data-category
@@ -84,31 +113,31 @@
 
               <%= @cat = 0  %>
 
-              <% @artworks.each do |artwork| %>
-                <% if artwork.category == "Painting" %>
+              <% @result.each do |artwork| %>
+                <% if artwork[:category] == "Painting" %>
                   <%= @cat = 1 %>
-                  <% elsif artwork.category == "Drawing"%>
+                  <% elsif artwork[:category] == "Drawing"%>
                   <%= @cat = 2 %>
-                  <% elsif artwork.category == "Sculpture"%>
+                  <% elsif artwork[:category] == "Sculpture"%>
                   <%= @cat = 3 %>
-                  <% elsif artwork.category == "Photography"%>
+                  <% elsif artwork[:category] == "Photography"%>
                   <%= @cat = 4 %>
-                  <% elsif artwork.category == "Installation"%>
+                  <% elsif artwork[:category] == "Installation"%>
                   <%= @cat = 5 %>
                   <% else %>
                   <%= @cat = 6 %>
                 <% end %>
 
-              <div class="col-xs-6 col-sm-4 col-md-3 filtr-item card" data-category="<%= @cat %>" data-sort=" <%= artwork.category %> ">
+              <div class="col-xs-6 col-sm-4 col-md-3 filtr-item card" data-category="<%= @cat %>" data-sort=" <%= artwork[:category] %> ">
 
                 <%= link_to(artwork, style: 'text-decoration: none;') do %>
-                <% if artwork.photo %>
-                <% image =  artwork.photo.path %>
+                <% if artwork[:photo] %>
+                <% image =  artwork[:photo].path %>
                 <% else  %>
                 <% image =  "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
                 <% end %>
                 <img class="img-responsive" src="<%= cl_image_path(image) %>" alt="sample image">
-                <span class="item-desc"> <%= artwork.title  %> <br> cat: <%= artwork.category %> <br> loc: <%= artwork.location %> </span>
+                <span class="item-desc"> <%= artwork[:title]  %> <br> cat: <%= artwork[:category] %> <br> loc: <%= artwork[:location] %> </span>
               </div>
               <% end %>
 

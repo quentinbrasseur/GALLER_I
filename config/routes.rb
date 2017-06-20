@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   root to: 'pages#home'
     resources :venues
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+ get "search", to: 'artworks#search'
 end
