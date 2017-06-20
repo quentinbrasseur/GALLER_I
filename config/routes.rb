@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :appointments, only: [:show, :index, :new, :create, :edit, :update, :destroy]
+
   mount Attachinary::Engine => "/attachinary"
 
   devise_for :users,
