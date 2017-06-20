@@ -1,4 +1,5 @@
 class Venue < ApplicationRecord
+  has_attachment :photo
   has_many :walls
   has_many :messages
   has_many :appointments
