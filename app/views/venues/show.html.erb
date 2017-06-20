@@ -2,9 +2,13 @@
 <h2 class="text-center" style="margin: 40px"><%= @venue.category %></h2>
 <h2 class="text-center" style="margin: 40px"><%= @venue.location %></h2>
 
-<li><%= link_to "Edit", edit_venue_path(@venue), class: "btn-book-show" %></li>
-<li><%= link_to "Delete", venue_path(@venue), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %></li>
 
 <% if @venue.photo? %>
   <%= cl_image_tag @venue.photo.path, width: 200, height: 300, crop: :fill %>
 <% end %>
+
+<h3 class="text-center" style="margin: 40px">
+  <%= link_to "Back", venues_path %>
+  <%= link_to "Edit", edit_venue_path(@venue) %>
+  <%= link_to "Delete", venue_path(@venue), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
+</h3>
