@@ -13,7 +13,6 @@ gem 'figaro'
 gem 'cloudinary'
 gem 'faker'
 
-gem 'cloudinary', '1.1.7'
 gem 'attachinary', github: 'assembler/attachinary'
 gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
