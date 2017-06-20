@@ -8,41 +8,35 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-     # @artwork = Artwork.find(params[:artwork_id])
-     # @appointment = Appointment.new
+      @artwork = Artwork.find(params[:artwork_id])
+
+      @appointment = Appointment.new
+
    end
-
-
-
-
-
-
-
-
 
 
    def create
 
     venue = Venue.find(params[:venue_id])
 
-    if venue.employee?(current_user)
+    #if venue.employee?(current_user)
 
       @artwork = Artwork.find(params[:artwork_id])
       @appointment = Appointment.new(appointment_params)
       @appointment.artwork = @artwork
 
-
+@appointment.venue = venue
       @appointment.user = current_user  #this needs to represent the user and the venue
-      @appointment.venue = venue
+
 
       @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
       @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
 
       @appointment.save
       redirect_to appointment_path(@appointment)
-    else
-      redirect_to :root_path
-    end
+   # else
+     # redirect_to :root_path
+   # end
 
   end
 
