@@ -10,10 +10,12 @@ end
 
 def create
   @artwork = Artwork.new(artwork_params)
+  @artwork.owner = current_user
   if @artwork.save
-    redirect_to artwork.path(@artwork)
+    redirect_to artwork_path(@artwork)
   else
     render :new
+  end
 end
 
 def show
@@ -42,7 +44,7 @@ end
 private
 
 def artwork_params
-  params.require(:artwork).permit(:title, :category, :size, :location, :photo)
+  params.require(:artwork).permit(:title, :category, :location, :height, :width, :depth, :weight)
 end
 
 end
