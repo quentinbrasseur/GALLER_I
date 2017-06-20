@@ -1,5 +1,7 @@
 <% @artworks.each do |artwork|%>
-  <%= artwork.title %>
+  <li>
+    <%= link_to artwork.title, artwork_path(artwork) %>
+  </li>
 <% end %>
 
 <div id="map" style="width: 60%; height: 600px;"></div>
