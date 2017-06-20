@@ -57,7 +57,7 @@ category = [ "Painting", "Sculpture", "Photography", "Drawing", "Miscellaneous" 
 city = [ "Barcelona", "Madrid", "Sevilla", "Bilbao", "Toledo" ]
 owner = [ cedric, kilian, joe, quentin ]
 
-5.times do
+50.times do
   artwork = Artwork.create(
     title: Faker::RockBand.name,
     category: category.sample,
