@@ -95,25 +95,24 @@ fruits.save!
 
 ###### FAKER ARTWORK ######
 
-# category = [ "Painting", "Sculpture", "Photography", "Drawing", "Miscellaneous" ]
-# city = [ "Barcelona", "Madrid", "Sevilla", "Bilbao", "Toledo" ]
-# owner = [ cedric, kilian, joe, quentin ]
+category = [ "Painting", "Sculpture", "Photography", "Drawing", "Miscellaneous" ]
+city = [ "Barcelona", "Madrid", "Sevilla", "Bilbao", "Toledo" ]
+owner = [ cedric, kilian, joe, quentin ]
 
-# 10.times do
-#   artwork = Artwork.new(
-#     title: Faker::RockBand.name,
-#     category: category.sample,
-#     height: rand(200..1000),
-#     width: rand(200..1000),
-#     depth: rand(1..50),
-#     weight: rand(1..10),
-#     location: city.sample,
-#     owner: owner.sample
-#     )
-#   artwork.save!
-#   # p artwork
-# end
-
+10.times do
+  artwork = Artwork.new(
+    title: Faker::RockBand.name,
+    category: category.sample,
+    height: rand(200..1000),
+    width: rand(200..1000),
+    depth: rand(1..50),
+    weight: rand(1..10),
+    location: city.sample,
+    owner: owner.sample
+    )
+  artwork.save!
+  # p artwork
+end
 
 ###### END FAKER ######
 
@@ -135,7 +134,6 @@ fruits.save!
 #   venue.save!
 #   p venue
 # end
-
 
 ###### END FAKER ######
 
