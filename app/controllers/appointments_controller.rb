@@ -10,23 +10,18 @@ class AppointmentsController < ApplicationController
 
   def new
     @artwork = Artwork.find(params[:artwork_id])
-
     @appointment = Appointment.new
-
   end
 
 
   def create
-
     venue = Venue.find(params[:venue_id])
-
     #if venue.employee?(current_user)
-
       @artwork = Artwork.find(params[:artwork_id])
       @appointment = Appointment.new(appointment_params)
       @appointment.artwork = @artwork
       @appointment.venue = venue
-     # @appointment.user = current_user  #this needs to represent the user and the venue
+      # @appointment.user = current_user  #this needs to represent the user and the venue
       @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
       @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
 
@@ -35,7 +30,6 @@ class AppointmentsController < ApplicationController
    # else
      # redirect_to :root_path
    # end
-
  end
 
  def edit
@@ -52,6 +46,7 @@ class AppointmentsController < ApplicationController
     @appointment.save
     redirect_to appointment_path(@appointment)
 end
+
 
 def destroy
   @appointment = Appointment.find(params[:id])
@@ -80,4 +75,5 @@ private
 def appointment_params
   params.require(:appointment).permit(:start_date, :end_date)
 end
+
 end
