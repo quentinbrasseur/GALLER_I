@@ -5,17 +5,18 @@ class AppointmentsController < ApplicationController
 
   def show
     @appointment = Appointment.find(params[:id])
+
   end
 
   def new
-      @artwork = Artwork.find(params[:artwork_id])
+    @artwork = Artwork.find(params[:artwork_id])
 
-      @appointment = Appointment.new
+    @appointment = Appointment.new
 
-   end
+  end
 
 
-   def create
+  def create
 
     venue = Venue.find(params[:venue_id])
 
@@ -35,27 +36,46 @@ class AppointmentsController < ApplicationController
      # redirect_to :root_path
    # end
 
-  end
+ end
 
-def edit
-     @appointment = Appointment.find(params[:id])
-  end
+ def edit
+    # @artwork = Artwork.find(params[:artwork_id])
+    @appointment = Appointment.find(params[:id])
+ end
 
-  def update
+ def update
+    # @artwork = Artwork.find(params[:artwork_id])
     @appointment = Appointment.find(params[:id])
     @appointment.update(appointment_params)
     @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
     @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
     @appointment.save
     redirect_to appointment_path(@appointment)
-  end
+end
 
-  def destroy
-    @appointment = Appointment.find(params[:id])
-    @appointment.destroy
-    redirect_to appointments_path
-  end
-  def appointment_params
-    params.require(:appointment).permit(:start_date, :end_date)
-  end
+def destroy
+  @appointment = Appointment.find(params[:id])
+  @appointment.destroy
+  redirect_to appointments_path
+end
+
+def confirm
+  appointment = Appointment.find(params[:appointment_id])
+  appointment.status = "Confirmed"
+  redirect_to appointments_path
+end
+
+def decline
+  appointment = Appointment.find(params[:appointment_id])
+  appointment.status = "Declined"
+  redirect_to appointments_path
+
+end
+
+
+private
+
+def appointment_params
+  params.require(:appointment).permit(:start_date, :end_date)
+end
 end
