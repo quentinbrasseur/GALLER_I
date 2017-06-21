@@ -1,9 +1,11 @@
+
+  <p>ALL APPOINTMENTS WE MADE:</p>
 <% current_user.venues.each do |venue| %>
   <% venue.appointments.each do |appointment| %>
     <%= Artwork.find(appointment.artwork_id).owner.email%>
     <br>
     <%= appointment.to_json%>
-
-
   <% end %>
 <% end %>
+
+<p>ALL APPOINTMENTS SOMEONE ELSE MADE AND INVOLVE US: (to be done)</p>
