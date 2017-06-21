@@ -8,25 +8,25 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-      @artwork = Artwork.find(params[:artwork_id])
+    @artwork = Artwork.find(params[:artwork_id])
 
-      @appointment = Appointment.new
+    @appointment = Appointment.new
 
-   end
+  end
 
 
-   def create
+  def create
 
     venue = Venue.find(params[:venue_id])
 
     #if venue.employee?(current_user)
 
-      @artwork = Artwork.find(params[:artwork_id])
-      @appointment = Appointment.new(appointment_params)
-      @appointment.artwork = @artwork
+    @artwork = Artwork.find(params[:artwork_id])
+    @appointment = Appointment.new(appointment_params)
+    @appointment.artwork = @artwork
 
-@appointment.venue = venue
-      @appointment.user = current_user  #this needs to represent the user and the venue
+    @appointment.venue = venue
+    @appointment.user = current_user  #this needs to represent the user and the venue
 
 
       @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
@@ -38,27 +38,27 @@ class AppointmentsController < ApplicationController
      # redirect_to :root_path
    # end
 
-  end
+ end
 
-def edit
-     @appointment = Appointment.find(params[:id])
-  end
+ def edit
+   @appointment = Appointment.find(params[:id])
+ end
 
-  def update
-    @appointment = Appointment.find(params[:id])
-    @appointment.update(appointment_params)
-    @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
-    @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
-    @appointment.save
-    redirect_to appointment_path(@appointment)
-  end
+ def update
+  @appointment = Appointment.find(params[:id])
+  @appointment.update(appointment_params)
+  @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
+  @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
+  @appointment.save
+  redirect_to appointment_path(@appointment)
+end
 
-  def destroy
-    @appointment = Appointment.find(params[:id])
-    @appointment.destroy
-    redirect_to appointments_path
-  end
-  def appointment_params
-    params.require(:appointment).permit(:start_date, :end_date)
-  end
+def destroy
+  @appointment = Appointment.find(params[:id])
+  @appointment.destroy
+  redirect_to appointments_path
+end
+def appointment_params
+  params.require(:appointment).permit(:start_date, :end_date)
+end
 end
