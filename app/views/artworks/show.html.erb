@@ -8,6 +8,7 @@
 
 
 <h3 class="text-center" style="margin: 40px">
+<%= link_to "Book", new_artwork_appointment_path(@artwork) %>
   <%= link_to "Back", artworks_path %>
   <%= link_to "Edit", edit_artwork_path(@artwork) %>
   <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>

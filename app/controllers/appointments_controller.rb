@@ -24,11 +24,8 @@ class AppointmentsController < ApplicationController
       @artwork = Artwork.find(params[:artwork_id])
       @appointment = Appointment.new(appointment_params)
       @appointment.artwork = @artwork
-
-@appointment.venue = venue
-      @appointment.user = current_user  #this needs to represent the user and the venue
-
-
+      @appointment.venue = venue
+     # @appointment.user = current_user  #this needs to represent the user and the venue
       @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
       @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
 
