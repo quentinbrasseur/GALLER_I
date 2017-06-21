@@ -4,8 +4,8 @@ def index
   @artworks = Artwork.where.not(latitude: nil, longitude: nil)
 
   @hash = Gmaps4rails.build_markers(@artworks) do |artwork, marker|
-  marker.lat artwork.latitude
-  marker.lng artwork.longitude
+    marker.lat artwork.latitude
+    marker.lng artwork.longitude
   end
 end
 
@@ -38,6 +38,39 @@ def update
   else
     render :edit
   end
+end
+
+def search
+@result = [ ]  #shows the results from the filter
+      @search = Artwork.all
+      date = params[:date_range]
+      date = date.split(%r{\s*-\s*})
+      from = date[0].to_s
+      to = date[1].to_s
+      @from_request = Date.strptime(from, '%m/%d/%Y')
+      @to_request = Date.strptime(to, '%m/%d/%Y')
+
+      @search.all.map do |art|  #execute for all artwork instances
+
+       booked = false  #defaults all artwork to 'unbooked'
+       art.appointments.each do |appointment|
+        (appointment.start_date.to_date..appointment.end_date.to_date).each do |date|
+          booked = true if date.between?(@from_request   , @to_request  )
+        end
+      end
+
+      unless booked
+       artwork = {}
+       artwork[:id] = art.id
+       artwork[:title] = art.title
+       artwork[:photo] = art.photo
+       artwork[:category] = art.category
+       artwork[:location] = art.location
+           artwork[:artist] = art.owner.email #change to name if you don't wamt email
+           @result << artwork
+
+         end
+       end
 end
 
 def destroy
