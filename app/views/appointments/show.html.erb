@@ -1,2 +1,17 @@
-<h1>Appointments#show</h1>
-<p>Find me in app/views/appointments/show.html.erb</p>
+<% if current_user == @appointment.artwork.owner %>
+  <li><%= @appointment.artwork.title %></li>
+  <li><%= @appointment.start_date %></li>
+  <li><%= @appointment.end_date %></li>
+  <%= link_to 'Confirm',  appointment_confirm_path(@appointment), class: "btn" %>
+  <%= link_to 'Decline',  appointment_decline_path(@appointment), class: "btn" %>
+<% else %>
+  <ul>
+    <li><%= @appointment.artwork.title %></li>
+    <li><%= @appointment.start_date %></li>
+    <li><%= @appointment.end_date %></li>
+      <% if @appointment.status =! "Confirmed" || "Declined" %>
+        <% @appointment.status = "Pending" %>
+      <% end  %>
+    <li><%= @appointment.status %></li>
+  </ul>
+<% end %>

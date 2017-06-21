@@ -5,6 +5,7 @@ class AppointmentsController < ApplicationController
 
   def show
     @appointment = Appointment.find(params[:id])
+
   end
 
   def new
@@ -38,16 +39,18 @@ class AppointmentsController < ApplicationController
  end
 
  def edit
-   @appointment = Appointment.find(params[:id])
+    # @artwork = Artwork.find(params[:artwork_id])
+    @appointment = Appointment.find(params[:id])
  end
 
  def update
-  @appointment = Appointment.find(params[:id])
-  @appointment.update(appointment_params)
-  @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
-  @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
-  @appointment.save
-  redirect_to appointment_path(@appointment)
+    # @artwork = Artwork.find(params[:artwork_id])
+    @appointment = Appointment.find(params[:id])
+    @appointment.update(appointment_params)
+    @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
+    @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
+    @appointment.save
+    redirect_to appointment_path(@appointment)
 end
 
 def destroy
@@ -55,6 +58,23 @@ def destroy
   @appointment.destroy
   redirect_to appointments_path
 end
+
+def confirm
+  appointment = Appointment.find(params[:appointment_id])
+  appointment.status = "Confirmed"
+  redirect_to appointments_path
+end
+
+def decline
+  appointment = Appointment.find(params[:appointment_id])
+  appointment.status = "Declined"
+  redirect_to appointments_path
+
+end
+
+
+private
+
 def appointment_params
   params.require(:appointment).permit(:start_date, :end_date)
 end

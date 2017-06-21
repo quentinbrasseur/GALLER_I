@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
-  resources :appointments, only: [:show, :index, :new, :create, :edit, :update, :destroy]
+  resources :appointments, only: [:show, :index, :new, :create, :edit, :update, :destroy] do
+    get 'confirm', to:"appointments#confirm"
+    get 'decline', to:"appointments#decline"
+  end
   resources :artworks do
       resources :appointments, only: [:new,:create]
   end

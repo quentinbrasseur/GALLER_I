@@ -12,6 +12,7 @@ class VenuesController < ApplicationController
     @venue = Venue.new(venue_params)
     # @venue.owner = current_user
     if @venue.save
+      current_user.user_venues.create(venue: @venue)
       redirect_to venue_path(@venue)
     else
       render :new
