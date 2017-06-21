@@ -9,9 +9,6 @@
     <li><%= @appointment.artwork.title %></li>
     <li><%= @appointment.start_date %></li>
     <li><%= @appointment.end_date %></li>
-      <% if @appointment.status =! "Confirmed" || "Declined" %>
-        <% @appointment.status = "Pending" %>
-      <% end  %>
     <li><%= @appointment.status %></li>
   </ul>
 <% end %>

@@ -1,9 +1,9 @@
-<h1>Appointments#index</h1>
-<p>Find me in app/views/appointments/index.html.erb</p>
-
 <% current_user.venues.each do |venue| %>
   <% venue.appointments.each do |appointment| %>
+    <%= Artwork.find(appointment.artwork_id).owner.email%>
+    <br>
+    <%= appointment.to_json%>
 
-    <%= appointment.to_json %>
+
   <% end %>
 <% end %>
