@@ -67,6 +67,11 @@ def search
       @result << artwork
     end
        end
+       @hash = Gmaps4rails.build_markers(@result) do |artwork, marker|
+    marker.lat artwork.latitude
+    marker.lng artwork.longitude
+  end
+  raise
 end
 
 def destroy
