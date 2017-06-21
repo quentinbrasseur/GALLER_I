@@ -4,8 +4,8 @@ def index
   @artworks = Artwork.where.not(latitude: nil, longitude: nil)
 
   @hash = Gmaps4rails.build_markers(@artworks) do |artwork, marker|
-  marker.lat artwork.latitude
-  marker.lng artwork.longitude
+    marker.lat artwork.latitude
+    marker.lng artwork.longitude
   end
 end
 
@@ -58,6 +58,7 @@ def search
           booked = true if date.between?(@from_request   , @to_request  )
         end
       end
+
       unless booked
        artwork = {}
        artwork[:id] = art.id
