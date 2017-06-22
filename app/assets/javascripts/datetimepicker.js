@@ -17,12 +17,6 @@ $(document).ready(function(){
 //             $('#start_date').data("DateTimePicker").maxDate(e.date);
 //         });
 
-
-
-
-
-
-
 $('#start_date').datetimepicker({
 
                     disabledDates: [
