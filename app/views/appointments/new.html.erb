@@ -1,15 +1,19 @@
-  <% choice = current_user.venues.each { |venue| venue.title }  %>
+<div class="col-xs-12 col-md-3" style="display: inline-block">
 
-<%= simple_form_for([@artwork,@appointment]) do |f| %>
-  <%= @appointment.artwork_id %>
-  <%= f.input :start_date, :as => :string, input_html: {id: "start_date"}, placeholder: "Start Date" %>
-  <%= f.input :end_date, :as => :string, input_html: {id: "end_date"},placeholder: "End Date" %>
-  <%= f.input :venue_id, :collection => choice%>
+      <% choice = current_user.venues.each { |venue| venue.title }  %>
 
-  <%= hidden_field_tag :venue_id, current_user.venues.first.id %>
+      <%= simple_form_for([@artwork,@appointment]) do |f| %>
+        <%= @appointment.artwork_id %>
+        <%= f.input :start_date, :as => :string, input_html: {id: "start_date"}, placeholder: "Start Date" %>
+        <%= f.input :end_date, :as => :string, input_html: {id: "end_date"},placeholder: "End Date" %>
+        <%= f.input :venue_id, :collection => choice%>
 
-  <%= f.button :submit, class: "btn btn-primary"  %>
+        <%= hidden_field_tag :venue_id, current_user.venues.first.id %>
 
-<% end %>
+        <%= f.button :submit, class: "btn btn-primary"  %>
+
+      <% end %>
 
 
+  </div>
+</div>
