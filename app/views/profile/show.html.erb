@@ -1,0 +1,47 @@
+<h1 class="text-center" style="margin: 40px"><%= @user.first_name %></h1>
+<h2 class="text-center" style="margin: 40px"><%= @user.last_name %></h2>
+<h2 class="text-center" style="margin: 40px"><%= @user.email %></h2>
+<h2 class="text-center" style="margin: 40px"><%= @user.phone_number %></h2>
+Latest Search Location: <%= @user.location_request  %>
+            <br>
+            Latest Search Category: <%= @user.category_request  %>
+<h2 class="text-center" style="margin: 40px"><%= @user.address %></h2>
+<h1 class="text-center">Your appointment list</h1>
+ <% @appointments.each do |appointment| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card text-center">
+
+
+          <div class="card-body">
+
+<%= link_to appointment.artwork.title, appointment_path(appointment.id), class: "btn btn-primary" %>
+<br>
+            Renter Email: <%= appointment.user.email  %>
+            <br>
+
+            <br>
+            <%= link_to appointment.artwork.title, appointment_path(appointment.id) %>
+            <br>Confirmation code:
+            <%= appointment.id  %>
+            <br>
+             <%= appointment.start_date.strftime("%d %B %y")   %>
+              <br>
+              <%= appointment.end_date.strftime("%d %B %y")   %>
+                     <br> Artist Email:
+              <%= appointment.artwork.owner.email  %>
+              <br>
+
+              <br>
+    <%= link_to "Delete Booking", appointment_path(appointment.id), class: "btn btn-primary",
+              method: :delete,
+              data: { confirm: "are you sure" } %></h3>
+         <%= link_to "Edit Booking", edit_appointment_path(appointment.id), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+<br>
+<br>
+<%= link_to "Edit", edit_user_path %>
+<%= link_to "Show My Bookings!!", appointments_path %>
