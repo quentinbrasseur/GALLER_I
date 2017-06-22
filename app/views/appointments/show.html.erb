@@ -10,7 +10,11 @@
 <% else %>
   <ul>
 
-  <li>Hey there <%= current_user.username %> !!!</li>
+  <% if current_user.username.nil? %>
+    <li>Hey there <%= current_user.first_name %> !!!</li>
+  <% else %>
+    <li>Hey there <%= current_user.username %> !!!</li>
+  <% end %>
 
     <li>You booked a <%= @appointment.artwork.category %> called: <%= @appointment.artwork.title %></li>
     <li> For your venue: <%= @appointment.venue.title %> </li>
