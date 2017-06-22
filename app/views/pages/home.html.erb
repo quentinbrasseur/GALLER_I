@@ -1,36 +1,81 @@
 
-<h1> HOME PAGE</h1>
+<h1 class="text-center">ART YOU SPACE</h1>
+<br>
 
-
-<div class="search-bar">
+<div class="search-bar text-center">
     <form class="form-inline" action="/search" method="GET">
       <label class="sr-only" for="inlineFormInput">City</label>
       <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Enter your city">
 
 
-      <label class="sr-only" for="inlineFormInputGroup">When</label>
+<!--       <label class="sr-only" for="inlineFormInputGroup">When</label>
       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
         <input name="date_range" type="text" class="form-control" id="dateRange" placeholder="When">
-      </div>
+      </div> -->
       <input type="submit"  class="btn btn-primary" value="Search!">
 
     </form>
   </div>
 
 
+<br>
+<br>
 
 
 
-<li><%= link_to "See Artworks", artworks_path %></li>
-<li><%= link_to "See Venues", venues_path %></li>
-<li><%= link_to "Create Venues", new_venue_path %></li>
-<% if current_user %>
+<h2 class="class text-center"><%= link_to "Explore Arts", artworks_path, style: "text-decoration: none; color: black;" %></h2>
+<br>
 
-<h3>My Venues</h3>
-  <ul>
-  <% current_user.venues.each do |venue| %>
-    <li><%= venue.title %></li>
+  <div class="cards-overview">
+    <div class="container">
 
-  <% end %>
-  </ul>
-<% end %>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <%= link_to(root_path, style: 'text-decoration: none;') do %>
+
+              <img src="" alt="Paintings" style="width:100%">
+
+            <% end %>
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <%= link_to(root_path, style: 'text-decoration: none;') do %>
+              <img src="" alt="Drawings" style="width:100%">
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <%= link_to(root_path, style: 'text-decoration: none;') do %>
+              <img src="" alt="Photography" style="width:100%">
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <%= link_to(root_path, style: 'text-decoration: none;') do %>
+              <img src="" alt="Sculptures" style="width:100%">
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <%= link_to(root_path, style: 'text-decoration: none;') do %>
+              <img src="" alt="Installations" style="width:100%">
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <%= link_to(root_path, style: 'text-decoration: none;') do %>
+              <img src="" alt="Miscellaneous" style="width:100%">
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

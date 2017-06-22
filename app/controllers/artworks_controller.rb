@@ -45,96 +45,116 @@ class ArtworksController < ApplicationController
 
 
   def search
-    @result = [ ]  #shows the results from the filter
-    if params[:city].blank?
-      # run only the date search filter
-  @search = Artwork.all
-
-    date = params[:date_range]
-    date = date.split(%r{\s*-\s*})
-    from = date[0].to_s
-    to = date[1].to_s
-    @from_request = Date.strptime(from, '%m/%d/%Y')
-    @to_request = Date.strptime(to, '%m/%d/%Y')
-    @search.all.map do |art|  #execute for all artwork instances
-      booked = false  #defaults all artwork to 'unbooked'
-      art.appointments.each do |appointment|
-        (appointment.start_date.to_date..appointment.end_date.to_date).each do |date|
-          booked = true if date.between?(@from_request   , @to_request )
-        end
-      end
-
-      unless booked
-        artwork = Artwork.new
-        artwork.id = art.id
-        artwork.title = art.title
-        artwork.category = art.category
-        artwork.location = art.location
-        # artwork.artist = art.owner.email #change to name if you don't wamt email
-        artwork.latitude = art.latitude
-        artwork.longitude = art.longitude
-
-        # artwork.photo = art.photo
-        @result << artwork
-
-      end
 
 
+    #### INFO ####
 
-    end
+    @result = Artwork.all
+
+    # The search function is commented because not working on home page for CITY
+    # As we said, we will not keep the datepicker on homepage
+    # (Homepage is simple CTA: SEARCH ALL ART within the CITY YOU WANT)
+
+    # --> The objective is then to have city filter working
+    # --> For bottom page of Homepage page ("Explore Arts"), we should have filter by CATEGORY (paintings, etc)
+
+    # CONCLUSION for home page:
+    # => Need a filter for CITY (independent)
+    # => Need a filter for CATEGORY (independent)
+
+
+    #### END INFO ####
+
+  #   @result = [ ]  #shows the results from the filter
+  #   if params[:city].blank?
+  #     # run only the date search filter
+  # @search = Artwork.all
+
+  #   date = params[:date_range]
+  #   date = date.split(%r{\s*-\s*})
+  #   from = date[0].to_s
+  #   to = date[1].to_s
+  #   @from_request = Date.strptime(from, '%m/%d/%Y')
+  #   @to_request = Date.strptime(to, '%m/%d/%Y')
+  #   @search.all.map do |art|  #execute for all artwork instances
+  #     booked = false  #defaults all artwork to 'unbooked'
+  #     art.appointments.each do |appointment|
+  #       (appointment.start_date.to_date..appointment.end_date.to_date).each do |date|
+  #         booked = true if date.between?(@from_request   , @to_request )
+  #       end
+  #     end
+
+  #     unless booked
+  #       artwork = Artwork.new
+  #       artwork.id = art.id
+  #       artwork.title = art.title
+  #       artwork.category = art.category
+  #       artwork.location = art.location
+  #       # artwork.artist = art.owner.email #change to name if you don't wamt email
+  #       artwork.latitude = art.latitude
+  #       artwork.longitude = art.longitude
+
+  #       # artwork.photo = art.photo
+  #       @result << artwork
+
+  #     end
+
+
+
+  #   end
+  #     @hash = Gmaps4rails.build_markers(@result) do |art, marker|
+  #       marker.lat art.latitude
+  #       marker.lng art.longitude
+  #     end
+  #     @hash.pop
+
+  #   else
+  #       #run both the date search and the city search filter
+  #   @search = Artwork.where( location: params[:city])
+  #   city = params[:city]
+  #   date = params[:date_range]
+  #   date = date.split(%r{\s*-\s*})
+  #   from = date[0].to_s
+  #   to = date[1].to_s
+  #   @from_request = Date.strptime(from, '%m/%d/%Y')
+  #   @to_request = Date.strptime(to, '%m/%d/%Y')
+  #   @search.all.map do |art|  #execute for all artwork instances
+  #     booked = false  #defaults all artwork to 'unbooked'
+  #     art.appointments.each do |appointment|
+  #       (appointment.start_date.to_date..appointment.end_date.to_date).each do |date|
+  #         booked = true if date.between?(@from_request   , @to_request )
+  #       end
+  #     end
+
+  #     unless booked
+  #       artwork = Artwork.new
+  #       artwork.id = art.id
+  #       artwork.title = art.title
+  #       artwork.category = art.category
+  #       artwork.location = art.location
+  #       # artwork.artist = art.owner.email #change to name if you don't wamt email
+  #       artwork.latitude = art.latitude
+  #       artwork.longitude = art.longitude
+
+  #       # artwork.photo = art.photo
+
+
+  #       @result << artwork
+
+  #     end
+
+    # end
+
+
       @hash = Gmaps4rails.build_markers(@result) do |art, marker|
         marker.lat art.latitude
         marker.lng art.longitude
       end
       @hash.pop
-
-    else
-        #run both the date search and the city search filter
-    @search = Artwork.where( location: params[:city])
-    city = params[:city]
-    date = params[:date_range]
-    date = date.split(%r{\s*-\s*})
-    from = date[0].to_s
-    to = date[1].to_s
-    @from_request = Date.strptime(from, '%m/%d/%Y')
-    @to_request = Date.strptime(to, '%m/%d/%Y')
-    @search.all.map do |art|  #execute for all artwork instances
-      booked = false  #defaults all artwork to 'unbooked'
-      art.appointments.each do |appointment|
-        (appointment.start_date.to_date..appointment.end_date.to_date).each do |date|
-          booked = true if date.between?(@from_request   , @to_request )
-        end
-      end
-
-      unless booked
-        artwork = Artwork.new
-        artwork.id = art.id
-        artwork.title = art.title
-        artwork.category = art.category
-        artwork.location = art.location
-        # artwork.artist = art.owner.email #change to name if you don't wamt email
-        artwork.latitude = art.latitude
-        artwork.longitude = art.longitude
-
-        # artwork.photo = art.photo
-
-
-        @result << artwork
-
-      end
-
     end
 
 
-      @hash = Gmaps4rails.build_markers(@result) do |art, marker|
-        marker.lat art.latitude
-        marker.lng art.longitude
-      end
-      @hash.pop
-    end
-
-
-  end
+  # end
   # @artworks = Artwork.where.not(latitude: nil, longitude: nil)
   #       @hash = Gmaps4rails.build_markers(@result) do |artwork, marker|
   #    marker.lat artwork.latitude

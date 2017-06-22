@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :profile, only: [:edit, :update, :show]
+
   mount Attachinary::Engine => "/attachinary"
 
   resources :appointments, only: [:show, :index, :new, :create, :edit, :update, :destroy] do
@@ -18,8 +20,6 @@ Rails.application.routes.draw do
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
   root to: 'pages#home'
-
-  get 'profile', to: 'pages#profile', as: :profile
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "search", to: 'artworks#search'
