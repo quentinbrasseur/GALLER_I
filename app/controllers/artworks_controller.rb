@@ -42,6 +42,8 @@ end
 def search
   @result = [ ]  #shows the results from the filter
   @search = Artwork.all
+  city = params[:city]
+
   date = params[:date_range]
   date = date.split(%r{\s*-\s*})
   from = date[0].to_s
