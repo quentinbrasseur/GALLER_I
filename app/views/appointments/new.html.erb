@@ -1,7 +1,7 @@
 <script>
   window.DISABLE_DATES = [
-  <%= @disabled_days.each do |date| %>
-   <%= date %>
+  <% @disabled_days.each do |date| %>
+   '<%= date.strftime("%-m/%e/%Y") %>',
 
 <% end  %>
   ];

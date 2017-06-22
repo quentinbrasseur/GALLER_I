@@ -19,10 +19,8 @@ $(document).ready(function(){
 
 $('#start_date').datetimepicker({
 
-                    disabledDates: [
+                    disabledDates: window.DISABLE_DATES
 
-                        "06/23/2017 00:53", window.DISABLE_DATES,
-                    ]
                 });
 
 // $("#end_date").datepicker();
