@@ -30,7 +30,7 @@
 <h3>My Venues</h3>
   <ul>
   <% current_user.venues.each do |venue| %>
-    <li><%= venue.title %></li>
+    <li><%= link_to venue.title, venue_path(venue) %></li>
 
   <% end %>
   </ul>

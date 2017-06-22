@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 
-                 $('#end_date').datetimepicker();
+
 // $('#start_date').datetimepicker();
 
 
@@ -18,6 +18,11 @@ $(document).ready(function(){
 //         });
 
 $('#start_date').datetimepicker({
+
+                    disabledDates: window.DISABLE_DATES
+
+                });
+$('#end_date').datetimepicker({
 
                     disabledDates: window.DISABLE_DATES
 

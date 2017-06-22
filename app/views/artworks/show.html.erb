@@ -5,8 +5,18 @@
 <h2 class="text-center" style="margin: 40px"><%= @artwork.weight %></h2>
 <h2 class="text-center" style="margin: 40px"><%= @artwork.location %></h2>
 <h2 class="text-center" style="margin: 40px"><%= @artwork.owner.email %></h2>
-
-
+<br>
+<% @status = Appointment.where(artwork_id: @artwork.id) %>
+<% if @status.blank?  %>
+This Artwork is currently available..You should book it now!!
+<% else %>
+This artwork is booked for the following dates:
+<br>
+<%  @status.each do |appt|%>
+<%= appt.start_date %> to <%= appt.end_date %>
+<br>
+<% end %>
+<% end %>
 <h3 class="text-center" style="margin: 40px">
 
 <% if current_user and current_user.venues.any? %>
