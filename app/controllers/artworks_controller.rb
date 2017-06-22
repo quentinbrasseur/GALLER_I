@@ -43,9 +43,11 @@ class ArtworksController < ApplicationController
     end
   end
 
+
   def search
     @result = [ ]  #shows the results from the filter
-    @search = Artwork.all
+    @search = Artwork.where( location: params[:city])
+    city = params[:city]
     date = params[:date_range]
     date = date.split(%r{\s*-\s*})
     from = date[0].to_s
@@ -74,6 +76,7 @@ class ArtworksController < ApplicationController
 
 
         @result << artwork
+
       end
 
     end

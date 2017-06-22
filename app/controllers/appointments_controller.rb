@@ -5,11 +5,12 @@ class AppointmentsController < ApplicationController
 
   def show
     @appointment = Appointment.find(params[:id])
-
   end
 
   def new
     @artwork = Artwork.find(params[:artwork_id])
+    @disabled_days = [Time.now]
+    raise
     @appointment = Appointment.new
   end
 
@@ -24,7 +25,6 @@ class AppointmentsController < ApplicationController
       # @appointment.user = current_user  #this needs to represent the user and the venue
       @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
       @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
-
       @appointment.save
       redirect_to appointment_path(@appointment)
    # else

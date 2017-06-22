@@ -1,1 +1,10 @@
+<script>
+  window.DISABLE_DATES = [
+  <%= @disabled_days.each do |date| %>
+   <%= date %>
+
+<% end  %>
+  ];
+
+</script>
 <%= render 'form' %>

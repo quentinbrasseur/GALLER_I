@@ -7,6 +7,11 @@
             <label class="sr-only" for="inlineFormInput">City</label>
             <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Barcelona" value='<%= params[:city] %>'>
 
+            <div class="row search-row">
+                <input type="text" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
+                <input type="submit"  class="btn btn-primary" value="Search!">
+          </div>
+
             <label class="sr-only" for="inlineFormInputGroup">Art</label>
             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
               <input name="category" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Paint" value='<%= params[:category] %>'>
@@ -75,6 +80,7 @@
           <!-- Search control -->
           <div class="row search-row">
                 <input type="text" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
+                <input type="submit"  class="btn btn-primary" value="Search!">
           </div>
           <div class="row">
             <!-- This is the set up of a basic gallery, your items must have the categories they belong to in a data-category
