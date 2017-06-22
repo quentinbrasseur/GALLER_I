@@ -9,8 +9,15 @@ class AppointmentsController < ApplicationController
 
   def new
     @artwork = Artwork.find(params[:artwork_id])
-    @disabled_days = [Time.now]
-    raise
+    @status = Appointment.where(artwork_id: @artwork.id)
+    @disabled_days = []
+    @status.each do |appt|
+      (((appt.start_date))..((appt.end_date))).each do |date|
+        @disabled_days << date
+      end
+    end
+
+
     @appointment = Appointment.new
   end
 
