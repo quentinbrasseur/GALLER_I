@@ -65,6 +65,7 @@ def decline
   appointment = Appointment.find(params[:appointment_id])
   appointment.status = "Declined"
   appointment.save
+  appointment.destroy
   redirect_to appointments_path
 
 end

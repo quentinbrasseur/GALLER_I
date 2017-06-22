@@ -1,4 +1,5 @@
 
+
   <p>ALL APPOINTMENTS WE MADE:</p>
 <% current_user.venues.each do |venue| %>
   <% venue.appointments.each do |appointment| %>
@@ -9,3 +10,28 @@
 <% end %>
 
 <p>ALL APPOINTMENTS SOMEONE ELSE MADE AND INVOLVE US: (to be done)</p>
+
+<h1>Your Booking Requests which are pending an Artist decision:</h1>
+<br>
+<p>working on this logic</p>
+<br>
+<br>
+
+
+
+<h1>Requests waiting on your Approval/Rejection:</h1>
+<p>Find me in app/views/appointments/index.html.erb</p>
+<%  current_user.artworks.each do |artwork|  %>
+<% artwork.appointments.each do |appointment| %>
+
+    <%= appointment.to_json %>
+    <%= link_to 'Confirm',  appointment_confirm_path(appointment), class: "btn" %>
+  <%= link_to 'Decline',  appointment_decline_path(appointment), class: "btn" %>
+  <% end %>
+
+<% end %>
+
+<li><%= link_to "See Artworks", artworks_path %></li>
+<li><%= link_to "Create Artwork", new_artwork_path %></li>
+<li><%= link_to "See Venues", venues_path %></li>
+<li><%= link_to "Create Venues", new_venue_path %></li>
