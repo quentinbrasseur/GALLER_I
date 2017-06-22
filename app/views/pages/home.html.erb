@@ -1,12 +1,12 @@
 
 
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1> HOME PAGE</h1>
+
 
 <div class="search-bar">
     <form class="form-inline" action="/search" method="GET">
       <label class="sr-only" for="inlineFormInput">City</label>
-      <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="What are you looking for?">
+      <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Enter your city">
 
 
       <label class="sr-only" for="inlineFormInputGroup">When</label>
@@ -23,10 +23,8 @@
 
 
 <li><%= link_to "See Artworks", artworks_path %></li>
-<li><%= link_to "Create Artwork", new_artwork_path %></li>
 <li><%= link_to "See Venues", venues_path %></li>
 <li><%= link_to "Create Venues", new_venue_path %></li>
-<li><%= link_to "My Appointments", appointments_path %></li>
 <% if current_user %>
 
 <h3>My Venues</h3>
