@@ -24,6 +24,10 @@ end
 
 def show
   @artwork = Artwork.find(params[:id])
+  @hash = Gmaps4rails.build_markers(@artwork) do |artwork, marker|
+    marker.lat artwork.latitude
+    marker.lng artwork.longitude
+  end
 end
 
 def edit
