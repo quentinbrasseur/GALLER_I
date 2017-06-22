@@ -1,17 +1,24 @@
 <% if current_user == @appointment.artwork.owner %>
-  <li><%= @appointment.artwork.title %></li>
-  <li><%= @appointment.start_date %></li>
-  <li><%= @appointment.end_date %></li>
+  <li>Hey there Artist: <%= @appointment.artwork.owner.username %>, </li>
+  <li><%= @appointment.venue.title %> wants to book</li>
+    <li>Your <%= @appointment.artwork.category %>:  <%= @appointment.artwork.title %></li>
+    <li>Starting: <%= @appointment.start_date %></li>
+    <li>Ending: <%= @appointment.end_date %></li>
+    <li>Click below to Confirm or Decline this booking!!</li>
   <%= link_to 'Confirm',  appointment_confirm_path(@appointment), class: "btn" %>
   <%= link_to 'Decline',  appointment_decline_path(@appointment), class: "btn" %>
 <% else %>
   <ul>
-    <li><%= @appointment.artwork.title %></li>
-    <li><%= @appointment.start_date %></li>
-    <li><%= @appointment.end_date %></li>
-      <% if @appointment.status =! "Confirmed" || "Declined" %>
+  <li>Hey there <%= current_user.username %> !!!</li>
+
+    <li>You booked a <%= @appointment.artwork.category %> called: <%= @appointment.artwork.title %></li>
+    <li> For your venue: <%= @appointment.venue.title %> </li>
+    <li>Starting on: <%= @appointment.start_date %></li>
+    <li>Ending on: <%= @appointment.end_date %></li>
+      Currently, your appoinment is: <% if @appointment.status =! "Confirmed" || "Declined" %>
         <% @appointment.status = "Pending" %>
       <% end  %>
     <li><%= @appointment.status %></li>
   </ul>
+  <%= link_to 'See All Your Appointments!',  appointments_path, class: "btn" %>
 <% end %>

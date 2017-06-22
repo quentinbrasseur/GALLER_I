@@ -56,10 +56,12 @@ p cedric.id
 category = [ "Painting", "Sculpture", "Photography", "Drawing", "Miscellaneous" ]
 city = [ "Barcelona", "Madrid", "Sevilla", "Bilbao", "Toledo" ]
 owner = [ cedric, kilian, joe, quentin ]
+type = [ "Cafe", "Restaurant", "Bar", "Co-Working", "Office" ]
 
-50.times do
+
+20.times do
   artwork = Artwork.create(
-    title: Faker::RockBand.name,
+    title: Faker::Lorem.word,
     category: category.sample,
     height: rand(200..1000),
     width: rand(200..1000),
@@ -79,28 +81,28 @@ end
 
 mcdo = Venue.create(
  title: Faker::Company.name,
- category: category.sample,
+ category: type.sample,
  location: city.sample,
- photo_url: "http://lorempixel.com/300/200/business/",
+ photo_url: "http://lorempixel.com/300/200/logo/",
  )
 
 kfc = Venue.create(
  title: Faker::Company.name,
- category: category.sample,
+ category: type.sample,
  location: city.sample,
  photo_url: "http://lorempixel.com/300/200/business/",
   )
 
 pizzahut = Venue.create(
  title: Faker::Company.name,
- category: category.sample,
+ category: type.sample,
  location: city.sample,
  photo_url: "http://lorempixel.com/300/200/business/",
   )
 
 chipotle = Venue.create(
  title: Faker::Company.name,
- category: category.sample,
+ category: type.sample,
  location: city.sample,
  photo_url: "http://lorempixel.com/300/200/business/",
   )

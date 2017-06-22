@@ -52,7 +52,7 @@ def search
     booked = false  #defaults all artwork to 'unbooked'
     art.appointments.each do |appointment|
       (appointment.start_date.to_date..appointment.end_date.to_date).each do |date|
-        booked = true if date.between?(@from_request   , @to_request  )
+        booked = true if date.between?(@from_request   , @to_request )
       end
     end
 
@@ -67,10 +67,11 @@ def search
       @result << artwork
     end
        end
-    #    @hash = Gmaps4rails.build_markers(@result) do |artwork, marker|
-    # marker.lat artwork.latitude
-    # marker.lng artwork.longitude
-  # end
+  # @artworks = Artwork.where.not(latitude: nil, longitude: nil)
+  #       @hash = Gmaps4rails.build_markers(@result) do |artwork, marker|
+  #    marker.lat artwork.latitude
+  #    marker.lng artwork.longitude
+  #  end
 
 end
 
