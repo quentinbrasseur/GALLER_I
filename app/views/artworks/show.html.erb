@@ -17,6 +17,8 @@ Please create a venue befoe booking, here: <%= link_to "Create Venue", new_venue
 
 
   <%= link_to "Back", artworks_path %>
-  <%= link_to "Edit", edit_artwork_path(@artwork) %>
-  <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
+  <%  if (current_user == @artwork.owner) %>
+    <%= link_to "Edit", edit_artwork_path(@artwork) %>
+    <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
+  <% end  %>
 </h3>

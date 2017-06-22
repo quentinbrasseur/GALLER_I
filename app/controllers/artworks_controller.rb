@@ -76,9 +76,9 @@ def search
 end
 
 def destroy
-  @artwork = Artwork.find(params[:id])
-  @artwork.destroy
-  redirect_to artworks_path
+    @artwork = Artwork.find(params[:id])
+    @artwork.destroy
+    redirect_to artworks_path
 end
 
 private
