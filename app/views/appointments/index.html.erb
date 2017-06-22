@@ -1,12 +1,15 @@
-<h1>Your Booked Appointments:</h1>
-<p>Find me in app/views/appointments/index.html.erb</p>
 
+
+  <p>ALL APPOINTMENTS WE MADE:</p>
 <% current_user.venues.each do |venue| %>
   <% venue.appointments.each do |appointment| %>
-
-    <%= appointment.to_json %>
+    <%= Artwork.find(appointment.artwork_id).owner.email%>
+    <br>
+    <%= appointment.to_json%>
   <% end %>
 <% end %>
+
+<p>ALL APPOINTMENTS SOMEONE ELSE MADE AND INVOLVE US: (to be done)</p>
 
 <h1>Your Booking Requests which are pending an Artist decision:</h1>
 <br>

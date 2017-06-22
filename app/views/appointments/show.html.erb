@@ -9,6 +9,7 @@
   <%= link_to 'Decline',  appointment_decline_path(@appointment), class: "btn" %>
 <% else %>
   <ul>
+
   <li>Hey there <%= current_user.username %> !!!</li>
 
     <li>You booked a <%= @appointment.artwork.category %> called: <%= @appointment.artwork.title %></li>

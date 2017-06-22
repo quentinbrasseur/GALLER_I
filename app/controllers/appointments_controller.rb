@@ -57,12 +57,14 @@ end
 def confirm
   appointment = Appointment.find(params[:appointment_id])
   appointment.status = "Confirmed"
+  appointment.save
   redirect_to appointments_path
 end
 
 def decline
   appointment = Appointment.find(params[:appointment_id])
   appointment.status = "Declined"
+  appointment.save
   appointment.destroy
   redirect_to appointments_path
 
