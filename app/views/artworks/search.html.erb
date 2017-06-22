@@ -7,6 +7,11 @@
             <label class="sr-only" for="inlineFormInput">City</label>
             <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Barcelona" value='<%= params[:city] %>'>
 
+            <div class="row search-row">
+                <input type="text" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
+                <input type="submit"  class="btn btn-primary" value="Search!">
+          </div>
+
             <label class="sr-only" for="inlineFormInputGroup">Art</label>
             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
               <input name="category" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Paint" value='<%= params[:category] %>'>
@@ -75,6 +80,7 @@
           <!-- Search control -->
           <div class="row search-row">
                 <input type="text" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
+                <input type="submit"  class="btn btn-primary" value="Search!">
           </div>
           <div class="row">
             <!-- This is the set up of a basic gallery, your items must have the categories they belong to in a data-category
@@ -83,31 +89,32 @@
               <div class="filtr-container">
                 <%= @cat = 0  %>
                 <% @result.each do |artwork| %>
-                  <% if artwork[:category] == "Painting" %>
+                  <% if artwork.category == "Painting" %>
                     <%= @cat = 1 %>
-                    <% elsif artwork[:category] == "Drawing"%>
+                    <% elsif artwork.category == "Drawing"%>
                     <%= @cat = 2 %>
-                    <% elsif artwork[:category] == "Sculpture"%>
+                    <% elsif artwork.category == "Sculpture"%>
                     <%= @cat = 3 %>
-                    <% elsif artwork[:category] == "Photography"%>
+                    <% elsif artwork.category == "Photography"%>
                     <%= @cat = 4 %>
-                    <% elsif artwork[:category] == "Installation"%>
+                    <% elsif artwork.category == "Installation"%>
                     <%= @cat = 5 %>
                     <% else %>
                     <%= @cat = 6 %>
                   <% end %>
                   <div class="col-xs-6 col-sm-4 col-md-3 filtr-item card" data-category="<%= @cat %>" data-sort=" <%= artwork[:category] %> ">
-                    <%= link_to(artwork_path(id: artwork[:id], date_range: params[:date_range]), style: 'text-decoration: none;') do %>
-                    <% if artwork[:photo] %>
-                      <% image =  artwork[:photo].path %>
+                    <%= link_to(artwork_path(id: artwork.id, date_range: params[:date_range]), style: 'text-decoration: none;') do %>
+                    <% if artwork.photo %>
+                      <% image =  artwork.photo.path %>
                     <% else  %>
                       <% image =  "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
                     <% end %>
                     <img class="img-responsive" src="<%= cl_image_path(image) %>" alt="sample image">
-                    <span class="item-desc"> <%= artwork[:title]  %> <br> cat: <%= artwork[:category] %> <br> loc: <%= artwork[:location] %> </span>
+                    <span class="item-desc"> <%= artwork.title %> <br> cat: <%= artwork.category %> <br> loc: <%= artwork.location %> </span>
                   </div>
                   <% end %>
                   <% end %>
+
                 </div>
               </div>
             </div>
