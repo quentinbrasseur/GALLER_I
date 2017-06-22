@@ -1,1 +1,13 @@
-<%= render 'form' %>
+  <% choice = current_user.venues.each { |venue| venue.title }  %>
+
+<%= simple_form_for([@artwork,@appointment]) do |f| %>
+  <%= @appointment.artwork_id %>
+  <%= f.input :start_date, :as => :string, input_html: {id: "start_date"}, placeholder: "Start Date" %>
+  <%= f.input :end_date, :as => :string, input_html: {id: "end_date"},placeholder: "End Date" %>
+  <%= f.input :venue_id, :collection => choice%>
+
+  <%= hidden_field_tag :venue_id, current_user.venues.first.id %>
+
+  <%= f.button :submit, class: "btn btn-primary"  %>
+
+<% end %>
