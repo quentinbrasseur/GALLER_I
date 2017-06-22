@@ -1,7 +1,17 @@
 <h1 class="text-center" style="margin: 40px"><%= @venue.title %></h1>
 <h2 class="text-center" style="margin: 40px"><%= @venue.category %></h2>
 <h2 class="text-center" style="margin: 40px"><%= @venue.location %></h2>
-
+<% @status = Appointment.where(venue_id: @venue.id) %>
+<% if @status.blank?  %>
+This Venue is showing no art :(
+<% else %>
+You can find displayed in <%= @venue.title %>:
+<br>
+<%  @status.each do |appt|%>
+<%= appt.start_date %> to <%= appt.end_date %> the <%= appt.artwork.category %>: <%= appt.artwork.title %> by renowned artist: <%= appt.artwork.owner.username %>
+<br>
+<% end %>
+<% end %>
 
 <% if @venue.photo? %>
   <%= cl_image_tag @venue.photo.path, width: 200, height: 300, crop: :fill %>

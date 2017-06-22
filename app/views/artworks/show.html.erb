@@ -10,10 +10,10 @@
 <% if @status.blank?  %>
 This Artwork is currently available..You should book it now!!
 <% else %>
-This artwork is booked for the following dates:
+See this artwork on these dates at the following locations:
 <br>
 <%  @status.each do |appt|%>
-<%= appt.start_date %> to <%= appt.end_date %>
+<%= appt.start_date %> to <%= appt.end_date %> at <%= appt.venue.title %>
 <br>
 <% end %>
 <% end %>
