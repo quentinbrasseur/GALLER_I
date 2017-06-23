@@ -5,23 +5,21 @@
         <div class="search-bar">
           <form class="form-inline" action="/search" method="GET">
             <label class="sr-only" for="inlineFormInput">City</label>
-            <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Barcelona" value='<%= params[:city] %>'>
+              <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Barcelona" value='<%= params[:city] %>'>
+              <label class="sr-only" for="inlineFormInputGroup">When</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input name="date_range" type="text" class="form-control" id="dateRange" placeholder="When">
 
+            </div>
             <div class="row search-row">
-                <input type="text" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
+                <input type="hidden" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
                 <input type="submit"  class="btn btn-primary" value="Search!">
           </div>
 
-            <label class="sr-only" for="inlineFormInputGroup">Art</label>
-            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-              <input name="category" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Paint" value='<%= params[:category] %>'>
-            </div>
 
-            <label class="sr-only" for="inlineFormInputGroup">When</label>
-            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-              <input name="date_range" type="text" class="form-control" id="dateRange" placeholder="When">
-            </div>
-            <input type="submit"  class="btn btn-primary" value="Search!">
+
+
+
 
             <p></p>
 
@@ -41,47 +39,20 @@
               <li data-filter= 3 >Sculpture</li>
               <li data-filter= 4 >Photography</li>
               <li data-filter= 5 >Installations</li>
-              <li data-filter= 5 >Miscellaneous</li>
+              <li data-filter= 6 >Miscellaneous</li>
             </ul>
           </div>
           <!-- Filter Controls - Multifilter Mode -->
-          <div class="row">
-            <!-- A basic setup of multifilter controls, when the user toggles a category
-            the corresponding items are rendered or hidden -->
-            <ul class="multifilter">
-             Toggle Multiple Types of Artwork:
-              <li data-multifilter= 1 >Paintings</li>
-              <li data-multifilter= 2 >Drawings</li>
-              <li data-multifilter= 3 >Sculptures</li>
-              <li data-multifilter= 4 >Photography</li>
-              <li data-multifilter= 5 >Installations</li>
-              <li data-multifilter= 6 >Miscellaneous</li>
-            </ul>
-          </div>
+
           <!-- Shuffle & Sort Controls -->
           <div class="row">
             <ul class="sortandshuffle">
-              Sort &amp; Shuffle controls:
-              <!-- Basic shuffle control -->
-              <li class="shuffle-btn" data-shuffle>Shuffle</li>
-              <!-- Basic sort controls consisting of asc/desc button and a select -->
-              <li class="sort-btn active" data-sortAsc>Asc</li>
-              <li class="sort-btn" data-sortDesc>Desc</li>
-              <select data-sortOrder>
-                <option value="domIndex">
-                  Position
-                </option>
-                <option value="sortData">
-                  Description
-                </option>
-              </select>
-            </ul>
+               <!-- Basic shuffle control -->
+              <li class="shuffle-btn" data-shuffle>Shuffle Artwork!</li>
+              </ul>
           </div>
           <!-- Search control -->
-          <div class="row search-row">
-                <input type="text" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
-                <input type="submit"  class="btn btn-primary" value="Search!">
-          </div>
+
           <div class="row">
             <!-- This is the set up of a basic gallery, your items must have the categories they belong to in a data-category
             attribute, which starts from the value 1 and goes up from there -->
@@ -90,17 +61,17 @@
                 <%= @cat = 0  %>
                 <% @result.each do |artwork| %>
                   <% if artwork.category == "Painting" %>
-                    <%= @cat = 1 %>
+                    <% @cat = 1 %>
                     <% elsif artwork.category == "Drawing"%>
-                    <%= @cat = 2 %>
+                    <% @cat = 2 %>
                     <% elsif artwork.category == "Sculpture"%>
-                    <%= @cat = 3 %>
+                    <% @cat = 3 %>
                     <% elsif artwork.category == "Photography"%>
-                    <%= @cat = 4 %>
+                    <% @cat = 4 %>
                     <% elsif artwork.category == "Installation"%>
-                    <%= @cat = 5 %>
+                    <% @cat = 5 %>
                     <% else %>
-                    <%= @cat = 6 %>
+                    <% @cat = 6 %>
                   <% end %>
                   <div class="col-xs-6 col-sm-4 col-md-3 filtr-item card" data-category="<%= @cat %>" data-sort=" <%= artwork[:category] %> ">
                     <%= link_to(artwork_path(id: artwork.id, date_range: params[:date_range]), style: 'text-decoration: none;') do %>
