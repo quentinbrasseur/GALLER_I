@@ -3,9 +3,16 @@
   <p>ALL APPOINTMENTS WE MADE:</p>
 <% current_user.venues.each do |venue| %>
   <% venue.appointments.each do |appointment| %>
-    <%= Artwork.find(appointment.artwork_id).owner.email%>
-    <br>
-    <%= appointment.to_json%>
+<ul>
+   <li>
+     <p> Appointment : <%=appointment.id%></p>
+     <p> Venue : <%=venue.title%></p>
+     <p> artwork : <%=appointment.artwork.title%></p>
+     <p> End Date : <%= appointment.start_date%></p>
+     <p> Start Date : <%= appointment.end_date%></p>
+     <p> Status : <%=appointment.status%></p>
+   </li>
+</ul>
     <br>
     <br>
   <% end %>
