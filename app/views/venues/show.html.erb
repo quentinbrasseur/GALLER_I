@@ -8,7 +8,7 @@ This Venue is showing no art :(
 You can find displayed in <%= @venue.title %>:
 <br>
 <%  @status.each do |appt|%>
-<%= appt.start_date %> to <%= appt.end_date %> the <%= appt.artwork.category %>: <%= appt.artwork.title %> by renowned artist: <%= appt.artwork.owner.username %>
+<%= appt.start_date %> to <%= appt.end_date %> the <%= appt.artwork.category %>: <%=  link_to appt.artwork.title, artwork_path(appt.artwork.id)%> by renowned artist: <%= appt.artwork.owner.username %>
 <br>
 <% end %>
 <% end %>
