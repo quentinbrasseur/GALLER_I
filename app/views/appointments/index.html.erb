@@ -7,11 +7,12 @@
 
 
     <li>
-    <p> <%=venue.title%></p>
-    <p> <%=appointment.artwork_id%></p>
-    <p><%= appointment.start_date%></p>
-    <p><%= appointment.end_date%></p>
-
+    <p> Appointment : <%=appointment.id%></p>
+    <p> Venue : <%=venue.title%></p>
+    <p> artwork : <%=appointment.artwork.title%></p>
+    <p> End Date : <%= appointment.start_date%></p>
+    <p> Start Date : <%= appointment.end_date%></p>
+    <p> Status : <%=appointment.status%></p>
 
     </li>
 
