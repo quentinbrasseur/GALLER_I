@@ -17,7 +17,6 @@ class AppointmentsController < ApplicationController
       end
     end
 
-
     @appointment = Appointment.new
   end
 

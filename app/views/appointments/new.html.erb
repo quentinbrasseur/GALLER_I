@@ -1,4 +1,18 @@
+
+<script>
+  window.DISABLE_DATES = [
+  <% @disabled_days.each do |date| %>
+   '<%= date.strftime("%-m/%e/%Y") %>',
+<% end  %>
+  ];
+</script>
+
+
+
+
+
 <div class="col-xs-12 col-md-3" style="display: inline-block">
+
 
       <% choice = current_user.venues.each { |venue| venue.title }  %>
 
