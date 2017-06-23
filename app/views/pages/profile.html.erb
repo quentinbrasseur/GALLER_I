@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <%= current_user.first_name %>
+        <%= current_user.last_name %>
+        <%= current_user.username %>
+        <%= current_user.email %>
+      </div>
+    </div>
+    <div class="row">
+      <% @my_artworks.each do |artwork| %>
+      <%= artwork.title %>
+      <% end %>
+    </div>
+    <div class="row">
+      <% @my_venues.each do |venue| %>
+      <%= venue.title %>
+      <% end %>
+    </div>
+    <div class="row">
+      <% @my_appointments.each do |appointment| %>
+      <%= appointment.artwork %>
+      <%= appointment.venue %>
+      <%= appointment.start_date %>
+      <%= appointment.end_date %>
+      <% end %>
+    </div>
+</div>
+
+

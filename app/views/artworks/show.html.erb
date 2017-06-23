@@ -1,37 +1,48 @@
-<h1 class="text-center" style="margin: 40px"><%= @artwork.title %></h1>
-<h2 class="text-center" style="margin: 40px"><%= @artwork.height %></h2>
-<h2 class="text-center" style="margin: 40px"><%= @artwork.width %></h2>
-<h2 class="text-center" style="margin: 40px"><%= @artwork.depth %></h2>
-<h2 class="text-center" style="margin: 40px"><%= @artwork.weight %></h2>
-<h2 class="text-center" style="margin: 40px"><%= @artwork.location %></h2>
-<h2 class="text-center" style="margin: 40px"><%= @artwork.owner.email %></h2>
-<br>
-<% @status = Appointment.where(artwork_id: @artwork.id) %>
-<% if @status.blank?  %>
-This Artwork is currently available..You should book it now!!
-<% else %>
-See this artwork on these dates at the following locations:
-<br>
-<%  @status.each do |appt|%>
-<%= appt.start_date %> to <%= appt.end_date %> at the <%= appt.venue.category %>: <%= link_to appt.venue.title, venue_path(appt.venue.id) %>
-<br>
-<% end %>
-<% end %>
-<h3 class="text-center" style="margin: 40px">
 
-<% if current_user and current_user.venues.any? %>
-  <%= link_to "Book", new_artwork_appointment_path(@artwork) %>
-<% else %>
-Please create a venue befoe booking, here: <%= link_to "Create Venue", new_venue_path %>
-<% end %>
+<h1 class="text-center" style="margin: 40px">
+  <%= @artwork.title %>, by <%= @artwork.owner.username %><%= @artwork.owner.first_name %><%= @artwork.owner.last_name %></h1>
+<br>
+  <% if @artwork.photo %>
+    <% image =  @artwork.photo.path %>
+    <% else  %>
+    <% image =  "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
+  <% end %>
+  <div class="text-center"><img class="text-center" src="<%= cl_image_path(image) %>" alt="sample image"></div>
+  <br>
+<p class="text-center" style="margin: 40px">
+  Dimensions:
+    <%= @artwork.height %> x
+    <%= @artwork.width %> x
+    <%= @artwork.depth %>
+  <br>
+  Weight: <%= @artwork.weight %>kg
+  <br>
+  City: <%= @artwork.location %>
+</p>
 
 
-  <%= link_to "Back", artworks_path %>
-  <%  if (current_user == @artwork.owner) %>
-    <%= link_to "Edit", edit_artwork_path(@artwork) %>
-    <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
-  <% end  %>
-</h3>
+<p class="text-center" style="margin: 40px">
+###########
+<em>Add booking simple form for here and not in next page</em>
+###########
+</p>
+
+<div class="text-center">
+  <h3>
+  <% if current_user and current_user.venues.any? %>
+    <%= link_to "Book", new_artwork_appointment_path(@artwork), class: 'btn btn-primary' %>
+  <% else %>
+  Please create a venue befoe booking, here: <%= link_to "Create Venue", new_venue_path %>
+  <% end %>
+  </h3>
+  <h5>
+    <%= link_to "Back", artworks_path %>
+    <%  if (current_user == @artwork.owner) %>
+      <%= link_to "Edit", edit_artwork_path(@artwork) %>
+      <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
+    <% end  %>
+  </h5>
+</div>
 
 <div id="map" style="width: 60%; height: 600px;"></div>
 

@@ -45,6 +45,26 @@ class ArtworksController < ApplicationController
 
 
   def search
+
+
+    #### INFO ####
+
+    # @result = Artwork.all
+
+    # The search function is commented because not working on home page for CITY
+    # As we said, we will not keep the datepicker on homepage
+    # (Homepage is simple CTA: SEARCH ALL ART within the CITY YOU WANT)
+
+    # --> The objective is then to have city filter working
+    # --> For bottom page of Homepage page ("Explore Arts"), we should have filter by CATEGORY (paintings, etc)
+
+    # CONCLUSION for home page:
+    # => Need a filter for CITY (independent)
+    # => Need a filter for CATEGORY (independent)
+
+
+    #### END INFO ####
+
     @result = [ ]  #shows the results from the filter
     if params[:city].blank?
       # run only the date search filter
@@ -132,9 +152,9 @@ class ArtworksController < ApplicationController
       end
       @hash.pop
     end
-
-
   end
+
+  # end
   # @artworks = Artwork.where.not(latitude: nil, longitude: nil)
   #       @hash = Gmaps4rails.build_markers(@result) do |artwork, marker|
   #    marker.lat artwork.latitude

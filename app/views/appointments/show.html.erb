@@ -1,5 +1,6 @@
+<br>
 <% if current_user == @appointment.artwork.owner %>
-  <li>Hey there Artist: <%= @appointment.artwork.owner.username %>, </li>
+  <h1 class="text-center">Hey there Artist: <%= @appointment.artwork.owner.username %>, </h1>
   <li><%= @appointment.venue.title %> wants to book</li>
     <li>Your <%= @appointment.artwork.category %>:  <%= @appointment.artwork.title %></li>
     <li>Starting: <%= @appointment.start_date %></li>
@@ -10,20 +11,28 @@
 <% else %>
   <ul>
 
+ <div class="text-center">
   <% if current_user.username.nil? %>
-    <li>Hey there <%= current_user.first_name %> !!!</li>
+    <h1>Congrats <%= current_user.first_name %> !!!</h1>
   <% else %>
-    <li>Hey there <%= current_user.username %> !!!</li>
+    <h1>Congrats <%= current_user.username %> !!!</h1>
   <% end %>
 
-    <li>You booked a <%= @appointment.artwork.category %> called: <%= @appointment.artwork.title %></li>
-    <li> For your venue: <%= @appointment.venue.title %> </li>
-    <li>Starting on: <%= @appointment.start_date %></li>
-    <li>Ending on: <%= @appointment.end_date %></li>
-      Currently, your appoinment is: <% if @appointment.status =! "Confirmed" || "Declined" %>
-        <% @appointment.status = "Pending" %>
-      <% end  %>
-    <li><%= @appointment.status %></li>
-  </ul>
-  <%= link_to 'See All Your Appointments!',  appointments_path, class: "btn" %>
+    <h1>You booked the <%= @appointment.artwork.category %> "<%= @appointment.artwork.title %>"</h1>
+    <h1>from
+      <% if @appointment.artwork.owner.username.nil? %>
+        <%=  @appointment.artwork.owner.first_name%>
+        <%=  @appointment.artwork.owner.last_name%>
+      <% else %>
+        <%= @appointment.artwork.owner.username %>
+      <% end %>
+    </h1>
+    <br>
+    <br>
+    <br>
+    <h2>
+      Don't forget to check the status of your appointment
+    </h2>
+    <%= link_to 'See your appointments',  profile_path, class: 'btn btn-primary', style: 'text-decoration: none; color: black;'  %>
+  </div>
 <% end %>
