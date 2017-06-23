@@ -64,7 +64,7 @@ def confirm
   appointment = Appointment.find(params[:appointment_id])
   appointment.status = "Confirmed"
   appointment.save
-  redirect_to appointments_path
+  redirect_to profile_path(current_user.id)
 end
 
 def decline
@@ -72,7 +72,7 @@ def decline
   appointment.status = "Declined"
   appointment.save
   appointment.destroy
-  redirect_to appointments_path
+  redirect_to profile_path(current_user.id)
 
 end
 
