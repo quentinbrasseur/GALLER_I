@@ -18,7 +18,7 @@
 <h3>My Venues</h3>
 <ul>
 <% current_user.venues.each do |venue| %>
-  <li><%= link_to venue.title, venue_path, style: 'text-decoration: none; color:black;'  %></li>
+  <li><%= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'  %></li>
 
 <% end %>
 </ul>
