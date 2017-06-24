@@ -21,11 +21,13 @@
     <% if user_signed_in? %>
 
       <!-- Notification -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
+      <%= link_to  mailbox_inbox_path, class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-purple">3</div>
+
+          <div class="badge badge-purple"><%=@unread_count%></div>
         </div>
+
       <% end %>
 
     <div class="navbar-wagon-item">
@@ -56,6 +58,7 @@
         <li><%= link_to "Become an Artist", new_artwork_path, style: "text-decoration: none; font-size:14px;; margin: 10px; color: #9F9F9F;" %></li>
         <li><%= link_to "My requests", appointments_path, style: "text-decoration: none; font-size:14px; margin: 10px; color: #9F9F9F;" %></li>
         <% if user_signed_in? %>
+        <li><%= link_to "Messages", mailbox_inbox_path(current_user.username), style: "text-decoration: none; font-size:14px; margin:10px;"%></li>
         <li><%= link_to "Profile", profile_path(current_user.id), style: "text-decoration: none; font-size:14px; margin:10px;"%></li>
         <li><%= link_to "Log Out", destroy_user_session_path, method: :delete, style: "text-decoration: none; font-size:14px; ; margin: 10px; color: #9F9F9F;" %></li>
         <% else %>
