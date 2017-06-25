@@ -32,6 +32,26 @@ current_user.send_message(@user, "#{@message}", "#{@subject}")
 redirect_to profile_path(current_user)
 end
 
+def accepted
+ # @current_user = current_user.email
+@user = User.find(params[:id]) #params[:user_email]
+
+@message = "Good day #{@user}, I would love to support your request!  Please reply to this message to coordinate details".html_safe
+ @subject = "#{@user.username}, your booking request has been confirmed!" #params[:subject]
+current_user.send_message(@user, "#{@message}", "#{@subject}")
+redirect_to profile_path(current_user)
+end
+
+def declined
+ # @current_user = current_user.email
+@user = User.find(params[:id]) #params[:user_email]
+
+@message = "Good day #{@user.username}, I appologise, but I cannot support your request at the time.  Thank you for your understanding!".html_safe
+ @subject = "#{@user}, your booking request has been declined :(" #params[:subject]
+current_user.send_message(@user, "#{@message}", "#{@subject}")
+redirect_to profile_path(current_user)
+end
+
   def show
     @receipts = conversation.receipts_for(current_user)
     # mark conversation as read
