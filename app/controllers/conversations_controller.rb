@@ -15,12 +15,21 @@ raise
   end
 
 def send_mailer
-  @current_user = current_user.username
-@user = User.find_by_email(@current_user) #params[:user_email]
-@message = "test" #params[:message]
-@subject = "Moo" #params[:subject]
+ # @current_user = current_user.email
+@user = User.find(params[:id]) #params[:user_email]
+@appointment = Appointment.last
+@recipient = @user.username
+@title = @appointment.artwork.title
+@category = @appointment.artwork.category
+@venue = @appointment.venue.title
+@type = @appointment.venue.category
+@requester = current_user.username
+@start = @appointment.start_date
+@end = @appointment.end_date
+@message = "Good day #{@recipient}, my name is #{@requester}.  I would like to display your #{@category}: #{@title} in a #{@type} called #{@venue}.  If you are interested, please click below to confirm or decline the show request.  If you have any questions at all, just reply to this message.  I eagerly await your reply.  Sincerely, #{@requester} #{view_context.link_to 'Confirm',  appointment_confirm_path(@appointment), class: "btn"} |||| #{view_context.link_to 'Decline',  appointment_decline_path(@appointment), class: "btn"}INSERT_DECLINE_HERE |||| INSERT_PROFILE_LINK_HERE".html_safe
+ @subject = "#{@requester} from #{@venue} wants to display your #{@category}: #{@title} from #{@start} to #{@end}." #params[:subject]
 current_user.send_message(@user, "#{@message}", "#{@subject}")
-#redirect_to profile_path(current_user)
+redirect_to profile_path(current_user)
 end
 
   def show

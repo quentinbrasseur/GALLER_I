@@ -12,5 +12,7 @@
     </h4>
     <%= truncate conversation.messages.last.body, length: 145 %>
     <%= link_to "View", conversation_path(conversation)  %>
+    <%= link_to 'Move to trash', trash_conversation_path(conversation), method: :post,
+                    data: {confirm: 'Are you sure?'} %>
   </div>
 </div>

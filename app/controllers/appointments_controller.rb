@@ -32,7 +32,9 @@ class AppointmentsController < ApplicationController
       @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
       @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
       @appointment.save
-      redirect_to appointment_path(@appointment)
+      Rails.cache.write("appointment", @appointment)##########################
+      @@data = @appointment#######################
+      redirect_to send_mailer_conversation_path(@appointment.artwork.owner)
    # else
      # redirect_to :root_path
    # end

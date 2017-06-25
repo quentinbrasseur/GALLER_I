@@ -32,6 +32,7 @@ get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
 # conversations
   resources :conversations do #Mailboxertest
     member do#Mailboxertest
+      get :send_mailer
       post :reply#Mailboxertest
       post :trash#Mailboxertest
       post :untrash#Mailboxertest
