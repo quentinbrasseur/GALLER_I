@@ -43,15 +43,14 @@ class ArtworksController < ApplicationController
     end
   end
 
-
   def search
     @result = [ ]  #shows the results from the filter
-    @paintings = {city: "Barcelona", category: "Painting", range: "06/16/2050 - 06/16/2051"}
-    @drawings = {city: "Barcelona", category: "Drawing", range: "06/16/2050 - 06/16/2051"}
-    @photography = {city: "Barcelona", category: "Photography", range: "06/16/2050 - 06/16/2051"}
-    @sculptures = {city: "Barcelona", category: "Sculpture", range: "06/16/2050 - 06/16/2051"}
-    @performances = {city: "Barcelona", category: "Performance", range: "06/16/2050 - 06/16/2051"}
-    @barcelona = {city: "Barcelona", category: "Miscellaneous", range: "06/16/2050 - 06/16/2051"}
+    @paintings = { category: "Painting"}
+    @drawings = { category: "Drawing"}
+    @photography = { category: "Photography"}
+    @sculptures = { category: "Sculpture"}
+    @performances = { category: "Performance"}
+    @barcelona = { category: "Miscellaneous"}
     test = params[:test].to_i
     if test == 1
       @result = Artwork.where(category: @paintings[:category])

@@ -16,10 +16,8 @@ class AppointmentsController < ApplicationController
         @disabled_days << date
       end
     end
-
     @appointment = Appointment.new
   end
-
 
   def create
     venue = Venue.find(params[:venue_id])
@@ -31,9 +29,16 @@ class AppointmentsController < ApplicationController
       # @appointment.user = current_user  #this needs to represent the user and the venue
       @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
       @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
+      #####################Below-> Trying to validate uniqueness of each booked day
+      # @reservations = Appointment.all
+      # @reservations.each do |appointment|
+      #     (appointment.start_date.to_date..appointment.end_date.to_date).each do |date|
+      #       booked = true if date.between?(@from_request   , @to_request )
+      #     end
+      #   end
+
       @appointment.save
-      Rails.cache.write("appointment", @appointment)##########################
-      @@data = @appointment#######################
+
       redirect_to send_mailer_conversation_path(@appointment.artwork.owner)
     # else
     # redirect_to :root_path
