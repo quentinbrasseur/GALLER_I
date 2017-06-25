@@ -134,6 +134,7 @@
           Phone number: <%= Artwork.find(appointment.artwork_id).owner.phone_number%>
         <% end %>
       <br>
+      <%= link_to "Delete", appointment_path(appointment), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
     </li>
   </ul>
   <% end %>

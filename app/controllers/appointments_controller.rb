@@ -63,7 +63,7 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment = Appointment.find(params[:id])
     @appointment.destroy
-    redirect_to appointments_path
+    redirect_to profile_path(@appointment.venue.employees.ids)
   end
 
   def confirm #emails the requester that appt is confirmed
