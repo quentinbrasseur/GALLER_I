@@ -76,6 +76,8 @@ class AppointmentsController < ApplicationController
   def decline #emails the requester that appt is declined
     appointment = Appointment.find(params[:appointment_id])
     appointment.status = "Declined"
+    appointment.start_date = nil##### Need to add another status variable to store the erased date
+    appointment.end_date = nil
     appointment.save
     redirect_to declined_conversation_path(appointment.venue.employees.ids) ### create routes and methods
   end
