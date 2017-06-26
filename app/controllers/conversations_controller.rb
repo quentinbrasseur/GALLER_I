@@ -9,7 +9,7 @@ def create
     recipients = User.where(id: conversation_params[:recipients])
     conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject]).conversation
     flash[:success] = "Your message was successfully sent!"
-raise
+
     redirect_to profile_path(current_user)
 
   end
