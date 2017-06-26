@@ -3,10 +3,10 @@
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="icon" type="image/x-icon" href="/app/assets/images/favicon.ico">
+      <link rel="icon" type="image/x-icon" href="/app/assets/images/favicon.ico">
       <title>GALLER-I</title>
-<meta name="description" content="The number one art-sharing platform in the world.">
-<meta name="keywords" content="Gallery,Artwork,Art,Painting">
+      <meta name="description" content="The number one art-sharing platform in the world.">
+      <meta name="keywords" content="Gallery,Artwork,Art,Painting">
       <%= csrf_meta_tags %>
       <%= action_cable_meta_tag %>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/ bootstrap.min.css">
@@ -27,14 +27,22 @@
     <!-- Activates date range picker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <%= javascript_include_tag "https://maps.google.com/maps/api/js?key=#{ENV["GOOGLE_API_SERVER_KEY"]}" %>
+
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
 
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
+
     <%= javascript_include_tag 'application' %>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
+
+
+    <script src="javascript/tabs.js"></script>
+
     <script type="text/javascript">
       $(function() {
               //Initialize filterizr with default options
@@ -42,11 +50,11 @@
             });
           </script>
 
-          <%= cloudinary_js_config %>
-          <%= yield(:after_js) %>
+    <%= cloudinary_js_config %>
+
+    <%= yield(:after_js) %>
 
     <!-- Activate tab -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="javascript/tabs.js"></script>
+
     </body>
   </html>
