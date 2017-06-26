@@ -16,10 +16,8 @@ class AppointmentsController < ApplicationController
         @disabled_days << date
       end
     end
-
     @appointment = Appointment.new
   end
-
 
   def create
     venue = Venue.find(params[:venue_id])
@@ -31,19 +29,28 @@ class AppointmentsController < ApplicationController
       # @appointment.user = current_user  #this needs to represent the user and the venue
       @appointment.start_date = DateTime.strptime(appointment_params[:start_date], '%m/%d/%Y')
       @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
-      @appointment.save
-      redirect_to appointment_path(@appointment)
-   # else
-     # redirect_to :root_path
-   # end
- end
+      #####################Below-> Trying to validate uniqueness of each booked day
+      # @reservations = Appointment.all
+      # @reservations.each do |appointment|
+      #     (appointment.start_date.to_date..appointment.end_date.to_date).each do |date|
+      #       booked = true if date.between?(@from_request   , @to_request )
+      #     end
+      #   end
 
- def edit
+      @appointment.save
+
+      redirect_to send_mailer_conversation_path(@appointment.artwork.owner)
+    # else
+    # redirect_to :root_path
+    # end
+  end
+
+  def edit
     # @artwork = Artwork.find(params[:artwork_id])
     @appointment = Appointment.find(params[:id])
- end
+  end
 
- def update
+  def update
     # @artwork = Artwork.find(params[:artwork_id])
     @appointment = Appointment.find(params[:id])
     @appointment.update(appointment_params)
@@ -51,36 +58,34 @@ class AppointmentsController < ApplicationController
     @appointment.end_date = DateTime.strptime(appointment_params[:end_date], '%m/%d/%Y')
     @appointment.save
     redirect_to appointment_path(@appointment)
-end
+  end
 
+  def destroy
+    @appointment = Appointment.find(params[:id])
+    @appointment.destroy
+    redirect_to profile_path(@appointment.venue.employees.ids)
+  end
 
-def destroy
-  @appointment = Appointment.find(params[:id])
-  @appointment.destroy
-  redirect_to appointments_path
-end
+  def confirm #emails the requester that appt is confirmed
+    appointment = Appointment.find(params[:appointment_id])
+    appointment.status = "Confirmed"
+    appointment.save
+    redirect_to accepted_conversation_path(appointment.venue.employees.ids) ###create routes and methods
+  end
 
-def confirm
-  appointment = Appointment.find(params[:appointment_id])
-  appointment.status = "Confirmed"
-  appointment.save
-  redirect_to profile_path(current_user.id)
-end
+  def decline #emails the requester that appt is declined
+    appointment = Appointment.find(params[:appointment_id])
+    appointment.status = "Declined"
+    # appointment.start_date = nil##### Need to add another status variable to store the erased date
+    # appointment.end_date = nil
+    appointment.save
+    redirect_to declined_conversation_path(appointment.venue.employees.ids) ### create routes and methods
+  end
 
-def decline
-  appointment = Appointment.find(params[:appointment_id])
-  appointment.status = "Declined"
-  appointment.save
-  appointment.destroy
-  redirect_to profile_path(current_user.id)
+  private
 
-end
-
-
-private
-
-def appointment_params
-  params.require(:appointment).permit(:start_date, :end_date)
-end
+  def appointment_params
+    params.require(:appointment).permit(:start_date, :end_date)
+  end
 
 end
