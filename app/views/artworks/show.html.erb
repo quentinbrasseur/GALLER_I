@@ -63,3 +63,146 @@
     });
   <% end %>
 <% end %>
+
+
+<div class="profile-header-wrapper">
+  <div class="container profile-header-container text-center">
+    <div class="profile-header-infos">
+      <img src="images/papillard.jpeg" alt="">
+      <h1>
+        <% if current_user.username.nil? %>
+        <%= current_user.first_name %>
+        <%= current_user.last_name %>
+        <% else %>
+        <%= current_user.username %>
+        <% end %>
+      </h1>
+      <p>
+        <%= current_user.email %>
+        <br>
+        <%= current_user.phone_number %>
+        <br>
+      </p>
+    </div>
+    <div class="tabs">
+      <a class="tab active" data-target="#request">
+        <h3>My requests</h3>
+      </a>
+      <a class="tab" data-target="#venue">
+        <h3>My Venues</h3>
+      </a>
+      <a class="tab" data-target="#artwork">
+        <h3>My artworks</h3>
+      </a>
+      <a class="tab" data-target="#requestout">
+        <h3>People requests</h3>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container text-center">
+  <div class="tab-content" id="request">
+    <% current_user.venues.each do |venue| %>
+    <% venue.appointments.each do |appointment| %>
+    <ul>
+      <li>
+        <h4>
+          <%= link_to appointment.artwork.title, artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black;' %>,
+          <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
+          by <%= Artwork.find(appointment.artwork_id).owner.first_name%>
+          by <%= Artwork.find(appointment.artwork_id).owner.last_name%>
+          <% else %>
+          by <%= Artwork.find(appointment.artwork_id).owner.username%>
+          <% end %>
+          (<%= appointment.artwork.category %>)
+          <br>
+          Status: <%= appointment.status %>
+          <br>
+        </h4>
+        For your: <%= appointment.venue_id%>
+        <br>
+        From <%= appointment.start_date %>
+        to <%= appointment.end_date %>
+        <br>
+        Email: <%= Artwork.find(appointment.artwork_id).owner.email%>
+        <br>
+        <% if Artwork.find(appointment.artwork_id).owner.email.nil? %>
+        <% else %>
+        Phone number: <%= Artwork.find(appointment.artwork_id).owner.phone_number%>
+        <% end %>
+        <br>
+      </li>
+    </ul>
+    <% end %>
+    <% end %>
+  </div>
+  <div class="tab-content hidden" id="venue">
+    <p>
+      <% current_user.venues.each do |venue| %>
+      <li><%= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'  %></li>
+
+      <% end %>
+    </ul>
+    <%= link_to "Create Venues", new_venue_path, style: 'text-decoration: none; color:black;' %>
+  </p>
+</div>
+<div class="tab-content hidden" id="artwork">
+  <% current_user.artworks.each do |art| %>
+  <ul>
+    <li>
+      <h4><%= link_to art.title, artwork_path(art.id), style: 'text-decoration: none; color:black;' %></h4>
+    </li>
+  </ul>
+  <% end %>
+  <%= link_to "Create an Artwork", new_artwork_path, style: 'text-decoration: none; color:black;' %>
+</div>
+<div class="tab-content hidden" id="requestout">
+<%  current_user.artworks.each do |artwork|  %>
+<% artwork.appointments.each do |appointment| %>
+<ul>
+  <li>
+    <% if appointment.venue.employees.first.username.nil? %>
+    <%= appointment.venue.employees.first.first_name %>
+    <%= appointment.venue.employees.first.last_name %>
+    <% else %>
+    <%= appointment.venue.employees.first.username %>
+    <% end %>
+    requested "<%= appointment.artwork.title %>"
+    for <%= link_to appointment.venue.title,  venue_path(appointment.venue.id), style: 'text-decoration: none; color:black;'  %> <br>
+    From <%= appointment.start_date%> to <%= appointment.end_date %>
+    <br>
+    <br>
+    <%= link_to 'Confirm',  appointment_confirm_path(appointment), class: "btn btn-success" %>
+    <%= link_to 'Decline',  appointment_decline_path(appointment), class: "btn btn-danger" %>
+    <br>
+    <br>
+  </li>
+</ul>
+
+<% end %>
+<% end %>
+</div>
+</div>
+
+<div class="your-class">
+  <div>your content</div>
+  <div>your content</div>
+  <div>your content</div>
+</div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.your-class').slick({
+        setting-name: setting-value
+      });
+    });
+  </script>
+
+<script>
+  $('.multiple-items').slick({
+  infinite: true,
+  slidesToShow: 3,
+  slidesToScroll: 3
+  });
+</script>
