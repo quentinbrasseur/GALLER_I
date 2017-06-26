@@ -38,7 +38,7 @@
 </div>
 
 <div class="container text-center">
-  <div class="tab-content" id="request">
+  <div class="tab-content" id="request" style="height: 250px; overflow:auto;">
     <% current_user.venues.each do |venue| %>
     <% venue.appointments.each do |appointment| %>
     <ul>
@@ -189,7 +189,7 @@
 
     <!-- END JOE STATUS  -->
   </div>
-  <div class="tab-content hidden" id="venue">
+  <div class="tab-content hidden" id="venue" style="height: 250px; overflow:auto;">
     <p>
       <% current_user.venues.each do |venue| %>
       <li><%= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'  %></li>
@@ -199,7 +199,7 @@
     <%= link_to "Create Venues", new_venue_path, style: 'text-decoration: none; color:black;' %>
   </p>
 </div>
-<div class="tab-content hidden" id="artwork">
+<div class="tab-content hidden" id="artwork" style="height: 250px; overflow:auto;">
   <% current_user.artworks.each do |art| %>
   <ul>
     <li>
@@ -209,7 +209,7 @@
   <% end %>
   <%= link_to "Create an Artwork", new_artwork_path, style: 'text-decoration: none; color:black;' %>
 </div>
-<div class="tab-content hidden" id="requestout">
+<div class="tab-content hidden" id="requestout" style="height: 250px; overflow:auto;">
 <%  current_user.artworks.each do |artwork|  %>
 <% artwork.appointments.each do |appointment| %>
 <ul>
