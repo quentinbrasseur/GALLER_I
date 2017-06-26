@@ -1,8 +1,5 @@
-
-<div class="banner" style="background: linear-gradient(-30deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 5%), url(https://static.pexels.com/photos/428111/pexels-photo-428111.jpeg);">
-<h1 class="text-center">ARTIFY YOUR SPACE</h1>
-<p class="text-center">Show artwork from local artists and experience your favorite art for<strong> FREE</strong>
-<br>
+<div class="banner" style="background: linear-gradient(-30deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 4%), url(https://static.pexels.com/photos/428111/pexels-photo-428111.jpeg);">
+<h1 class="text-center">ART YOUR SPACE</h1>
 
 <div class="search-bar text-center">
     <form class="form-inline" action="/search" method="GET">
@@ -19,32 +16,27 @@
     </form>
   </div>
 
+  <p class="text-center">Show artwork from local artists and experience your favorite art for<strong> FREE</strong></p>
+
+  </div>
 
 
-<br>
-<br>
 
-
-<h2 class="class text-center"><%= link_to "Browse Our Artwork", artworks_path, style: "text-decoration: none; color: black;" %></h2>
-<br>
 
   <div class="cards-overview">
     <div class="container">
+
+      <h2 class="class text-center"><%= link_to "Browse Our Artwork", artworks_path, style: "text-decoration: none; color: white;" %></h2>
 
       <div class="row">
         <div class="col-md-4">
           <div class="thumbnail">
             <%= link_to(search_path(test: 1), style: 'text-decoration: none;') do %>
-
-
-
               <img src="" alt="Paintings" style="width:100%">
-
-
             <% end %>
-
           </div>
         </div>
+
         <div class="col-md-4">
           <div class="thumbnail">
             <%= link_to(search_path(test: 2), style: 'text-decoration: none;') do %>
@@ -52,6 +44,7 @@
             <% end %>
           </div>
         </div>
+
         <div class="col-md-4">
           <div class="thumbnail">
             <%= link_to(search_path(test: 3), style: 'text-decoration: none;') do %>
@@ -59,6 +52,7 @@
             <% end %>
           </div>
         </div>
+
         <div class="col-md-4">
           <div class="thumbnail">
             <%= link_to(search_path(test: 4), style: 'text-decoration: none;') do %>
@@ -66,6 +60,7 @@
             <% end %>
           </div>
         </div>
+
         <div class="col-md-4">
           <div class="thumbnail">
             <%= link_to(search_path(test: 5), style: 'text-decoration: none;') do %>
@@ -73,6 +68,7 @@
             <% end %>
           </div>
         </div>
+
         <div class="col-md-4">
           <div class="thumbnail">
             <%= link_to(search_path(test: 6), style: 'text-decoration: none;') do %>
@@ -83,4 +79,3 @@
       </div>
     </div>
   </div>
-</div>
