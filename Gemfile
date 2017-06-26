@@ -12,6 +12,8 @@ gem 'figaro'
 gem 'cloudinary'
 gem 'faker'
 gem 'omniauth-facebook'
+gem 'mailboxer'
+#gem 'chosen-rails'
 
 gem 'attachinary', github: 'assembler/attachinary'
 gem 'jquery-fileupload-rails'

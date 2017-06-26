@@ -9,6 +9,14 @@ class User < ApplicationRecord
   has_many :appointments, through: :artworks
   has_many :venues, through: :user_venues
 
+acts_as_messageable #mailboxertest
+def mailboxer_name#mailboxertest
+  self.username#mailboxertest
+end#mailboxertest
+def mailboxer_email(object)#mailboxertest
+  self.email#mailboxertest
+end#mailboxertest
+
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)
