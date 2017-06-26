@@ -1,65 +1,64 @@
 <!-- search bar container -->
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-8">
-      <div class="row">
-        <div class="search-bar">
-          <form class="form-inline" action="/search" method="GET">
+<!-- filter bar container -->
+<!-- content container -->
+<div class="container-fluid">
+  <div class="">
+    <div class="col-xs-12 col-md-8 ">
+      <div class="">
+        <div class="row">
+           <div class="search-bar fixed-bar">
+          <form class="form-inline " action="/search" method="GET">
             <label class="sr-only" for="inlineFormInput">City</label>
-            <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Barcelona" value='<%= params[:city] %>'>
+            <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Type a city" value='<%= params[:city] %>'>
             <label class="sr-only" for="inlineFormInputGroup">When</label>
             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
               <input name="date_range" type="text" class="form-control" id="dateRange" placeholder="When">
             </div>
+            <input type="submit"  class="btn btn-primary" value="Search!">
             <div class="row search-row">
               <input type="hidden" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
-              <input type="submit"  class="btn btn-primary" value="Search!">
+
             </div>
           </form>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
 <br>
-<!-- filter bar container -->
-<!-- content container -->
-<div class="container">
-  <div class="row">
-
-   <div class="col-md-6">
-
-    <% @result.each do |artwork| %>
-    <% background_picture = cl_image_path(artwork.photo.path) || "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
-      <a class="card-link" href="#" >
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= background_picture %>');">
-          <div class="card-category"><%= artwork.category %></div>
-          <div class="card-description">
-            <h2><%= artwork.title %> <%= artwork.owner.username %></h2>
-            <p></p>
-          </div>
 
         </div>
-      </a>
-    <% end %>
+        <div class="row scrollingContainer">
+          <% @result.each do |artwork| %>
+          <div class="col-xs-12 col-md-6 ">
+            <% background_picture = cl_image_path(artwork.photo.path) || "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
+            <a class="card-link" href="#" >
+              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= background_picture %>');">
+                <div class="card-category"><%= artwork.category %></div>
+                <div class="card-description">
+                  <h1><%= artwork.title %> </h1>
+                  <p>By: <%= artwork.owner.username %></p>
+                  <p></p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <% end %>
 
-  </div>
-
-  <div class="col-md-6">
-    <div id="map" style="width: 100%; height: 600px;"></div>
-    <% content_for(:after_js) do %>
-    <%= javascript_tag do %>
-    $(document).ready(function() {
-    var handler = Gmaps.build('Google');
-    handler.buildMap({ internal: { id: 'map' } }, function() {
-    markers = handler.addMarkers(<%= raw @hash.to_json %>);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    if (markers.length == 0) {
-    handler.getMap().setZoom(2);
-  } else if (markers.length == 1) {
-  handler.getMap().setZoom(14);
-}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 fixed-map">
+    <div id="map" style="width: 100%; height: 800px; "></div>
+      <% content_for(:after_js) do %>
+      <%= javascript_tag do %>
+      $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+      markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      if (markers.length == 0) {
+      handler.getMap().setZoom(2);
+    } else if (markers.length == 1) {
+    handler.getMap().setZoom(14);
+  }
 });
 });
 <% end %>

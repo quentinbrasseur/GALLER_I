@@ -89,11 +89,11 @@ class ArtworksController < ApplicationController
         end
         unless booked
           artwork = Artwork.new
-
           artwork.id = art.id
           artwork.title = art.title
           artwork.category = art.category
           artwork.location = art.location
+          artwork.owner = art.owner
           # artwork.artist = art.owner.email #change to name if you don't wamt email
           artwork.latitude = art.latitude
           artwork.longitude = art.longitude
@@ -124,8 +124,8 @@ class ArtworksController < ApplicationController
           end
         end
         unless booked
-          artwork = {}
-          #artwork.id = art.id
+          artwork = Artwork.new
+          artwork.id = art.id
           artwork.title = art.title
           artwork.category = art.category
           artwork.location = art.location
@@ -134,6 +134,7 @@ class ArtworksController < ApplicationController
           artwork.latitude = art.latitude
           artwork.longitude = art.longitude
           # artwork.photo = art.photo
+
           @result << artwork
         end
       end

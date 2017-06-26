@@ -1,9 +1,13 @@
 .card {
-  height: 175px;
+  height: 300px;
+  width: 500rm;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   color: white;
   position: relative;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
 }
 .card-user {
   position: absolute;
@@ -30,5 +34,31 @@
 }
 
 .card-link:hover {
-  opacity: 0.1;
+  opacity: 0.8;
+text-color: purple;
+}
+
+
+
+.fixed-bar {
+position: absolute;
+
+  right: 10px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+
+
+
+}
+
+.fixed-map {
+  position: fixed;
+right: 7px;
+}
+
+.scrollingContainer {
+    margin-top: 30px;
+    overflow: scroll;
+    height: 800px;
+    background-color: #eee;
 }
