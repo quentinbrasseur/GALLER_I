@@ -11,4 +11,6 @@
 //= require jquery-fileupload/basic
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
+//= require carousel
+//= slick
 //= require_tree .
