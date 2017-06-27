@@ -23,6 +23,39 @@
   text-transform: uppercase;
   color: white;
 }
+
+.card-like {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: red;
+  opacity: .25;
+}
+
+.card-social {
+  position: absolute;
+  bottom: 40px;
+  right: 20px;
+  font-size: 40px;
+  color: gray;
+  opacity: .25;
+}
+
+.card-social:hover {
+
+  color: black;
+  opacity: .9;
+}
+
+.card-like:hover {
+ font-size: 25px;
+  color: red;
+  opacity:.9;
+
+
+}
+
 .card-description {
   position: absolute;
   bottom: 10px;
