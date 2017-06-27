@@ -1,7 +1,8 @@
 .card {
+
   height: 450px;
   width: 500rm;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+
   background-size: cover !important;
   color: black;
   position: relative;
@@ -20,6 +21,7 @@
   left: 10px;
   font-size: 10px;
   text-transform: uppercase;
+  color: white;
 }
 .card-description {
   position: absolute;
@@ -34,6 +36,7 @@
 }
 
 .card-link:hover {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   opacity: 0.8;
 text-color: purple;
 }
@@ -53,10 +56,14 @@ position: absolute;
 
 
 }
+.card-center{
+  text-align: center;
+}
 
 .fixed-map {
   position: fixed;
 right: 7px;
+
 }
 
 .scrollingContainer {

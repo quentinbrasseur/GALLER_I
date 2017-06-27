@@ -28,11 +28,11 @@
               <%= link_to artwork_path(artwork), class: "card-link" do %>
                 <div class="card">
                 <img class="card-img-top card-pic" src='<%= background_picture %>' alt="Card image cap">
+<div class="card-block">
+<h2 class="card-title "><%= artwork.title %></h2>
+<p class="card-text ">By <%= artwork.owner.username %></p>
                   <div class="card-category"><%= artwork.category %></div>
-                  <div class="card-description">
-                    <h1><%= artwork.title %> <p>By: <%= artwork.owner.username %></p></h1>
 
-                    <p></p>
                   </div>
                 </div>
 
