@@ -11,6 +11,17 @@
   text-decoration: none;
   opacity: 0.8;
 }
+
+.content {
+  margin: 20px;
+  margin-top: 40px;
+  .content-group {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .tabs h3 {
   font-size: 17px;
   font-weight: bold;
@@ -37,9 +48,5 @@
 }
 .tab-content {
   background: #F2F2F2;
-  padding-top: 50px;
 }
-.tab-content p {
-  font-size: 30px;
-  font-weight: bold;
-}
+

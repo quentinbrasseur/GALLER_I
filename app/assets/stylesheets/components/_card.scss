@@ -36,10 +36,31 @@
 
 .card-link:hover {
   opacity: 0.8;
-text-color: purple;
+  text-color: purple;
 }
 
+.card-text {
+  visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        color: white;
+    font-weight: 800;
+}
 
+.card-wrapper {
+  position: relative;
+}
+
+.card-wrapper:hover .card-text {
+  visibility: visible;
+  opacity: 30;
+}
 
 .fixed-bar {
 position: absolute;
