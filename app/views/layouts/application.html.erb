@@ -18,7 +18,7 @@
   <%= render 'shared/navbar' %>
   <%= render 'shared/flashes' %>
   <%= yield %>
-  <%= render 'layouts/footer' %>
+  <%= render 'layouts/footer' unless @disabled_footer %>
 
   <!-- Activates date range picker -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
