@@ -44,6 +44,7 @@ class ArtworksController < ApplicationController
   end
 
   def search
+
     @result = [ ]  #shows the results from the filter
     @paintings = { category: "Painting"}
     @drawings = { category: "Drawing"}
@@ -92,6 +93,7 @@ class ArtworksController < ApplicationController
           artwork.title = art.title
           artwork.category = art.category
           artwork.location = art.location
+          artwork.owner = art.owner
           # artwork.artist = art.owner.email #change to name if you don't wamt email
           artwork.latitude = art.latitude
           artwork.longitude = art.longitude
@@ -127,10 +129,12 @@ class ArtworksController < ApplicationController
           artwork.title = art.title
           artwork.category = art.category
           artwork.location = art.location
+          artwork.owner = art.owner
           # artwork.artist = art.owner.email #change to name if you don't wamt email
           artwork.latitude = art.latitude
           artwork.longitude = art.longitude
           # artwork.photo = art.photo
+
           @result << artwork
         end
       end
