@@ -8,6 +8,7 @@
   padding: 0px 30px;
   align-items: center;
   justify-content: space-between;
+  margin: 0px 13px;
 }
 
 #title {
@@ -139,4 +140,7 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+.fixed-navbar{
+  position: fixed;
 }

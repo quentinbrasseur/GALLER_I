@@ -1,65 +1,119 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" style="background: blue; padding: 0px; display: flex; justify-content: flex-start;">
+        <% if @artwork.photo %>
+          <% image =  @artwork.photo.path %>
+        <% else  %>
+          <% image =  "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
+        <% end %>
+        <div class="text-center"><img class="text-center" src="<%= cl_image_path(image, height: 300, crop: "scale") %>" alt="sample image"></div>
+    </div>
+    <div class="col-md-6 text-center" style="background: red;">
+      <div class="row" style="background: grey;">
+        <h1 style="margin: 0px;"><%= @artwork.title %>,</h1>
+        <h5>by <%= @artwork.owner.username %><%= @artwork.owner.first_name %><%= @artwork.owner.last_name %></h5>
+      </div>
+      <div class="row" style="background: black;">
+        <div class="text-center">
+          <h3>
+            <% if current_user and current_user.venues.any? %>
+              <%= render 'form-appt'  %>
+            <% else %>
+            Please create a venue before booking, here: <%= link_to "Create Venue", new_venue_path %>
+            <% end %>
+          </h3>
+          <h5>
+            <%= link_to "Back", artworks_path %>
+            <%  if (current_user == @artwork.owner) %>
+              <%= link_to "Edit", edit_artwork_path(@artwork) %>
+              <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
+            <% end  %>
+          </h5>
+        </div>
+      </div>
 
-<h1 class="text-center" style="margin: 40px">
-  <%= @artwork.title %>, by <%= @artwork.owner.username %><%= @artwork.owner.first_name %><%= @artwork.owner.last_name %></h1>
-<br>
-  <% if @artwork.photo %>
-    <% image =  @artwork.photo.path %>
-    <% else  %>
-    <% image =  "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
-  <% end %>
-  <div class="text-center"><img class="text-center" src="<%= cl_image_path(image) %>" alt="sample image"></div>
-  <br>
-<p class="text-center" style="margin: 40px">
-  Dimensions:
-    <%= @artwork.height %> x
-    <%= @artwork.width %> x
-    <%= @artwork.depth %>
-  <br>
-  Weight: <%= @artwork.weight %>kg
-  <br>
-  City: <%= @artwork.location %>
-</p>
+    </div>
+  </div>
 
-
-<p class="text-center" style="margin: 40px">
-###########
-<em>Add booking simple form for here and not in next page</em>
-###########
-</p>
-
-<div class="text-center">
-  <h3>
-  <% if current_user and current_user.venues.any? %>
-    <%= link_to "Book", new_artwork_appointment_path(@artwork), class: 'btn btn-primary' %>
-  <% else %>
-  Please create a venue befoe booking, here: <%= link_to "Create Venue", new_venue_path %>
-  <% end %>
-  </h3>
-  <h5>
-    <%= link_to "Back", artworks_path %>
-    <%  if (current_user == @artwork.owner) %>
-      <%= link_to "Edit", edit_artwork_path(@artwork) %>
-      <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
-    <% end  %>
-  </h5>
+  <div class="row">
+    <div class="col-md-12" style="background: green; margin: 20px 0px; padding: 0px">
+      <div class="profile-header-wrapper">
+        <div class="container profile-header-container text-center" style="padding: 0px;">
+          <div class="tabs">
+            <a class="tab active" data-target="#overview">
+              <h3>Overview</h3>
+            </a>
+            <a class="tab" data-target="#location">
+              <h3>Location</h3>
+            </a>
+            <a class="tab" data-target="#history">
+              <h3>History</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container" style="margin-bottom: 12px; padding: 0px;">
+        <div class="tab-content" id="overview" style="height: 250px; overflow:auto">
+            Dimensions:
+            <%= @artwork.height %> x
+            <%= @artwork.width %> x
+            <%= @artwork.depth %>
+            <br>
+            Weight: <%= @artwork.weight %>kg
+            <br>
+            City: <%= @artwork.location %>
+        </div>
+        <div class="tab-content hidden" id="location" style="height: 250px; overflow:auto">
+          <div class="text-center" id="map" style="width: auto; height: 200px;"></div>
+          <% content_for(:after_js) do %>
+            <%= javascript_tag do %>
+              $(document).ready(function() {
+              var handler = Gmaps.build('Google');
+              handler.buildMap({ internal: { id: 'map' } }, function() {
+              markers = handler.addMarkers(<%= raw @hash.to_json %>);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+              if (markers.length == 0) {
+              handler.getMap().setZoom(2);
+              } else if (markers.length == 1) {
+              handler.getMap().setZoom(14);
+              }
+              });
+              });
+            <% end %>
+          <% end %>
+        </div>
+        <div class="tab-content hidden" id="history" style="height: 250px; overflow:auto;">
+          <div class="content" >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur repudiandae iusto voluptatibus earum odit enim ut quo, inventore voluptas, sequi tenetur incidunt alias quam laborum magni, deleniti distinctio ex. Voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro quisquam obcaecati odio commodi, ipsam a praesentium distinctio quaerat cum libero sunt accusantium dolor quod, vero nostrum fugit pariatur, autem voluptates.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet voluptatem aspernatur, unde deserunt id itaque neque ducimus sint. Iusto dicta aperiam sint! Hic labore provident error, dolore delectus eius architecto.
+            <br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci assumenda doloremque, laboriosam ducimus, modi dolor deleniti laborum magni asperiores nihil, amet libero architecto repudiandae enim est id rerum officiis! Quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci assumenda doloremque, laboriosam ducimus, modi dolor deleniti laborum magni asperiores nihil, amet libero architecto repudiandae enim est id rerum officiis! Quibusdam.
+            <br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci assumenda doloremque, laboriosam ducimus, modi dolor deleniti laborum magni asperiores nihil, amet libero architecto repudiandae enim est id rerum officiis! Quibusdam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis tempore nisi repellendus. Repudiandae totam, libero veritatis harum quaerat ducimus, sunt quisquam ullam, minima, ipsum eveniet ab perferendis commodi est ex. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit molestias, dolorem, repellat quas eos quam ad quasi doloribus odit nisi aut ipsam aliquid esse labore perferendis voluptas dolorum et. Est.
+            <br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci assumenda doloremque, laboriosam ducimus, modi dolor deleniti laborum magni asperiores nihil, amet libero architecto repudiandae enim est id rerum officiis! Quibusdam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis tempore nisi repellendus. Repudiandae totam, libero veritatis harum quaerat ducimus, sunt quisquam ullam, minima, ipsum eveniet ab perferendis commodi est ex. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit molestias, dolorem, repellat quas eos quam ad quasi doloribus odit nisi aut ipsam aliquid esse labore perferendis voluptas dolorum et. Est.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" style="background: orange; margin: 20px 0px;">
+      <div class="text-center">
+        <h3>From the same Artist</h3>
+      </div>
+        <div class="">
+          <div class="col-md-12">
+            <div class="inline-block-center">
+              <div class="multiple-items">
+                <div> <img src="http://placehold.it/300x200" alt="First thing"></div>
+                <div> <img src="http://placehold.it/300x200" alt="Second thing"></div>
+                <div> <img src="http://placehold.it/300x200" alt="Third thing"></div>
+                <div> <img src="http://placehold.it/300x200" alt="Fourth thing"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
 </div>
-
-<div id="map" style="width: 60%; height: 600px;"></div>
-
-<% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-    $(document).ready(function() {
-      var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function() {
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-        } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
-        }
-      });
-    });
-  <% end %>
-<% end %>

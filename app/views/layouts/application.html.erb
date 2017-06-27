@@ -1,54 +1,53 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="icon" type="image/x-icon" href="/app/assets/images/favicon.ico">
-      <title>GALLER-I</title>
-<meta name="description" content="The number one art-sharing platform in the world.">
-<meta name="keywords" content="Gallery,Artwork,Art,Painting">
-      <%= csrf_meta_tags %>
-      <%= action_cable_meta_tag %>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/ bootstrap.min.css">
-      <link rel="stylesheet" href="app/assets/stylsheets/pages/_index.scss">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.min.css" />
-      <%= stylesheet_link_tag 'application', media: 'all' %>
-      <%=   favicon_link_tag "paint.png" , type: "image/png" %>
-    </head>
-  <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" type="image/x-icon" href="/app/assets/images/favicon.ico">
+  <title>GALLER-I</title>
+  <meta name="description" content="The number one art-sharing platform in the world.">
+  <meta name="keywords" content="Gallery,Artwork,Art,Painting">
+  <%= csrf_meta_tags %>
+  <%= action_cable_meta_tag %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.min.css" />
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%=   favicon_link_tag "paint.png" , type: "image/png" %>
+</head>
+<body>
+  <%= render 'shared/navbar' %>
+  <%= render 'shared/flashes' %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+
+  <!-- Activates date range picker -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <%= javascript_include_tag "https://maps.google.com/maps/api/js?key=#{ENV["GOOGLE_API_SERVER_KEY"]}" %>
+  <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
+
+  <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
+  <%= javascript_include_tag 'application' %>
 
 
+<!--     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+-->
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
 
 
-    <!-- Activates date range picker -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <%= javascript_include_tag "https://maps.google.com/maps/api/js?key=#{ENV["GOOGLE_API_SERVER_KEY"]}" %>
-    <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
+<script type="text/javascript">
+  $(function() {
+//Initialize filterizr with default options
+$('.filtr-container').filterizr('setOptions', { delay: 400, delayMode: 'alternate' });
+});
+</script>
 
-    <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
-    <%= javascript_include_tag 'application' %>
+<%= cloudinary_js_config %>
+<%= yield(:after_js) %>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
-    <script type="text/javascript">
-      $(function() {
-              //Initialize filterizr with default options
-              $('.filtr-container').filterizr('setOptions', { delay: 400, delayMode: 'alternate' });
-            });
-          </script>
-
-          <%= cloudinary_js_config %>
-          <%= yield(:after_js) %>
-          <%= render 'layouts/footer' %>
-
-
-    <!-- Activate tab -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="javascript/tabs.js"></script>
-    </body>
-  </html>
+</body>
+</html>
