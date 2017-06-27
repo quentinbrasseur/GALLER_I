@@ -44,7 +44,7 @@ class ArtworksController < ApplicationController
   end
 
   def search
-
+    @disabled_footer = true
     @result = [ ]  #shows the results from the filter
     @paintings = { category: "Painting"}
     @drawings = { category: "Drawing"}
