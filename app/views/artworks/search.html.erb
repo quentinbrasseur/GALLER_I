@@ -1,119 +1,68 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-8">
-      <div class="row">
-        <div class="search-bar">
-          <form class="form-inline" action="/search" method="GET">
-            <label class="sr-only" for="inlineFormInput">City</label>
-              <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Barcelona" value='<%= params[:city] %>'>
+<!-- search bar container -->
+<!-- filter bar container -->
+<!-- content container -->
+<div class="container-fluid">
+  <div class="">
+    <div class="col-xs-12 col-md-8 ">
+      <div class="">
+        <div class="row">
+          <div class="search-bar">
+            <form class="form-inline " action="/search" method="GET">
+              <label class="sr-only" for="inlineFormInput">City</label>
+              <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Type a city" value='<%= params[:city] %>'>
               <label class="sr-only" for="inlineFormInputGroup">When</label>
-            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-              <input name="date_range" type="text" class="form-control" id="dateRange" placeholder="When">
-
-            </div>
-            <div class="row search-row">
-                <input type="hidden" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
-                <input type="submit"  class="btn btn-primary" value="Search!">
-          </div>
-
-
-
-
-
-
-            <p></p>
-
-          </form>
-        </div>
-        <br>
-        <div class="container">
-          <!-- Filter Controls - Simple Mode -->
-          <div class="row">
-            <!-- A basic setup of simple mode filter controls, all you have to do is use data-filter="all"
-            for an unfiltered gallery and then the values of your categories to filter between them -->
-            <ul class="simplefilter">
-              Individual Art Filters:
-              <li class="active" data-filter="all">All</li>
-              <li data-filter= 1 >Painting</li>
-              <li data-filter= 2 >Drawing</li>
-              <li data-filter= 3 >Sculpture</li>
-              <li data-filter= 4 >Photography</li>
-              <li data-filter= 5 >Installations</li>
-              <li data-filter= 6 >Miscellaneous</li>
-            </ul>
-          </div>
-          <!-- Filter Controls - Multifilter Mode -->
-
-          <!-- Shuffle & Sort Controls -->
-          <div class="row">
-            <ul class="sortandshuffle">
-               <!-- Basic shuffle control -->
-              <li class="shuffle-btn" data-shuffle>Shuffle Artwork!</li>
-              </ul>
-          </div>
-          <!-- Search control -->
-
-          <div class="row">
-            <!-- This is the set up of a basic gallery, your items must have the categories they belong to in a data-category
-            attribute, which starts from the value 1 and goes up from there -->
-            <div class="container">
-              <div class="filtr-container">
-                <%= @cat = 0  %>
-                <% @result.each do |artwork| %>
-                  <% if artwork.category == "Painting" %>
-                    <% @cat = 1 %>
-                    <% elsif artwork.category == "Drawing"%>
-                    <% @cat = 2 %>
-                    <% elsif artwork.category == "Sculpture"%>
-                    <% @cat = 3 %>
-                    <% elsif artwork.category == "Photography"%>
-                    <% @cat = 4 %>
-                    <% elsif artwork.category == "Installation"%>
-                    <% @cat = 5 %>
-                    <% else %>
-                    <% @cat = 6 %>
-                  <% end %>
-                  <div class="col-xs-6 col-sm-4 col-md-3 filtr-item card" data-category="<%= @cat %>" data-sort=" <%= artwork[:category] %> ">
-                    <%= link_to(artwork_path(id: artwork.id, date_range: params[:date_range]), style: 'text-decoration: none;') do %>
-                    <% if artwork.photo %>
-                      <% image =  artwork.photo.path %>
-                    <% else  %>
-                      <% image =  "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
-                    <% end %>
-                    <img class="img-responsive" src="<%= cl_image_path(image) %>" alt="sample image">
-                    <span class="item-desc"> <%= artwork.title %> <br> cat: <%= artwork.category %> <br> loc: <%= artwork.location %> </span>
-                  </div>
-                  <% end %>
-                  <% end %>
-
-                </div>
+              <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <input name="date_range" type="text" class="form-control" id="dateRange" placeholder="When">
               </div>
-            </div>
-            <br>
+              <input type="submit"  class="btn btn-primary" value="Search!">
+              <div class="row search-row">
+                <input type="hidden" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="col-xs-6 col-md-4">
-          <div id="map" style="width: 500px; height: 600px;"></div>
-          <% content_for(:after_js) do %>
-          <%= javascript_tag do %>
-            $(document).ready(function() {
-            var handler = Gmaps.build('Google');
-            handler.buildMap({ internal: { id: 'map' } }, function() {
-            markers = handler.addMarkers(<%= raw @hash.to_json %>);
-            handler.bounds.extendWith(markers);
-            handler.fitMapToBounds();
-            if (markers.length == 0) {
-              handler.getMap().setZoom(2);
-            } else if (markers.length == 1) {
-                handler.getMap().setZoom(14);
-              }
-            });
-            });
+        <div class="row scrollingContainer">
+          <% @result.each do |artwork| %>
+            <div class="col-xs-12 col-md-6 ">
+              <% background_picture = cl_image_path(artwork.photo.path) || "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
+              <%= link_to artwork_path(artwork), class: "card-link" do %>
+                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= background_picture %>');">
+                  <div class="card-category"><%= artwork.category %></div>
+                  <div class="card-description">
+                    <h1><%= artwork.title %> </h1>
+                    <p>By: <%= artwork.owner.username %></p>
+                    <p></p>
+                  </div>
+                </div>
+              <% end %>
+            </div>
           <% end %>
-    <% end %>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    </div>
+    <div class="col-md-4 fixed-map">
+    <div id="map" style="width: 100%; height: 800px; "></div>
+      <% content_for(:after_js) do %>
+      <%= javascript_tag do %>
+      $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+      markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      if (markers.length == 0) {
+      handler.getMap().setZoom(2);
+    } else if (markers.length == 1) {
+    handler.getMap().setZoom(14);
+  }
+});
+});
+<% end %>
+<% end %>
+</div>
+</div>
+</div>
+
+
 
 

@@ -1,0 +1,64 @@
+.card {
+  height: 300px;
+  width: 500rm;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  color: white;
+  position: relative;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+.card-user {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.card-category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.card-description {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+.card-description h2 {
+  font-size: 24px;
+}
+.card-description p {
+  font-size: 13px;
+}
+
+.card-link:hover {
+  opacity: 0.8;
+text-color: purple;
+}
+
+
+
+.fixed-bar {
+position: absolute;
+
+  right: 10px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+
+
+
+}
+
+.fixed-map {
+  position: fixed;
+right: 7px;
+}
+
+.scrollingContainer {
+    margin-top: 30px;
+    overflow: scroll;
+    height: 800px;
+    background-color: #eee;
+}

@@ -1,6 +1,4 @@
 <h1 class="text-center">My Profile</h1>
-
-
 <div class="profile-header-wrapper">
   <div class="container profile-header-container text-center">
     <div class="profile-header-infos">
@@ -36,7 +34,6 @@
     </div>
   </div>
 </div>
-
 <div class="container text-center">
   <div class="tab-content" id="request" style="height: 250px; overflow:auto;">
     <% current_user.venues.each do |venue| %>
@@ -72,9 +69,7 @@
     </ul>
     <% end %>
     <% end %>
-
     <!-- JOE STATUS  -->
-
      <% current_user.venues.each do |venue| %>
     <li><%= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'  %></li>
     ###########Confirmed Bookings####################
@@ -186,14 +181,12 @@
     <% end %>
     <% end %>
 <% end %>
-
     <!-- END JOE STATUS  -->
   </div>
   <div class="tab-content hidden" id="venue" style="height: 250px; overflow:auto;">
     <p>
       <% current_user.venues.each do |venue| %>
       <li><%= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'  %></li>
-
       <% end %>
     </ul>
     <%= link_to "Create Venues", new_venue_path, style: 'text-decoration: none; color:black;' %>
@@ -231,7 +224,6 @@
     <br>
   </li>
 </ul>
-
 <% end %>
 <% end %>
 </div>
