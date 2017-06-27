@@ -1,6 +1,6 @@
 .card {
 
-  height: 450px;
+  height: 320px;
   width: 500rm;
 
   background-size: cover !important;
@@ -95,8 +95,8 @@ position: absolute;
 }
 
 .fixed-map {
-  position: fixed;
-right: 7px;
+//   position: fixed;
+// right: 7px;
 
 }
 
@@ -129,4 +129,10 @@ right: 7px;
 .date-flex{
   flex: 0 0 40%;
   margin-right: 20px;
+}
+
+.wrapper {
+
+  width: 1200px;
+  margin: 0 auto;
 }

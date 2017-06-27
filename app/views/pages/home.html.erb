@@ -1,8 +1,11 @@
 <div>
 <div class="banner" style="background: linear-gradient(-30deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 4%), url(https://static.pexels.com/photos/428111/pexels-photo-428111.jpeg);">
-  <h1 class="text-center">ART YOUR SPACE</h1>
+  <h1 class="text-center">ARTIFY YOUR WORLD</h1>
+  <br>
+  <p class="text-center">Show artwork from local artists and experience your favorite art for<strong> FREE</strong></p>
+  <br>
 
-  <div class="search-bar text-center">
+  <div class="text-center">
     <form class="form-inline" action="/search" method="GET">
       <label class="sr-only" for="inlineFormInput">City</label>
       <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Enter your city">
@@ -16,8 +19,9 @@
 
     </form>
   </div>
+  <br>
 
-  <p class="text-center">Show artwork from local artists and experience your favorite art for<strong> FREE</strong></p>
+
 
 </div>
 
@@ -51,7 +55,7 @@
 
     <div class="col-md-4">
       <div class="homecard">
-      <div class="homecard-title">Photographies</div>
+      <div class="homecard-title">Photographs</div>
         <%= link_to(search_path(test: 3), style: 'text-decoration: none;') do %>
         <%= image_tag "photo.jpg" %>
         <% end %>
