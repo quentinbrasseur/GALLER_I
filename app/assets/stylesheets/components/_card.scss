@@ -1,14 +1,15 @@
-
 .card {
-  height: 300px;
+
+  height: 320px;
   width: 500rm;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+
   background-size: cover !important;
-  color: white;
+  color: black;
   position: relative;
   padding-bottom: 20px;
   margin-bottom: 20px;
   border-radius: 6px;
+
 }
 .card-user {
   position: absolute;
@@ -21,7 +22,41 @@
   left: 10px;
   font-size: 10px;
   text-transform: uppercase;
+  color: white;
 }
+
+.card-like {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: red;
+  opacity: .25;
+}
+
+.card-social {
+  position: absolute;
+  bottom: 40px;
+  right: 20px;
+  font-size: 40px;
+  color: gray;
+  opacity: .25;
+}
+
+.card-social:hover {
+
+  color: black;
+  opacity: .9;
+}
+
+.card-like:hover {
+ font-size: 25px;
+  color: red;
+  opacity:.9;
+
+
+}
+
 .card-description {
   position: absolute;
   bottom: 10px;
@@ -35,6 +70,7 @@
 }
 
 .card-link:hover {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   opacity: 0.8;
   text-color: purple;
 }
@@ -61,6 +97,10 @@
   visibility: visible;
   opacity: 30;
 }
+// .card-link:c {
+//   opacity: 0.8;
+// text-color: purple;
+// }
 
 .fixed-bar {
 position: absolute;
@@ -72,15 +112,49 @@ position: absolute;
 
 
 }
+.card-center{
+  text-align: center;
+}
 
 .fixed-map {
-  position: fixed;
-right: 7px;
+//   position: fixed;
+// right: 7px;
+
 }
 
 .scrollingContainer {
     margin-top: 30px;
     overflow: scroll;
     height: 800px;
-    background-color: #eee;
+    background-color: white;
+}
+
+.card-pic{
+  width: 100%;
+  border-radius: 4px;
+
+}
+
+.missing{
+  width: 100%;
+  border-radius: 4px;
+}
+
+.form-flex{
+  display: flex;
+  width: 100%
+}
+.city-flex{
+  flex: 1 0 auto;
+  margin-right: 10px;
+}
+.date-flex{
+  flex: 0 0 40%;
+  margin-right: 20px;
+}
+
+.wrapper {
+
+  width: 1200px;
+  margin: 0 auto;
 }

@@ -33,6 +33,7 @@
               <% end  %>
             </h5>
           </div>
+
         </div>
 
       </div>
@@ -94,6 +95,7 @@
               architecto laborum tempore! Repudiandae ut earum enim praesentium. Voluptates alias quos perferendis ducimus, laboriosam omnis fuga dolore ut voluptas? Blanditiis est nulla adipisci odio tempore excepturi cum asperiores eveniet corporis. A, fugit, optio.
             </p>
           </div>
+
         </div>
         <div class="tab-content hidden" id="location" style="height: 250px; overflow:auto">
           <div class="text-center" id="map" style="width: auto; height: 200px;"></div>
@@ -102,6 +104,7 @@
           $(".tab").on("click", function(e){
           // Change active tab
           if ($(this).text().trim() == "Location") {
+
           $(document).ready(function() {
           var handler = Gmaps.build('Google');
           handler.buildMap({ internal: { id: 'map' } }, function() {
@@ -184,3 +187,4 @@
 </div>
 </div>
 <br><br>
+

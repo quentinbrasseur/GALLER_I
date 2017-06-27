@@ -1,6 +1,7 @@
 class ArtworksController < ApplicationController
 
   def index
+     @disabled_footer = true
     @artworks = Artwork.where.not(latitude: nil, longitude: nil)
     @hash = Gmaps4rails.build_markers(@artworks) do |artwork, marker|
       marker.lat artwork.latitude
@@ -44,7 +45,7 @@ class ArtworksController < ApplicationController
   end
 
   def search
-
+    @disabled_footer = true
     @result = [ ]  #shows the results from the filter
     @paintings = { category: "Painting"}
     @drawings = { category: "Drawing"}
