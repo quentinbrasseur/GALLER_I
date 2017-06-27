@@ -9,6 +9,7 @@
   padding-bottom: 20px;
   margin-bottom: 20px;
   border-radius: 6px;
+
 }
 .card-user {
   position: absolute;
@@ -110,4 +111,22 @@ right: 7px;
   width: 100%;
   border-radius: 4px;
 
+}
+
+.missing{
+  width: 100%;
+  border-radius: 4px;
+}
+
+.form-flex{
+  display: flex;
+  width: 100%
+}
+.city-flex{
+  flex: 1 0 auto;
+  margin-right: 10px;
+}
+.date-flex{
+  flex: 0 0 40%;
+  margin-right: 20px;
 }
