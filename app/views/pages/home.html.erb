@@ -1,10 +1,8 @@
+<div>
+<div class="banner" style="background: linear-gradient(-30deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 4%), url(https://static.pexels.com/photos/428111/pexels-photo-428111.jpeg);">
+  <h1 class="text-center">ART YOUR SPACE</h1>
 
-<div class="banner" style="background: linear-gradient(-30deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 5%), url(https://static.pexels.com/photos/428111/pexels-photo-428111.jpeg);">
-<h1 class="text-center">ARTIFY YOUR SPACE</h1>
-<p class="text-center">Show artwork from local artists and experience your favorite art for<strong> FREE</strong>
-<br>
-
-<div class="search-bar text-center">
+  <div class="search-bar text-center">
     <form class="form-inline" action="/search" method="GET">
       <label class="sr-only" for="inlineFormInput">City</label>
       <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Enter your city">
@@ -19,68 +17,73 @@
     </form>
   </div>
 
+  <p class="text-center">Show artwork from local artists and experience your favorite art for<strong> FREE</strong></p>
 
-
-<br>
-<br>
-
-
-<h2 class="class text-center"><%= link_to "Browse Our Artwork", artworks_path, style: "text-decoration: none; color: black;" %></h2>
-<br>
-
-  <div class="cards-overview">
-    <div class="container">
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <%= link_to(search_path(test: 1), style: 'text-decoration: none;') do %>
+</div>
 
 
 
-              <img src="" alt="Paintings" style="width:100%">
 
+<div class="container whole-cards">
+  <div class="browse text-center">
+  <%= link_to "Browse Our Artwork", artworks_path %></h2>
+  </div>
 
-            <% end %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-title">Paintings</div>
+        <%= link_to(search_path(test: 2), style: 'text-decoration: none;') do %>
+        <%= image_tag "painting.jpg" %>
+        <% end %>
+      </div>
 
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <%= link_to(search_path(test: 2), style: 'text-decoration: none;') do %>
-              <img src="" alt="Drawings" style="width:100%">
-            <% end %>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <%= link_to(search_path(test: 3), style: 'text-decoration: none;') do %>
-              <img src="" alt="Photography" style="width:100%">
-            <% end %>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <%= link_to(search_path(test: 4), style: 'text-decoration: none;') do %>
-              <img src="" alt="Sculptures" style="width:100%">
-            <% end %>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <%= link_to(search_path(test: 5), style: 'text-decoration: none;') do %>
-              <img src="" alt="Installations" style="width:100%">
-            <% end %>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <%= link_to(search_path(test: 6), style: 'text-decoration: none;') do %>
-              <img src="" alt="Miscellaneous" style="width:100%">
-            <% end %>
-          </div>
-        </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+      <div class="card-title">Drawings</div>
+        <%= link_to(search_path(test: 2), style: 'text-decoration: none;') do %>
+        <%= image_tag "drawings.jpg" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+      <div class="card-title">Photographies</div>
+        <%= link_to(search_path(test: 3), style: 'text-decoration: none;') do %>
+        <%= image_tag "photo.jpg" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+      <div class="card-title">Scultures</div>
+        <%= link_to(search_path(test: 4), style: 'text-decoration: none;') do %>
+        <%= image_tag "sculture.jpg" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+      <div class="card-title">Installations</div>
+        <%= link_to(search_path(test: 5), style: 'text-decoration: none;') do %>
+        <%= image_tag "installation.jpg" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+      <div class="card-title">Miscellaneous</div>
+        <%= link_to(search_path(test: 6), style: 'text-decoration: none;') do %>
+        <%= image_tag "miscelleneous-6.jpg" %>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 </div>

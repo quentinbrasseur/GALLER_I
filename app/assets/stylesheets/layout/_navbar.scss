@@ -11,6 +11,17 @@
   margin: 0px 13px;
 }
 
+#title {
+  text-decoration: none;
+  font-size: 16px;
+  margin: 10px;
+  color: #BE63C1;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 50px;
+
+}
+
 /* Optional class to fix the navbar on top */
 .navbar-wagon-fixed {
   position: fixed;
@@ -93,7 +104,7 @@
   border: 1px solid #E6E6E6;
   border-radius: 5px;
   padding: 0 10px;
-  font-size: 14px;
+  font-size: 17px;
   outline: none;
 }
 .navbar-wagon-search-input:focus  {
