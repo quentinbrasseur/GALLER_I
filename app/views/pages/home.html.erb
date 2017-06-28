@@ -1,5 +1,5 @@
 <div>
-<div class="banner" style="background: linear-gradient(-30deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 4%), url(https://static.pexels.com/photos/428111/pexels-photo-428111.jpeg);">
+<div class="banner" style="background: linear-gradient(-30deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 4%), url('https://static.pexels.com/photos/428111/pexels-photo-428111.jpeg');">
   <h1 class="text-center">ARTIFY YOUR WORLD</h1>
   <br>
   <p class="text-center">Show artwork from local artists and experience your favorite art for<strong> FREE</strong></p>
@@ -13,7 +13,7 @@
 
       <label class="sr-only" for="inlineFormInputGroup">When</label>
       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-        <input name="date_range" type="text" class="form-control" id="dateRange" placeholder="When">
+        <input name="date_range" type="hidden" class="form-control" id="dateRange" placeholder="When">
       </div>
       <input type="submit"  class="btn btn-primary" value="Search!">
 
@@ -30,7 +30,9 @@
 
 <div class="container whole-cards">
   <div class="browse text-center">
-  <%= link_to "Browse Our Artwork", artworks_path %></h2>
+
+
+  <%= link_to "Browse Our Catalogue of Over ", artworks_path %></h2><%= Artwork.count %> Pieces
   </div>
 
   <div class="row">
