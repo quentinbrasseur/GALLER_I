@@ -59,8 +59,8 @@
 
             <h1>JOE STATUS</h1>
 
-            <% current_user.venues.each do |venue| %>
-            <li><%= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'  %></li>
+            <%# current_user.venues.each do |venue| %>
+           <!--  <li><%#= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'  %></li> -->
             ###########Confirmed Bookings####################
             <% current_user.venues.each do |venue| %>
             <% status = venue.appointments.where(status: "Confirmed") %>
@@ -169,7 +169,7 @@
             </ul>
             <% end %>
             <% end %>
-            <% end %>
+            <%# end %>
 
             <!--  -->
 
