@@ -1,119 +1,193 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6" style="background: blue; padding: 0px; display: flex; justify-content: flex-start;">
+  <div class="wrapper">
+    <div class="row no-margin">
+      <div class="col-md-6" style=" padding: 0px; display: flex; justify-content: flex-start;">
         <% if @artwork.photo %>
-          <% image =  @artwork.photo.path %>
+        <% image =  @artwork.photo.path %>
         <% else  %>
-          <% image =  "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
+        <% image =  "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
         <% end %>
         <div class="text-center"><img class="text-center" src="<%= cl_image_path(image, height: 300, crop: "scale") %>" alt="sample image"></div>
-    </div>
-    <div class="col-md-6 text-center" style="background: red;">
-      <div class="row" style="background: grey;">
-        <h1 style="margin: 0px;"><%= @artwork.title %>,</h1>
-        <h5>by <%= @artwork.owner.username %><%= @artwork.owner.first_name %><%= @artwork.owner.last_name %></h5>
       </div>
-      <div class="row" style="background: black;">
-        <div class="text-center">
-          <h3>
-            <% if current_user and current_user.venues.any? %>
-              <%= render 'form-appt'  %>
-            <% else %>
-            Please create a venue before booking, here: <%= link_to "Create Venue", new_venue_path %>
-            <% end %>
-          </h3>
-          <h5>
-            <%= link_to "Back", artworks_path %>
-            <%  if (current_user == @artwork.owner) %>
-              <%= link_to "Edit", edit_artwork_path(@artwork) %>
-              <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
-            <% end  %>
-          </h5>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12" style="background: green; margin: 20px 0px; padding: 0px">
-      <div class="profile-header-wrapper">
-        <div class="container profile-header-container text-center" style="padding: 0px;">
-          <div class="tabs">
-            <a class="tab active" data-target="#overview">
-              <h3>Overview</h3>
-            </a>
-            <a class="tab" data-target="#location">
-              <h3>Location</h3>
-            </a>
-            <a class="tab" data-target="#history">
-              <h3>History</h3>
-            </a>
+      <div class="col-md-6 text-center" >
+        <div class="row" >
+          <div class="header-titles-left">
+            <h1 style="margin: 0px;"><%= @artwork.title %>,</h1>
+            <h5>by <%= @artwork.owner.username %><%= @artwork.owner.fullname %></h5>
           </div>
         </div>
+        <div class="row" >
+          <div class="text-center">
+            <h3>
+              <% if current_user and current_user.venues.any? %>
+              <%= render 'form-appt'  %>
+              <% else %>
+              Please create a venue before booking, here: <%= link_to "Create Venue", new_venue_path %>
+              <% end %>
+            </h3>
+            <h5>
+              <%= link_to "Back", artworks_path %>
+              <%  if (current_user == @artwork.owner) %>
+              <%= link_to "Edit", edit_artwork_path(@artwork) %>
+              <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
+              <% end  %>
+            </h5>
+          </div>
+
+        </div>
+
       </div>
-      <div class="container" style="margin-bottom: 12px; padding: 0px;">
+    </div>
+
+    <div class="row no-margin">
+      <div class="col-md-12" style=" margin: 20px 0px; padding: 0px">
+        <div class="profile-header-wrapper">
+          <div class="profile-header-container text-center" style="padding: 0px;">
+            <div class="tabs">
+              <a class="tab active" data-target="#overview">
+                <h3>Overview</h3>
+              </a>
+              <a class="tab" data-target="#location">
+                <h3>Location</h3>
+              </a>
+              <a class="tab" data-target="#history">
+                <h3>History</h3>
+              </a>
+            </div>
+          </div>
+        </div>
         <div class="tab-content" id="overview" style="height: 250px; overflow:auto">
-            Dimensions:
-            <%= @artwork.height %> x
-            <%= @artwork.width %> x
-            <%= @artwork.depth %>
-            <br>
-            Weight: <%= @artwork.weight %>kg
-            <br>
-            City: <%= @artwork.location %>
+          <div class="content">
+            <div class="content-group">
+              <strong>
+                Dimensions:
+              </strong>
+              <div class="values">
+                <%= @artwork.height %> x
+                <%= @artwork.width %> x
+                <%= @artwork.depth %>
+              </div>
+            </div>
+            <div class="content-group">
+              <strong>
+                Weight:
+              </strong>
+              <div class="values">
+                <%= @artwork.weight %>kg
+              </div>
+            </div>
+            <div class="content-group">
+              <strong>
+                City:
+              </strong>
+              <div class="values">
+                <%= @artwork.location %>
+              </div>
+            </div>
+            <h3>
+              Title jrqiogj
+            </h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quo soluta incidunt iste nam? Nobis aliquid quam adipisci, ducimus, alias quo inventore vitae nam a
+              <br><br>
+              voluptates autem minus odio non quos quaerat nisi hic repudiandae odit ad similique asperiores, eius quisquam ea quas amet? Beatae impedit eaque facilis dolore vero consectetur voluptatibus velit veniam qui, asperiores sapiente voluptatem sed, repellat libero neque magni, delectus maiores at hic,
+              <br><br>
+              architecto laborum tempore! Repudiandae ut earum enim praesentium. Voluptates alias quos perferendis ducimus, laboriosam omnis fuga dolore ut voluptas? Blanditiis est nulla adipisci odio tempore excepturi cum asperiores eveniet corporis. A, fugit, optio.
+            </p>
+          </div>
+
         </div>
         <div class="tab-content hidden" id="location" style="height: 250px; overflow:auto">
           <div class="text-center" id="map" style="width: auto; height: 200px;"></div>
           <% content_for(:after_js) do %>
-            <%= javascript_tag do %>
-              $(document).ready(function() {
-              var handler = Gmaps.build('Google');
-              handler.buildMap({ internal: { id: 'map' } }, function() {
-              markers = handler.addMarkers(<%= raw @hash.to_json %>);
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-              if (markers.length == 0) {
-              handler.getMap().setZoom(2);
-              } else if (markers.length == 1) {
-              handler.getMap().setZoom(14);
-              }
-              });
-              });
-            <% end %>
-          <% end %>
-        </div>
-        <div class="tab-content hidden" id="history" style="height: 250px; overflow:auto;">
-          <div class="content" >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur repudiandae iusto voluptatibus earum odit enim ut quo, inventore voluptas, sequi tenetur incidunt alias quam laborum magni, deleniti distinctio ex. Voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro quisquam obcaecati odio commodi, ipsam a praesentium distinctio quaerat cum libero sunt accusantium dolor quod, vero nostrum fugit pariatur, autem voluptates.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet voluptatem aspernatur, unde deserunt id itaque neque ducimus sint. Iusto dicta aperiam sint! Hic labore provident error, dolore delectus eius architecto.
-            <br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci assumenda doloremque, laboriosam ducimus, modi dolor deleniti laborum magni asperiores nihil, amet libero architecto repudiandae enim est id rerum officiis! Quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci assumenda doloremque, laboriosam ducimus, modi dolor deleniti laborum magni asperiores nihil, amet libero architecto repudiandae enim est id rerum officiis! Quibusdam.
-            <br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci assumenda doloremque, laboriosam ducimus, modi dolor deleniti laborum magni asperiores nihil, amet libero architecto repudiandae enim est id rerum officiis! Quibusdam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis tempore nisi repellendus. Repudiandae totam, libero veritatis harum quaerat ducimus, sunt quisquam ullam, minima, ipsum eveniet ab perferendis commodi est ex. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit molestias, dolorem, repellat quas eos quam ad quasi doloribus odit nisi aut ipsam aliquid esse labore perferendis voluptas dolorum et. Est.
-            <br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci assumenda doloremque, laboriosam ducimus, modi dolor deleniti laborum magni asperiores nihil, amet libero architecto repudiandae enim est id rerum officiis! Quibusdam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis tempore nisi repellendus. Repudiandae totam, libero veritatis harum quaerat ducimus, sunt quisquam ullam, minima, ipsum eveniet ab perferendis commodi est ex. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit molestias, dolorem, repellat quas eos quam ad quasi doloribus odit nisi aut ipsam aliquid esse labore perferendis voluptas dolorum et. Est.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12" style="background: orange; margin: 20px 0px;">
-      <div class="text-center">
-        <h3>From the same Artist</h3>
-      </div>
-        <div class="">
-          <div class="col-md-12">
-            <div class="inline-block-center">
-              <div class="multiple-items">
-                <div> <img src="http://placehold.it/300x200" alt="First thing"></div>
-                <div> <img src="http://placehold.it/300x200" alt="Second thing"></div>
-                <div> <img src="http://placehold.it/300x200" alt="Third thing"></div>
-                <div> <img src="http://placehold.it/300x200" alt="Fourth thing"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
+          <%= javascript_tag do %>
+          $(".tab").on("click", function(e){
+          // Change active tab
+          if ($(this).text().trim() == "Location") {
+
+          $(document).ready(function() {
+          var handler = Gmaps.build('Google');
+          handler.buildMap({ internal: { id: 'map' } }, function() {
+          markers = handler.addMarkers(<%= raw @hash.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+        handler.getMap().setZoom(14);
+      }
+    });
+  });
+}
+});
+<% end %>
+<% end %>
+</div>
+<div class="tab-content hidden" id="history" style="height: 250px; overflow:auto;">
+  <div class="content" >
+    <h3>
+      Title jrqiogj
+    </h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quo soluta incidunt iste nam? Nobis aliquid quam adipisci, ducimus, alias quo inventore vitae nam a
+      <br><br>
+      voluptates autem minus odio non quos quaerat nisi hic repudiandae odit ad similique asperiores, eius quisquam ea quas amet? Beatae impedit eaque facilis dolore vero consectetur voluptatibus velit veniam qui, asperiores sapiente voluptatem sed, repellat libero neque magni, delectus maiores at hic,
+      <br><br>
+      architecto laborum tempore! Repudiandae ut earum enim praesentium. Voluptates alias quos perferendis ducimus, laboriosam omnis fuga dolore ut voluptas? Blanditiis est nulla adipisci odio tempore excepturi cum asperiores eveniet corporis. A, fugit, optio.
+    </p>
   </div>
 </div>
+</div>
+</div>
+<div class="row no-margin">
+  <div class="col-md-12" style=" margin: 10px 0px;">
+    <div class="text-center">
+      <h3>Explore more artwork from <%= @artwork.owner.username%></h3>
+      <br>
+    </div>
+    </div>
+
+    <div class="">
+      <div class="col-md-12">
+        <div class="inline-block-center">
+          <div class="multiple-items">
+            <% artist = @artwork.owner %>
+            <% art = Artwork.all %>
+            <% collection = art.where(user_id: artist) %>
+            <% collection.each do |piece| %>
+              <% if piece.photo.nil? %>
+              <% else %>
+                <% picture = piece.photo.path %>
+                <div class="card-link">
+                <%= link_to artwork_path(piece) do %>
+                  <div class="card-wrapper">
+                    <p class="card-text text-center"><%= piece.title %></p>
+                    <img class="card-image text-center" src="<%= cl_image_path(picture, width: 300, crop: "scale") %>" alt="sample image">
+                  </div>
+                <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+<!--     <div class="">
+      <div class="col-md-12">
+        <div class="inline-block-center">
+          <div class="multiple-items">
+            <div> <img src="https://static.pexels.com/photos/213508/pexels-photo-213508.jpeg" alt="First thing" style="width: 300px; height: auto"></div>
+            <div> <img src="https://static.pexels.com/photos/115057/pexels-photo-115057.jpeg" alt="Second thing" style="width: 300px; height: auto"></div>
+            <div> <img src="https://static.pexels.com/photos/342013/pexels-photo-342013.jpeg" alt="Third thing" style="width: 300px; height: auto"></div>
+            <div> <img src="https://static.pexels.com/photos/12567/photo-1444703686981-a3abbc4d4fe3.jpeg" alt="Fourth thing" style="width: 300px; height: auto"></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</div>
+</div>
+</div>
+<br><br>
+
