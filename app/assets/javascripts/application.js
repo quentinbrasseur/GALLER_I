@@ -14,3 +14,5 @@
 //= require carousel
 //= slick
 //= require_tree .
+
+$(".alert" ).fadeOut(3000);
