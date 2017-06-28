@@ -6,7 +6,7 @@ class Venue < ApplicationRecord
   has_many :employees, through: :user_venues
   # has_many :employees, through: :user_venues, class_name:'User', foreign_key:'user_id'
   has_many :user_venues, dependent: :destroy
-
+validates :title, :location, :photo, :category,  presence: true
   geocoded_by :location
   after_validation :geocode, if: :location_changed?
 
