@@ -1,31 +1,27 @@
-<h1 class="text-center">My Profile</h1>
-<div class="profile-header-wrapper">
-  <div class="container profile-header-container text-center">
-    <div class="profile-header-infos">
-      <img src="images/papillard.jpeg" alt="">
-      <h1>
-        <% if current_user.username.nil? %>
-        <%= current_user.first_name %>
-        <%= current_user.last_name %>
-        <% else %>
-        <%= current_user.username %>
-        <% end %>
-      </h1>
-      <p>
-        <%= current_user.email %>
-        <br>
-        <%= current_user.phone_number %>
-        <br>
-      </p>
-    </div>
+<div class="banner-profile" style="background-image: linear-gradient(-30deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 4%), url(https://static.pexels.com/photos/428111/pexels-photo-428111.jpeg);">
+</div>
+<div class="user-profile-info">
+  <div class= "user-profile-picture">
+    <% avatar_url = current_user.facebook_picture_url || image_path('placeholder-guy.png') %>
+    <%= image_tag avatar_url, class: "avatar-xl" %>
+  </div>
+  <div class="user-profile-details">
+    <h1>
+      <% if current_user.username.nil? %>
+      <%= current_user.first_name %>
+      <%= current_user.last_name %>
+      <% else %>
+      <%= current_user.username %>
+      <% end %>
+    </h1>
+    <p>
+      <%= current_user.email %>
+    </p>
+    <p>
+      <%= current_user.phone_number %>
+    </p>
   </div>
 </div>
-
-
-
-
-
-
 
 <div class="container">
   <div class="wrapper">
@@ -239,6 +235,7 @@
             <%= link_to 'Confirm',  appointment_confirm_path(appointment), class: "btn btn-success" %>
             <%= link_to 'Decline',  appointment_decline_path(appointment), class: "btn btn-danger" %>
             <br>
+
             <br>
           </li>
         </ul>
@@ -302,5 +299,6 @@
   </div>
 </div>
 </div>
+
 </div>
 <br><br>
