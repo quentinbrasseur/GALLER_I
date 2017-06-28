@@ -16,6 +16,7 @@
 </head>
 <body>
   <%= render 'shared/navbar' %>
+
   <%= render 'shared/flashes' %>
   <%= yield %>
   <%= render 'layouts/footer' unless @disabled_footer %>
@@ -48,6 +49,7 @@ $('.filtr-container').filterizr('setOptions', { delay: 400, delayMode: 'alternat
 
 <%= cloudinary_js_config %>
 <%= yield(:after_js) %>
+
 
 </body>
 </html>

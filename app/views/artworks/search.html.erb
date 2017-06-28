@@ -2,25 +2,25 @@
 <!-- filter bar container -->
 <!-- content container -->
 <div class="container-fluid">
-  <div class="wrapper">
-    <div class="">
-      <div class="col-xs-12 col-md-8 ">
-        <div class="">
-          <div class="row">
-            <div class="search-bar">
-              <form class="form-inline form-flex" action="/search" method="GET">
-                <label class="sr-only" for="inlineFormInput">City</label>
-                <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0 city-flex" id="inlineFormInput" placeholder="Type a city" value='<%= params[:city] %>'>
-                <label class="sr-only" for="inlineFormInputGroup">When</label>
-                <div class="input-group mb-2 mr-sm-2 mb-sm-0 date-flex">
-                  <input name="date_range" type="text" class="form-control" id="dateRange" placeholder="When">
-                </div>
-                <input type="submit"  class="btn btn-primary" value="Search!">
-                <div class="row search-row">
-                  <input type="hidden" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
-                </div>
-              </form>
-            </div>
+
+  <div class="">
+  <div class="">
+    <div class="col-xs-12 col-md-6 ">
+      <div class="">
+        <div class="row">
+          <div class="search-bar">
+            <form class="form-inline form-flex" action="/search" method="GET">
+              <label class="sr-only" for="inlineFormInput">City</label>
+              <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0 city-flex" id="inlineFormInput" placeholder="Type a city" value='<%= params[:city] %>'>
+              <label class="sr-only" for="inlineFormInputGroup">When</label>
+              <div class="input-group mb-2 mr-sm-2 mb-sm-0 date-flex">
+                <input name="date_range" type="text" class="form-control" id="dateRange" placeholder="When">
+              </div>
+              <input type="submit"  class="btn btn-primary" value="Search!">
+              <div class="row search-row">
+                <input type="hidden" class="filtr-search" name="filtr-search" data-search placeholder="Enter A City" value='<%= params[:city] %>'>
+              </div>
+            </form>
           </div>
           <div class="row scrollingContainer">
 
@@ -55,22 +55,24 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 fixed-map">
-        <div id="map" style="width: 100%; height: 82vh; "></div>
-        <% content_for(:after_js) do %>
-        <%= javascript_tag do %>
-        $(document).ready(function() {
-        var handler = Gmaps.build('Google');
-        handler.buildMap({ internal: { id: 'map' } }, function() {
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-        handler.getMap().setZoom(2);
-      } else if (markers.length == 1) {
-      handler.getMap().setZoom(14);
-    }
-  });
+
+    </div>
+    <div class="col-md-6 fixed-map">
+      <div id="map" style="width: 100%; height: 85vh; "></div>
+      <% content_for(:after_js) do %>
+      <%= javascript_tag do %>
+      $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+      markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      if (markers.length == 0) {
+      handler.getMap().setZoom(2);
+    } else if (markers.length == 1) {
+    handler.getMap().setZoom(14);
+  }
+});
 });
 <% end %>
 <% end %>

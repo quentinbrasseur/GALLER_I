@@ -110,7 +110,7 @@ class ArtworksController < ApplicationController
       @hash.pop
     else
       #run both the date search and the city search filter
-      @search = Artwork.where( location: params[:city])
+      @search = Artwork.where("location ILIKE ?", "%#{params[:city]}%")
       city = params[:city]
       date = params[:date_range]
       date = date.split(%r{\s*-\s*})

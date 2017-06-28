@@ -1,3 +1,9 @@
+.full-width {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
 .card {
 
   height: 100%;
@@ -118,7 +124,7 @@
 // }
 
 .fixed-bar {
-position: absolute;
+  position: absolute;
 
   right: 10px;
   margin-bottom: 30px;
@@ -146,6 +152,7 @@ position: absolute;
 
 .card-pic{
   width: 100%;
+  height: 70%;
   border-radius: 4px;
 
 }
@@ -169,7 +176,12 @@ position: absolute;
 }
 
 .wrapper {
-
-  width: 1200px;
+  width: 80%;
   margin: 0 auto;
+}
+
+.card-image {
+  height: 60%;
+  width: 90%;
+  border-radius: 4px;
 }
