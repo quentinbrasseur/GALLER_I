@@ -128,16 +128,11 @@
 </div>
 <div class="tab-content hidden" id="history" style="height: 250px; overflow:auto;">
   <div class="content" >
-    <h3>
-      Title jrqiogj
-    </h3>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quo soluta incidunt iste nam? Nobis aliquid quam adipisci, ducimus, alias quo inventore vitae nam a
-      <br><br>
-      voluptates autem minus odio non quos quaerat nisi hic repudiandae odit ad similique asperiores, eius quisquam ea quas amet? Beatae impedit eaque facilis dolore vero consectetur voluptatibus velit veniam qui, asperiores sapiente voluptatem sed, repellat libero neque magni, delectus maiores at hic,
-      <br><br>
-      architecto laborum tempore! Repudiandae ut earum enim praesentium. Voluptates alias quos perferendis ducimus, laboriosam omnis fuga dolore ut voluptas? Blanditiis est nulla adipisci odio tempore excepturi cum asperiores eveniet corporis. A, fugit, optio.
-    </p>
+    <% @appt = Appointment.where(artwork_id: @artwork) %>
+    <h2>Number of Historical Requests: <%=  @appt.count%></h2>
+    <ul>
+      <li>Booked by  <%= @appt.last.venue.title   %>, in <%= @appt.last.venue.location  %> from: <%=  @appt.last.start_date %> to <%= @appt.last.end_date %> </li>
+    </ul>
   </div>
 </div>
 </div>
