@@ -50,10 +50,10 @@ class ArtworksController < ApplicationController
     @result = [ ]  #shows the results from the filter
     @paintings = { category: "Painting"}
     @drawings = { category: "Drawing"}
-    @photography = { category: "Photography"}
+    @photography = { category: "Photograph"}
     @sculptures = { category: "Sculpture"}
-    @performances = { category: "Performance"}
-    @barcelona = { category: "Miscellaneous"}
+    @installations = { category: "Installation"}
+    @Miscellaneous = { category: "Miscellaneous"}
     test = params[:test].to_i
     if test == 1
       @result = Artwork.where(category: @paintings[:category])
@@ -68,10 +68,10 @@ class ArtworksController < ApplicationController
       @result = Artwork.where(category: @sculptures[:category])
       test = 0
     elsif test == 5
-      @result = Artwork.where(category: @performances[:category])
+      @result = Artwork.where(category: @installations[:category])
       test = 0
     elsif test == 6
-      @result = Artwork.where(location: @barcelona[:city])
+      @result = Artwork.where(category: @Miscellaneous[:category])
       test = 0
     elsif params[:city].blank?
       # run only the date search filter
@@ -166,7 +166,7 @@ end
 private
 
 def artwork_params
-  params.require(:artwork).permit(:title, :category, :location, :height, :width, :depth, :weight, :photo)
+  params.require(:artwork).permit(:title, :description, :category, :location, :height, :width, :depth, :weight, :photo)
 end
 
 end
