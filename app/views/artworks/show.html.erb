@@ -1,14 +1,16 @@
 <div class="container">
   <div class="wrapper">
-    <div class="row no-margin">
-      <div class="col-md-6" style=" padding: 0px; display: flex; justify-content: flex-start;">
+    <div class="row">
+      <div class="col-md-6">
         <% if @artwork.photo %>
         <% image =  @artwork.photo.path %>
         <% else  %>
         <% image =  "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
         <% end %>
-        <div class="text-center"><img class="text-center" src="<%= cl_image_path(image, height: 300, crop: "scale") %>" alt="sample image"></div>
+
+        <img class="full-width" src="<%= cl_image_path(image, height: 300, crop: "fill") %>" alt="sample image">
       </div>
+
       <div class="col-md-6 text-center" >
         <div class="row" >
           <div class="header-titles-left">
@@ -158,7 +160,7 @@
               <% if piece.photo.nil? %>
               <% else %>
                 <% picture = piece.photo.path %>
-                <div class="card-link">
+                <div class="card-link card-pic">
                 <%= link_to artwork_path(piece) do %>
                   <div class="card-wrapper">
                     <p class="card-text text-center"><%= piece.title %></p>

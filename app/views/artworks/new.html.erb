@@ -1,16 +1,18 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h1>Hi, <%= current_user.first_name %>! Let’s get started listing your artworks.</h1>
-      <br>
-      <%= render 'form' %>
+  <div class="wrapper">
+    <div class="">
+      <div class="col-md-6">
+        <h1>Hi, <%= current_user.first_name %>! Let’s get started listing your artworks.</h1>
+        <br>
+        <%= render 'form' %>
+      </div>
+
+      <div class="col-md-6">
+        <%= image_tag "image.png", style: 'width: 100%; height: auto;'%>
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <%= image_tag "image.png", style: 'width: 600px; height: auto;'%>
-    </div>
   </div>
-
 </div>
 
 <br>
