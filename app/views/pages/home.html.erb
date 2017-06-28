@@ -13,7 +13,7 @@
 
       <label class="sr-only" for="inlineFormInputGroup">When</label>
       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-        <input name="date_range" type="text" class="form-control" id="dateRange" placeholder="When">
+        <input name="date_range" type="hidden" class="form-control" id="dateRange" placeholder="When">
       </div>
       <input type="submit"  class="btn btn-primary" value="Search!">
 
@@ -34,7 +34,7 @@
 
   <%= link_to "Browse Our Catalogue of Over ", artworks_path %></h2><%= Artwork.count %> Pieces
   </div>
-<%= raise %>
+
   <div class="row">
     <div class="col-md-4">
       <div class="homecard">
