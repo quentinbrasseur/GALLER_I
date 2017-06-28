@@ -1,40 +1,26 @@
-
 <div>
-<div class="banner" style="background:  url(assets/Background.png);">
-  <h1 class="text-left title-text">ARTIFY <br> YOUR <br> WORLD</h1>
-  <br><br><br>
+<div class="banner" style="background: linear-gradient(-30deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 4%), url('https://static.pexels.com/photos/428111/pexels-photo-428111.jpeg');">
+  <h1 class="text-center">ARTIFY YOUR WORLD</h1>
   <br>
-  <p class="text-left title-vp">Show artwork from local artists and </p> <p class="text-center title-vp">experience your favorite art for <strong> FREE</strong></p>
+  <p class="text-center">Show artwork from local artists and experience your favorite art for<strong> FREE</strong></p>
   <br>
-<br>
-  <div class="text-left title-search">
+  <div class="text-center">
     <form class="form-inline" action="/search" method="GET">
       <label class="sr-only" for="inlineFormInput">City</label>
       <input name="city" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Enter your city">
-
-
       <label class="sr-only" for="inlineFormInputGroup">When</label>
       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
         <input name="date_range" type="hidden" class="form-control" id="dateRange" placeholder="When">
       </div>
       <input type="submit"  class="btn btn-primary" value="Search!">
-
     </form>
   </div>
   <br>
-
-
-
 </div>
-
-
-
-
 <div class="container whole-cards">
   <div class="browse text-center">
   <%= link_to "Browse Our Catalogue of Over ", artworks_path %></h2><%= Artwork.count %> Pieces
   </div>
-
   <div class="row">
     <div class="col-md-4">
       <div class="homecard">
@@ -43,9 +29,7 @@
         <%= image_tag "painting.jpg" %>
         <% end %>
       </div>
-
     </div>
-
     <div class="col-md-4">
       <div class="homecard">
       <div class="homecard-title">Drawings</div>
@@ -54,7 +38,6 @@
         <% end %>
       </div>
     </div>
-
     <div class="col-md-4">
       <div class="homecard">
       <div class="homecard-title">Photographs</div>
@@ -63,16 +46,14 @@
         <% end %>
       </div>
     </div>
-
     <div class="col-md-4">
       <div class="homecard">
-      <div class="homecard-title">Scultures</div>
+      <div class="homecard-title">Sculptures</div>
         <%= link_to(search_path(test: 4), style: 'text-decoration: none;') do %>
         <%= image_tag "sculture.jpg" %>
         <% end %>
       </div>
     </div>
-
     <div class="col-md-4">
       <div class="homecard">
       <div class="homecard-title">Installations</div>
@@ -81,7 +62,6 @@
         <% end %>
       </div>
     </div>
-
     <div class="col-md-4">
       <div class="homecard">
       <div class="homecard-title">Miscellaneous</div>

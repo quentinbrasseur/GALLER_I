@@ -9,6 +9,43 @@
   // left: 410px;
 }
 
+.text-content {
+  line-height: 30px;
+}
+
+.purple-button {
+  background-color: #be63c1;
+  color: white;
+  padding: 7px 16px;
+  margin: 5px;
+  border-radius: 2px;
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.delete-button {
+  display: block;
+  background-color: #BE63C1;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.fancy-link {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-bottom: 3px solid #be63c1;
+  bottom: 0;
+}
+
 .wrapper-profile {
   margin: 50px 0;
 }

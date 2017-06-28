@@ -91,7 +91,7 @@
 }
 
 .card-link:hover {
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  // text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   opacity: 0.8;
   text-color: purple;
 }
@@ -126,7 +126,7 @@
 .fixed-bar {
   position: absolute;
 
-  right: 10px;
+  right: 20px;
   margin-bottom: 30px;
   padding-bottom: 30px;
 

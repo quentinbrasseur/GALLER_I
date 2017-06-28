@@ -62,6 +62,14 @@
           <div class="content">
             <div class="content-group">
               <strong>
+                City:
+              </strong>
+              <div class="values">
+                <%= @artwork.location %>
+              </div>
+            </div>
+            <div class="content-group">
+              <strong>
                 Dimensions:
               </strong>
               <div class="values">
@@ -78,16 +86,9 @@
                 <%= @artwork.weight %>kg
               </div>
             </div>
-            <div class="content-group">
-              <strong>
-                City:
-              </strong>
-              <div class="values">
-                <%= @artwork.location %>
-              </div>
-            </div>
+
             <h3>
-              <%=  @artwork.title%>
+             <%=  @artwork.title%>
             </h3>
             <p>
               <%=  @artwork.description%>

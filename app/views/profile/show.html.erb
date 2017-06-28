@@ -24,6 +24,7 @@
 </div>
 
 <div class="container">
+
   <div class="wrapper">
     <div class="row">
       <div class="col-md-6">
@@ -52,164 +53,151 @@
             </div>
           </div>
         </div>
+
+
+
         <div class="tab-content" id="request" style="height: 250px; overflow:auto">
           <div class="content">
 
             <!--  -->
-            <h1>JOE STATUS</h1>
 
             <%# current_user.venues.each do |venue| %>
-           <!--  <li><%#= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'  %></li> -->
-            ###########Confirmed Bookings####################
-            <% current_user.venues.each do |venue| %>
-            <% status = venue.appointments.where(status: "Confirmed") %>
-            <% status.each do |appointment| %>
-            <ul>
-              <li>
-                <h4>
-                  <%= link_to appointment.artwork.title, artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black;' %>,
-                  <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
-                  by <%= Artwork.find(appointment.artwork_id).owner.first_name%>
-                  by <%= Artwork.find(appointment.artwork_id).owner.last_name%>
-                  <% else %>
-                  by <%= Artwork.find(appointment.artwork_id).owner.username%>
-                  <% end %>
-                  (<%= appointment.artwork.category %>)
-                  <br>
-                  Status: <%= appointment.status %>
-                  <br>
-                </h4>
-                For your: <%= appointment.venue.title %>
-                <br>
-                From <%= appointment.start_date %>
-                to <%= appointment.end_date %>
-                <br>
-                Email: <%= Artwork.find(appointment.artwork_id).owner.email%>
-                <br>
-                <% if Artwork.find(appointment.artwork_id).owner.email.nil? %>
-                <% else %>
-                Phone number: <%= Artwork.find(appointment.artwork_id).owner.phone_number%>
-                <% end %>
-                <br>
-              </li>
-            </ul>
-            <% end %>
-            <% end %>
-            ###############################
-            ###########Declined Bookings####################
-            <% current_user.venues.each do |venue| %>
-            <% status = venue.appointments.where(status: "Declined") %>
-            <% status.each do |appointment| %>
-            <ul>
-              <li>
-                <h4>
-                  <%= link_to appointment.artwork.title, artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black;' %>,
-                  <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
-                  by <%= Artwork.find(appointment.artwork_id).owner.first_name%>
-                  by <%= Artwork.find(appointment.artwork_id).owner.last_name%>
-                  <% else %>
-                  by <%= Artwork.find(appointment.artwork_id).owner.username%>
-                  <% end %>
-                  (<%= appointment.artwork.category %>)
-                  <br>
-                  Status: <%= appointment.status %>
-                  <br>
-                </h4>
-                For your: <%= appointment.venue.title %>
-                <br>
-                From <%= appointment.start_date %>
-                to <%= appointment.end_date %>
-                <br>
-                Email: <%= Artwork.find(appointment.artwork_id).owner.email%>
-                <br>
-                <% if Artwork.find(appointment.artwork_id).owner.email.nil? %>
-                <% else %>
-                Phone number: <%= Artwork.find(appointment.artwork_id).owner.phone_number%>
-                <% end %>
-                <br>
-                <%= link_to "Delete", appointment_path(appointment), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
-              </li>
-            </ul>
-            <% end %>
-            <% end %>
-            ###############################
-            ###########Pending Apporval Bookings####################
-            <% current_user.venues.each do |venue| %>
-            <% status = venue.appointments.where(status: "Pending") %>
-            <% status.each do |appointment| %>
-            <ul>
-              <li>
-                <h4>
-                  <%= link_to appointment.artwork.title, artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black;' %>,
-                  <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
-                  by <%= Artwork.find(appointment.artwork_id).owner.first_name%>
-                  by <%= Artwork.find(appointment.artwork_id).owner.last_name%>
-                  <% else %>
-                  by <%= Artwork.find(appointment.artwork_id).owner.username%>
-                  <% end %>
-                  (<%= appointment.artwork.category %>)
-                  <br>
-                  Status: <%= appointment.status %>
-                  <br>
-                </h4>
-                For your: <%= appointment.venue.title %>
-                <br>
-                From <%= appointment.start_date %>
-                to <%= appointment.end_date %>
-                <br>
-                Email: <%= Artwork.find(appointment.artwork_id).owner.email%>
-                <br>
-                <% if Artwork.find(appointment.artwork_id).owner.email.nil? %>
-                <% else %>
-                Phone number: <%= Artwork.find(appointment.artwork_id).owner.phone_number%>
-                <% end %>
-                <br>
-              </li>
-            </ul>
-            <% end %>
-            <% end %>
-            <%# end %>
+            <!-- <%#= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'  %> -->
 
-            <!--  -->
-
-            <div class="content-group">
-              <strong>
-                Dimensions:
-              </strong>
-              <div class="values">
-
+            <div class="row">
+             <div class ="col-md-4">
+               <div class="text-content">
+                <p><strong>Confirmed Bookings</strong></p>
+                <% current_user.venues.each do |venue| %>
+                <% status = venue.appointments.where(status: "Confirmed") %>
+                <% status.each do |appointment| %>
+                <p>
+                  <strong>Artwork: </strong><%= link_to artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black; position:relative;' do %>
+                  <%= appointment.artwork.title %> <span class="fancy-link"></span>
+                  <% end %>
+                  <br>
+                  <strong>Artist: </strong>
+                  <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
+                  <%= Artwork.find(appointment.artwork_id).owner.first_name%>
+                  <%= Artwork.find(appointment.artwork_id).owner.last_name%>
+                  <% else %>
+                  <%= Artwork.find(appointment.artwork_id).owner.username%>
+                  <% end %>
+                  <br>
+                  <strong>Status: </strong><%= appointment.status %>
+                  <br>
+                  <strong>Venue: </strong><%= appointment.venue.title %>
+                  <br>
+                  <strong>Dates: </strong><%= appointment.start_date %>
+                  to <%= appointment.end_date %>
+                  <br>
+                  <strong>Artist Email: </strong><%= Artwork.find(appointment.artwork_id).owner.email%>
+                  <br>
+                  <strong>Artist Number: </strong><%= Artwork.find(appointment.artwork_id).owner.phone_number%>
+                  <%= link_to appointment_path(appointment), method: :delete, data: { confirm: "Are you sure?"}, class: "delete-button" do %>
+                  <i class="fa fa-times"></i>
+                  <% end %>
+                </p>
+                <% end %>
+                <% end %>
               </div>
             </div>
-            <div class="content-group">
-              <strong>
-                Weight:
-              </strong>
-              <div class="values">
-                dddddd
+
+
+            <div class ="col-md-4">
+              <div class="text-content">
+                <p><strong>Declined Bookings</strong></p>
+                <% current_user.venues.each do |venue| %>
+                <% status = venue.appointments.where(status: "Declined") %>
+                <% status.each do |appointment| %>
+                <p>
+                  <strong>Artwork: </strong><%= link_to artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black; position:relative;' do %>
+                  <%= appointment.artwork.title %> <span class="fancy-link"></span>
+                  <% end %>
+                  <br>
+                  <strong>Artist: </strong>
+                  <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
+                  <%= Artwork.find(appointment.artwork_id).owner.first_name%>
+                  <%= Artwork.find(appointment.artwork_id).owner.last_name%>
+                  <% else %>
+                  <%= Artwork.find(appointment.artwork_id).owner.username%>
+                  <% end %>
+                  <br>
+                  <strong>Status: </strong><%= appointment.status %>
+                  <br>
+                  <strong>Venue: </strong><%= appointment.venue.title %>
+                  <br>
+                  <strong>Dates: </strong><%= appointment.start_date %>
+                  to <%= appointment.end_date %>
+                  <br>
+                  <strong>Artist Email: </strong><%= Artwork.find(appointment.artwork_id).owner.email%>
+                  <br>
+                  <strong>Artist Number: </strong><%= Artwork.find(appointment.artwork_id).owner.phone_number%>
+                  <%= link_to appointment_path(appointment), method: :delete, data: { confirm: "Are you sure?"}, class: "delete-button" do %>
+                  <i class="fa fa-times"></i>
+                  <% end %>
+                </p>
+                <% end %>
+                <% end %>
               </div>
             </div>
-            <div class="content-group">
-              <strong>
-                City:
-              </strong>
-              <div class="values">
-               ssssss
-             </div>
-           </div>
-           <h3>
-            Title jrqiogj
-          </h3>
 
+
+            <div class ="col-md-4">
+              <div class="text-content">
+                <p><strong>Pending Approval Bookings</strong></p>
+                <% current_user.venues.each do |venue| %>
+                <% status = venue.appointments.where(status: "Pending") %>
+                <% status.each do |appointment| %>
+                <p>
+                  <strong>Artwork: </strong><%= link_to artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black; position:relative;' do %>
+                  <%= appointment.artwork.title %> <span class="fancy-link"></span>
+                  <% end %>
+                  <br>
+                  <strong>Artist: </strong>
+                  <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
+                  <%= Artwork.find(appointment.artwork_id).owner.first_name%>
+                  <%= Artwork.find(appointment.artwork_id).owner.last_name%>
+                  <% else %>
+                  <%= Artwork.find(appointment.artwork_id).owner.username%>
+                  <% end %>
+                  <br>
+                  <strong>Status: </strong><%= appointment.status %>
+                  <br>
+                  <strong>Venue: </strong><%= appointment.venue.title %>
+                  <br>
+                  <strong>Dates: </strong><%= appointment.start_date %>
+                  to <%= appointment.end_date %>
+                  <br>
+                  <strong>Artist Email: </strong><%= Artwork.find(appointment.artwork_id).owner.email%>
+                  <br>
+                  <strong>Artist Number: </strong><%= Artwork.find(appointment.artwork_id).owner.phone_number%>
+                  <%= link_to appointment_path(appointment), method: :delete, data: { confirm: "Are you sure?"}, class: "delete-button"  do %>
+                  <i class="fa fa-times"></i>
+                  <% end %>
+                  <br>
+                </p>
+                <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%# end %>
         </div>
-
       </div>
+
+
       <div class="tab-content hidden" id="venue" style="height: 250px; overflow:auto">
         <p>
           <% current_user.venues.each do |venue| %>
-          <li><%= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'  %></li>
+          My Venues:
+          <li>
+          <strong><%= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'%></strong>
+          </li>
           <% end %>
         </ul>
-        <%= link_to "Create Venues", new_venue_path, style: 'text-decoration: none; color:black;' %>
+        <br>
+        <%= link_to "Create Venues", new_venue_path, class: "purple-button" %>
       </p>
     </div>
     <div class="tab-content hidden" id="requestout" style="height: 250px; overflow:auto;">
@@ -219,38 +207,29 @@
         <%  current_user.artworks.each do |artwork|  %>
         <% artwork.appointments.each do |appointment| %>
         <ul>
-          <li>
-            <% if appointment.venue.employees.first.username.nil? %>
-            <%= appointment.venue.employees.first.first_name %>
-            <%= appointment.venue.employees.first.last_name %>
-            <% else %>
-            <%= appointment.venue.employees.first.username %>
-            <% end %>
-            requested "<%= appointment.artwork.title %>"
-            for <%= link_to appointment.venue.title,  venue_path(appointment.venue.id), style: 'text-decoration: none; color:black;'  %> <br>
-            From <%= appointment.start_date%> to <%= appointment.end_date %>
-            <br>
-            <br>
-            <%= link_to 'Confirm',  appointment_confirm_path(appointment), class: "btn btn-success" %>
-            <%= link_to 'Decline',  appointment_decline_path(appointment), class: "btn btn-danger" %>
-            <br>
 
-            <br>
-          </li>
+          <% if appointment.venue.employees.first.username.nil? %>
+          <%= appointment.venue.employees.first.first_name %>
+          <%= appointment.venue.employees.first.last_name %>
+          <% else %>
+          <%= appointment.venue.employees.first.username %>
+          <% end %>
+          requested "<%= appointment.artwork.title %>"
+          for <%= link_to appointment.venue.title,  venue_path(appointment.venue.id), style: 'text-decoration: none; color:black;'  %> <br>
+          From <%= appointment.start_date%> to <%= appointment.end_date %>
+          <br>
+          <br>
+          <%= link_to 'Confirm',  appointment_confirm_path(appointment), class: "btn btn-success" %>
+          <%= link_to 'Decline',  appointment_decline_path(appointment), class: "btn btn-danger" %>
+          <br>
+
+          <br>
+
         </ul>
         <% end %>
         <% end %>
         <!--  -->
 
-        <h3>
-          Title jrqiogj
-        </h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quo soluta incidunt iste nam? Nobis aliquid quam adipisci, ducimus, alias quo inventore vitae nam a
-          <br><br>
-          voluptates autem minus odio non quos quaerat nisi hic repudiandae odit ad similique asperiores, eius quisquam ea quas amet? Beatae impedit eaque facilis dolore vero consectetur voluptatibus velit veniam qui, asperiores sapiente voluptatem sed, repellat libero neque magni, delectus maiores at hic,
-          <br><br>
-          architecto laborum tempore! Repudiandae ut earum enim praesentium. Voluptates alias quos perferendis ducimus, laboriosam omnis fuga dolore ut voluptas? Blanditiis est nulla adipisci odio tempore excepturi cum asperiores eveniet corporis. A, fugit, optio.
         </p>
       </div>
     </div>
