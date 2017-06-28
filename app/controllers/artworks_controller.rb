@@ -6,6 +6,7 @@ class ArtworksController < ApplicationController
     @hash = Gmaps4rails.build_markers(@artworks) do |artwork, marker|
       marker.lat artwork.latitude
       marker.lng artwork.longitude
+      @artwork = Artwork.all
     end
   end
 

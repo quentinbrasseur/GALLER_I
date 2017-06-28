@@ -2,8 +2,6 @@
   background-size: cover;
   min-height: 400px;
   padding-bottom: 60px;
-  //margin-left: 20px;
-  //margin-right: 20px;
   display: block;
 }
 
@@ -16,7 +14,7 @@
   text-shadow: 0px 1px rgba(0, 0, 0, 0.6);
   margin: 0px;
   padding-top: 189px;
-  color: white;
+  color: black;
   font-weight: bold;
 }
 
@@ -27,7 +25,7 @@
 .banner p {
   font-size: 25px;
   font-weight: lighter;
-  color: rgba(255, 255, 255, 1);
+  color: gray;
   margin-bottom: 50px;
 }
 
@@ -41,5 +39,25 @@
 
 .banner-artwork{
   height: 320px;
+}
+
+.title-text{
+  color: black;
+  font-size: 35px;
+  font-weight: heavy;
+  display: flex;
+padding-left: 125px;
+
+}
+.title-vp{
+  color: gray;
+  display: flex;
+padding-left: 63px;
+
+}
+.title-search{
+  display: flex;
+padding-left: 93px;
+
 }
 
