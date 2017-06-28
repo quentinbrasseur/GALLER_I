@@ -166,7 +166,7 @@ end
 private
 
 def artwork_params
-  params.require(:artwork).permit(:title, :category, :location, :height, :width, :depth, :weight, :photo)
+  params.require(:artwork).permit(:title, :description, :category, :location, :height, :width, :depth, :weight, :photo)
 end
 
 end
