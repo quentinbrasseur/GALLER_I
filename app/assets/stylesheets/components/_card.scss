@@ -36,13 +36,13 @@
 
 .card-link:hover {
   opacity: 0.8;
-text-color: purple;
+  text-color: purple;
 }
 
 
 
 .fixed-bar {
-position: absolute;
+  position: absolute;
 
   right: 10px;
   margin-bottom: 30px;
@@ -54,12 +54,12 @@ position: absolute;
 
 .fixed-map {
   position: fixed;
-right: 7px;
+  right: 7px;
 }
 
 .scrollingContainer {
-    margin-top: 30px;
-    overflow: scroll;
-    height: 800px;
-    background-color: #eee;
+  margin-top: 30px;
+  overflow: scroll;
+  height: 800px;
+  background-color: #eee;
 }
