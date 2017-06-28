@@ -155,15 +155,18 @@
             <% art = Artwork.all %>
             <% collection = art.where(user_id: artist) %>
             <% collection.each do |piece| %>
-              <% picture = piece.photo.path %>
-              <div class="card-link">
-              <%= link_to artwork_path(piece) do %>
-                <div class="card-wrapper">
-                  <p class="card-text text-center"><%= piece.title %></p>
-                  <img class="card-image text-center" src="<%= cl_image_path(picture, width: 300, crop: "scale") %>" alt="sample image">
+              <% if piece.photo.nil? %>
+              <% else %>
+                <% picture = piece.photo.path %>
+                <div class="card-link">
+                <%= link_to artwork_path(piece) do %>
+                  <div class="card-wrapper">
+                    <p class="card-text text-center"><%= piece.title %></p>
+                    <img class="card-image text-center" src="<%= cl_image_path(picture, width: 300, crop: "scale") %>" alt="sample image">
+                  </div>
+                <% end %>
                 </div>
               <% end %>
-              </div>
             <% end %>
           </div>
         </div>
