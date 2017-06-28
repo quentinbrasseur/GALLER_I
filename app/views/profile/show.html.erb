@@ -8,8 +8,7 @@
   <div class="user-profile-details">
     <h1>
       <% if current_user.username.nil? %>
-      <%= current_user.first_name %>
-      <%= current_user.last_name %>
+      <%= current_user.first_name %> <%= current_user.last_name %>
       <% else %>
       <%= current_user.username %>
       <% end %>
@@ -21,6 +20,7 @@
       <%= current_user.phone_number %>
     </p>
   </div>
+  <br><br>
 </div>
 
 <div class="container">
@@ -57,13 +57,20 @@
 
 
         <div class="tab-content" id="request" style="height: 250px; overflow:auto">
+
+            <div class="row" style="position: absolute; display: flex; justify-content: space-between; width: 100%; margin: 10px 60px;">
+              <div class ="col-md-4">
+                <p><strong>Confirmed Bookings</strong></p>
+              </div>
+              <div class ="col-md-4">
+                <p><strong>Declined Bookings</strong></p>
+              </div>
+              <div class ="col-md-4">
+                <p><strong>Pending Bookings</strong></p>
+              </div>
+            </div>
+
           <div class="content">
-
-            <!--  -->
-
-            <%# current_user.venues.each do |venue| %>
-            <!-- <%#= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'  %> -->
-
             <div class="row">
              <div class ="col-md-4">
                <div class="text-content">
@@ -72,31 +79,34 @@
                 <% status = venue.appointments.where(status: "Confirmed") %>
                 <% status.each do |appointment| %>
                 <p>
-                  <strong>Artwork: </strong><%= link_to artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black; position:relative;' do %>
-                  <%= appointment.artwork.title %> <span class="fancy-link"></span>
+                  <strong><!--Artwork: --><%= link_to artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black; position:relative;' do %>
+                  <%= appointment.artwork.title %> <!-- <span class="fancy-link"></span> --></strong>
                   <% end %>
                   <br>
-                  <strong>Artist: </strong>
-                  <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
-                  <%= Artwork.find(appointment.artwork_id).owner.first_name%>
-                  <%= Artwork.find(appointment.artwork_id).owner.last_name%>
-                  <% else %>
-                  <%= Artwork.find(appointment.artwork_id).owner.username%>
-                  <% end %>
+                  <%= Artwork.find(appointment.artwork_id).category %> by
+                    <% id = Artwork.find(appointment.artwork_id).owner.id %>
+                    <%= link_to profile_path(id), style: 'text-decoration: none;' do %>
+                      <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
+                      <%= Artwork.find(appointment.artwork_id).owner.first_name%>
+                      <%= Artwork.find(appointment.artwork_id).owner.last_name%>
+                      <% else %>
+                      <%= Artwork.find(appointment.artwork_id).owner.username%>
+                      <% end %>
+                    <% end %>
                   <br>
-                  <strong>Status: </strong><%= appointment.status %>
+
+                  For <%= appointment.venue.title %>
                   <br>
-                  <strong>Venue: </strong><%= appointment.venue.title %>
+                  From <%= appointment.start_date %> to <%= appointment.end_date %>
                   <br>
-                  <strong>Dates: </strong><%= appointment.start_date %>
-                  to <%= appointment.end_date %>
+<!--                   <strong>Artist Email: </strong><%#= Artwork.find(appointment.artwork_id).owner.email%>
                   <br>
-                  <strong>Artist Email: </strong><%= Artwork.find(appointment.artwork_id).owner.email%>
-                  <br>
-                  <strong>Artist Number: </strong><%= Artwork.find(appointment.artwork_id).owner.phone_number%>
+                  <strong>Artist Number: </strong><%#= Artwork.find(appointment.artwork_id).owner.phone_number%> -->
+                  <div class="text-center">
                   <%= link_to appointment_path(appointment), method: :delete, data: { confirm: "Are you sure?"}, class: "delete-button" do %>
                   <i class="fa fa-times"></i>
                   <% end %>
+                  </div>
                 </p>
                 <% end %>
                 <% end %>
@@ -111,28 +121,29 @@
                 <% status = venue.appointments.where(status: "Declined") %>
                 <% status.each do |appointment| %>
                 <p>
-                  <strong>Artwork: </strong><%= link_to artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black; position:relative;' do %>
-                  <%= appointment.artwork.title %> <span class="fancy-link"></span>
+                  <strong><!--Artwork: --><%= link_to artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black; position:relative;' do %>
+                  <%= appointment.artwork.title %> <!-- <span class="fancy-link"></span> --></strong>
                   <% end %>
                   <br>
-                  <strong>Artist: </strong>
-                  <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
-                  <%= Artwork.find(appointment.artwork_id).owner.first_name%>
-                  <%= Artwork.find(appointment.artwork_id).owner.last_name%>
-                  <% else %>
-                  <%= Artwork.find(appointment.artwork_id).owner.username%>
-                  <% end %>
+                  <%= Artwork.find(appointment.artwork_id).category %> by
+                    <% id = Artwork.find(appointment.artwork_id).owner.id %>
+                    <%= link_to profile_path(id), style: 'text-decoration: none;' do %>
+                      <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
+                      <%= Artwork.find(appointment.artwork_id).owner.first_name%>
+                      <%= Artwork.find(appointment.artwork_id).owner.last_name%>
+                      <% else %>
+                      <%= Artwork.find(appointment.artwork_id).owner.username%>
+                      <% end %>
+                    <% end %>
                   <br>
-                  <strong>Status: </strong><%= appointment.status %>
+
+                  For <%= appointment.venue.title %>
                   <br>
-                  <strong>Venue: </strong><%= appointment.venue.title %>
+                  From <%= appointment.start_date %> to <%= appointment.end_date %>
                   <br>
-                  <strong>Dates: </strong><%= appointment.start_date %>
-                  to <%= appointment.end_date %>
+<!--                   <strong>Artist Email: </strong><%#= Artwork.find(appointment.artwork_id).owner.email%>
                   <br>
-                  <strong>Artist Email: </strong><%= Artwork.find(appointment.artwork_id).owner.email%>
-                  <br>
-                  <strong>Artist Number: </strong><%= Artwork.find(appointment.artwork_id).owner.phone_number%>
+                  <strong>Artist Number: </strong><%#= Artwork.find(appointment.artwork_id).owner.phone_number%> -->
                   <%= link_to appointment_path(appointment), method: :delete, data: { confirm: "Are you sure?"}, class: "delete-button" do %>
                   <i class="fa fa-times"></i>
                   <% end %>
@@ -150,32 +161,32 @@
                 <% status = venue.appointments.where(status: "Pending") %>
                 <% status.each do |appointment| %>
                 <p>
-                  <strong>Artwork: </strong><%= link_to artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black; position:relative;' do %>
-                  <%= appointment.artwork.title %> <span class="fancy-link"></span>
+                  <strong><!--Artwork: --><%= link_to artwork_path(appointment.artwork_id), style: 'text-decoration: none; color:black; position:relative;' do %>
+                  <%= appointment.artwork.title %> <!-- <span class="fancy-link"></span> --></strong>
                   <% end %>
                   <br>
-                  <strong>Artist: </strong>
-                  <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
-                  <%= Artwork.find(appointment.artwork_id).owner.first_name%>
-                  <%= Artwork.find(appointment.artwork_id).owner.last_name%>
-                  <% else %>
-                  <%= Artwork.find(appointment.artwork_id).owner.username%>
-                  <% end %>
+                  <%= Artwork.find(appointment.artwork_id).category %> by
+                    <% id = Artwork.find(appointment.artwork_id).owner.id %>
+                    <%= link_to profile_path(id), style: 'text-decoration: none;' do %>
+                      <% if Artwork.find(appointment.artwork_id).owner.username.nil? %>
+                      <%= Artwork.find(appointment.artwork_id).owner.first_name%>
+                      <%= Artwork.find(appointment.artwork_id).owner.last_name%>
+                      <% else %>
+                      <%= Artwork.find(appointment.artwork_id).owner.username%>
+                      <% end %>
+                    <% end %>
                   <br>
-                  <strong>Status: </strong><%= appointment.status %>
+
+                  For <%= appointment.venue.title %>
                   <br>
-                  <strong>Venue: </strong><%= appointment.venue.title %>
+                  From <%= appointment.start_date %> to <%= appointment.end_date %>
                   <br>
-                  <strong>Dates: </strong><%= appointment.start_date %>
-                  to <%= appointment.end_date %>
+<!--                   <strong>Artist Email: </strong><%#= Artwork.find(appointment.artwork_id).owner.email%>
                   <br>
-                  <strong>Artist Email: </strong><%= Artwork.find(appointment.artwork_id).owner.email%>
-                  <br>
-                  <strong>Artist Number: </strong><%= Artwork.find(appointment.artwork_id).owner.phone_number%>
-                  <%= link_to appointment_path(appointment), method: :delete, data: { confirm: "Are you sure?"}, class: "delete-button"  do %>
+                  <strong>Artist Number: </strong><%#= Artwork.find(appointment.artwork_id).owner.phone_number%> -->
+                  <%= link_to appointment_path(appointment), method: :delete, data: { confirm: "Are you sure?"}, class: "delete-button" do %>
                   <i class="fa fa-times"></i>
                   <% end %>
-                  <br>
                 </p>
                 <% end %>
                 <% end %>
@@ -190,14 +201,13 @@
       <div class="tab-content hidden" id="venue" style="height: 250px; overflow:auto">
         <p>
           <% current_user.venues.each do |venue| %>
-          My Venues:
           <li>
           <strong><%= link_to venue.title, venue_path(venue.id), style: 'text-decoration: none; color:black;'%></strong>
           </li>
           <% end %>
         </ul>
         <br>
-        <%= link_to "Create Venues", new_venue_path, class: "purple-button" %>
+        <%= link_to "Create Venues", new_venue_path, class: "btn btn-primary" %>
       </p>
     </div>
     <div class="tab-content hidden" id="requestout" style="height: 250px; overflow:auto;">
