@@ -14,7 +14,7 @@
       <div class="col-md-6 text-center" >
         <div class="row" >
           <div class="header-titles-left">
-            <h1 style="margin: 0px;"><%= @artwork.title %>,</h1>
+            <h1 style="margin: 0px;"><strong><%= @artwork.title %></strong></h1>
             <h5>by <%= @artwork.owner.username %><%= @artwork.owner.fullname %></h5>
           </div>
         </div>
@@ -61,39 +61,18 @@
         <div class="tab-content" id="overview" style="height: 250px; overflow:auto">
           <div class="content">
             <div class="content-group">
-              <strong>
-                City:
-              </strong>
-              <div class="values">
-                <%= @artwork.location %>
-              </div>
+              <strong>Description:</strong>
+              <br><br>
+              <%= @artwork.description%>
             </div>
+            <br><br>
             <div class="content-group">
-              <strong>
-                Dimensions:
-              </strong>
-              <div class="values">
-                <%= @artwork.height %> x
-                <%= @artwork.width %> x
-                <%= @artwork.depth %>
-              </div>
+              <strong>Details:</strong>
+              <br><br>
+              Dimensions: <%= @artwork.height %> x <%= @artwork.width %> x <%= @artwork.depth %>
+              <br>
+              Weight: <%= @artwork.weight %>kg
             </div>
-            <div class="content-group">
-              <strong>
-                Weight:
-              </strong>
-              <div class="values">
-                <%= @artwork.weight %>kg
-              </div>
-            </div>
-
-            <h3>
-             <%=  @artwork.title%>
-            </h3>
-            <p>
-              <%=  @artwork.description%>
-
-            </p>
           </div>
 
         </div>
@@ -124,24 +103,27 @@
 <% end %>
 </div>
 <div class="tab-content hidden" id="history" style="height: 250px; overflow:auto;">
-  <div class="content" >
   <%if @appt.nil?  %>
-  This has not been booked yet!!!
+    <div class="content text-center" >
+      <br><br>
+      <h2>This has not been booked yet!!!</h2>
+    </div>
   <% else %>
-    <% @appt = Appointment.where(artwork_id: @artwork) %>
-    <h2>Number of Historical Requests: <%=  @appt.count%></h2>
-    <ul>
-      <li>Booked by  <%= @appt.last.venue.title   %>, in <%= @appt.last.venue.location  %> from: <%=  @appt.last.start_date %> to <%= @appt.last.end_date %> </li>
-    </ul>
-    <% end %>
+    <div class="content" >
+      <% @appt = Appointment.where(artwork_id: @artwork) %>
+      <h2>Number of Historical Requests: <%=  @appt.count%></h2>
+      <ul>
+        <li>Booked by  <%= @appt.last.venue.title   %>, in <%= @appt.last.venue.location  %> from: <%=  @appt.last.start_date %> to <%= @appt.last.end_date %> </li>
+      </ul>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>
 </div>
 <div class="row no-margin">
   <div class="col-md-12" style=" margin: 10px 0px;">
     <div class="text-center">
-      <h3>Explore more artwork from <%= @artwork.owner.username%></h3>
+      <h3>Explore more artworks from <%= @artwork.owner.username%></h3>
       <br>
     </div>
   </div>
