@@ -20,6 +20,7 @@ class VenuesController < ApplicationController
   end
 
   def show
+    @artwork = Artwork.all
     @venue = Venue.find(params[:id])
   end
 

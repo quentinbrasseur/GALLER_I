@@ -1,42 +1,54 @@
-<div class="container">
-  <div class="wrapper">
-    <div class="row">
-      <div class="col-md-6">
-        <% if @venue.photo %>
-        <% image =  @venue.photo.path %>
-        <% else  %>
-        <% image =  "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
-        <% end %>
-
-        <img class="full-width" src="<%= cl_image_path(image, height: 300, crop: "fill") %>" alt="sample image">
-      </div>
-      <div class="col-md-6 text-center">
-        <h1 style="margin: 0px;"><strong><%= @venue.title %></strong></h1>
-        <h5> Category: <%= @venue.category %> </h5>
-        <h5> Location: <%= @venue.location %> </h5>
-
-        <% @status = Appointment.where(venue_id: @venue.id) %>
-        <% if @status.blank?  %>
-        This Venue is showing no art :(
-        <% else %>
-        You can find displayed in <%= @venue.title %>:
-        <br>
-        <%  @status.each do |appt|%>
-        <%= appt.start_date %> to <%= appt.end_date %> the <%= appt.artwork.category %>: <%=  link_to appt.artwork.title, artwork_path(appt.artwork.id)%> by renowned artist: <%= appt.artwork.owner.username %>
-        <br>
-        <% end %>
-        <% end %>
-        <h3 class="text-center" style="margin: 40px">
-        <%= link_to "Back", profile_path %>
-        <%= link_to "Edit", edit_venue_path(@venue) %>
-        <%= link_to "Delete", venue_path(@venue), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
-        </h3>
-
-
-
-      </div>
-
-    </div>
-  </div>
+<div class="banner-profile" style="background-image: linear-gradient(-30deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 4%), url(https://static.pexels.com/photos/428111/pexels-photo-428111.jpeg);">
 </div>
+<div class="user-profile-info">
+  <div class= "user-profile-picture">
+    <% if @venue.photo %>
+      <% image =  @venue.photo.path %>
+    <% else  %>
+      <% image =  "https://unsplash.com/?photo=-LRuNvY8W7Q" %>
+    <% end %>
+    <img src="<%= cl_image_path(image, width: 300, height: 200, crop: :fill) %>" alt="sample image">
+  </div>
+  <div class="user-profile-details">
+    <h1>
+      <%= @venue.title%>
+    </h1>
+    <p>
+      <%= @venue.category%>, <%= @venue.location %>
+    </p>
+  </div>
+  <br><br>
+</div>
+
+<% @status = Appointment.where(venue_id: @venue.id) %>
+<% if @status.blank?  %>
+  <h1 class="text-center">This Venue is showing no art :(</h1>
+<% else %>
+<br>
+
+  <div class="row">
+  <%  @status.each do |appt|%>
+    <div class="col-md-4">
+      <div class="homecard">
+        <%=  cl_image_tag appt.artwork.photo.path, width: 200, height: 300, crop: :scale  %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <br>
+
+<% end %>
+
+<h3 class="text-center" style="margin: 40px">
+  <%= link_to "Back", venues_path %>
+  <%= link_to "Edit", edit_venue_path(@venue) %>
+  <%= link_to "Delete", venue_path(@venue), method: :delete, data: { confirm: "Are you sure?"}, class: "btn-book-show" %>
+</h3>
+
+
+
+
+
+
 
