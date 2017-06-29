@@ -103,15 +103,15 @@
 <% end %>
 </div>
 <div class="tab-content hidden" id="history" style="height: 250px; overflow:auto;">
+
   <% @appt = Appointment.where(artwork_id: @artwork) %>
-  <%if @appt.nil?  %>
+  <%if @appt.empty?  %>
     <div class="content text-center" >
       <br><br>
       <h2>This has not been booked yet!!!</h2>
     </div>
   <% else %>
     <div class="content" >
-      <%# @appt = Appointment.where(artwork_id: @artwork) %>
       <h2>Number of Historical Requests: <%=  @appt.count%> </h2>
       <ul>
         <li>Booked by  <%= @appt.last.venue.title   %>, in <%= @appt.last.venue.location  %> from: <%=  @appt.last.start_date %> to <%= @appt.last.end_date %> </li>
