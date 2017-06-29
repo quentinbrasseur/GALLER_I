@@ -103,6 +103,7 @@
 <% end %>
 </div>
 <div class="tab-content hidden" id="history" style="height: 250px; overflow:auto;">
+  <% @appt = Appointment.where(artwork_id: @artwork) %>
   <%if @appt.nil?  %>
     <div class="content text-center" >
       <br><br>
