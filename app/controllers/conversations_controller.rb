@@ -18,15 +18,15 @@ def send_mailer
  # @current_user = current_user.email
 @user = User.find(params[:id]) #params[:user_email]
 @appointment = Appointment.last
-@recipient = @user.username
+@recipient = @user.first_name
 @title = @appointment.artwork.title
 @category = @appointment.artwork.category
 @venue = @appointment.venue.title
 @type = @appointment.venue.category
-@requester = current_user.username
+@requester = current_user.first_name
 @start = @appointment.start_date
 @end = @appointment.end_date
-@message = "Good day #{@recipient}, my name is #{@requester}.  I would like to display your #{@category}: #{@title} in a #{@type} called #{@venue}.  If you are interested, please click below to confirm or decline the show request.  If you have any questions at all, just reply to this message.  I eagerly await your reply.  Sincerely, #{@requester} #{view_context.link_to 'Confirm',  appointment_confirm_path(@appointment), class: "btn"} |||| #{view_context.link_to 'Decline',  appointment_decline_path(@appointment), class: "btn"}INSERT_DECLINE_HERE |||| INSERT_PROFILE_LINK_HERE".html_safe
+@message = "Good day #{@recipient}, my name is #{@requester}.  I would like to display your #{@category}: #{@title} in a #{@type} called #{@venue}.  If you are interested, please click below to confirm or decline the show request.  If you have any questions at all, just reply to this message.  I eagerly await your reply.  Sincerely, #{@requester} ".html_safe
  @subject = "#{@requester} from #{@venue} wants to display your #{@category}: #{@title} from #{@start} to #{@end}." #params[:subject]
 current_user.send_message(@user, "#{@message}", "#{@subject}")
 redirect_to profile_path(current_user)
@@ -36,8 +36,8 @@ def accepted
  # @current_user = current_user.email
 @user = User.find(params[:id]) #params[:user_email]
 
-@message = "Good day #{@user.username}, I would love to support your request!  Please reply to this message to coordinate details".html_safe
- @subject = "#{@user.username}, your booking request has been confirmed!" #params[:subject]
+@message = "Good day #{@user.first_name}, I would love to support your request!  Please reply to this message to coordinate details".html_safe
+ @subject = "#{@user.first_name}, your booking request has been confirmed!" #params[:subject]
 current_user.send_message(@user, "#{@message}", "#{@subject}")
 redirect_to profile_path(current_user)
 end
@@ -46,7 +46,7 @@ def declined
  # @current_user = current_user.email
 @user = User.find(params[:id]) #params[:user_email]
 
-@message = "Good day #{@user.username}, I appologise, but I cannot support your request at the time.  Thank you for your understanding!".html_safe
+@message = "Good day #{@user.first_name}, I appologise, but I cannot support your request at the time.  Thank you for your understanding!".html_safe
  @subject = "#{@user}, your booking request has been declined :(" #params[:subject]
 current_user.send_message(@user, "#{@message}", "#{@subject}")
 redirect_to profile_path(current_user)
