@@ -3,10 +3,11 @@ class ArtworksController < ApplicationController
   def index
      @disabled_footer = true
     @artworks = Artwork.where.not(latitude: nil, longitude: nil)
+    @artwork = Artwork.all
+
     @hash = Gmaps4rails.build_markers(@artworks) do |artwork, marker|
       marker.lat artwork.latitude
       marker.lng artwork.longitude
-      @artwork = Artwork.all
     end
   end
 
