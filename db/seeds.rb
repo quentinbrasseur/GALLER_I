@@ -13,135 +13,135 @@ Artwork.destroy_all
 Venue.destroy_all
 User.destroy_all
 
-quentin = User.new(
-  username: "quentin",
-  email: "quentin@quentin.com",
-  password: "password",
-  phone_number: "06 16 28 83 97"
-  )
-quentin.save!
+# quentin = User.new(
+#   username: "quentin",
+#   email: "quentin@quentin.com",
+#   password: "password",
+#   phone_number: "06 16 28 83 97"
+#   )
+# quentin.save!
 
-kilian = User.new(
-  username: "kilian",
-  email: "kilian@kilian.com",
-  password: "password",
-  phone_number: "06 19 20 13 37"
-  )
-kilian.save!
+# kilian = User.new(
+#   username: "kilian",
+#   email: "kilian@kilian.com",
+#   password: "password",
+#   phone_number: "06 19 20 13 37"
+#   )
+# kilian.save!
 
-cedric = User.new(
-  username: "cedric",
-  email: "cedric@cedric.com",
-  password: "password",
-  phone_number: "06 10 22 93 90"
-  )
-cedric.save!
+# cedric = User.new(
+#   username: "cedric",
+#   email: "cedric@cedric.com",
+#   password: "password",
+#   phone_number: "06 10 22 93 90"
+#   )
+# cedric.save!
 
-joe = User.new(
-  username: "joe",
-  email: "joe@joe.com",
-  password: "password",
-  phone_number: "06 06 20 81 37"
-  )
-joe.save!
+# joe = User.new(
+#   username: "joe",
+#   email: "joe@joe.com",
+#   password: "password",
+#   phone_number: "06 06 20 81 37"
+#   )
+# joe.save!
 
-p quentin.id
-p joe.id
-p kilian.id
-p cedric.id
-
-
-###### FAKER ARTWORK ######
-
-category = [ "Painting", "Sculpture", "Photography", "Drawing", "Miscellaneous" ]
-city = [ "Barcelona", "Madrid", "Sevilla", "Bilbao", "Toledo" ]
-owner = [ cedric, kilian, joe, quentin ]
-type = [ "Cafe", "Restaurant", "Bar", "Co-Working", "Office" ]
+# p quentin.id
+# p joe.id
+# p kilian.id
+# p cedric.id
 
 
-20.times do
-  artwork = Artwork.create(
-    title: Faker::Lorem.word,
-    category: category.sample,
-    height: rand(200..1000),
-    width: rand(200..1000),
-    depth: rand(1..50),
-    weight: rand(1..10),
-    location: city.sample,
-    photo_url: "https://lorempixel.com/300/200/",
-    owner: owner.sample
-    )
+# ###### FAKER ARTWORK ######
 
-end
-
-###### END FAKER ######
+# category = [ "Painting", "Sculpture", "Photography", "Drawing", "Miscellaneous" ]
+# city = [ "Barcelona", "Madrid", "Sevilla", "Bilbao", "Toledo" ]
+# owner = [ cedric, kilian, joe, quentin ]
+# type = [ "Cafe", "Restaurant", "Bar", "Co-Working", "Office" ]
 
 
-##### venues ######
+# 20.times do
+#   artwork = Artwork.create(
+#     title: Faker::Lorem.word,
+#     category: category.sample,
+#     height: rand(200..1000),
+#     width: rand(200..1000),
+#     depth: rand(1..50),
+#     weight: rand(1..10),
+#     location: city.sample,
+#     photo_url: "https://lorempixel.com/300/200/",
+#     owner: owner.sample
+#     )
 
-mcdo = Venue.create(
- title: Faker::Company.name,
- category: type.sample,
- location: city.sample,
- photo_url: "http://lorempixel.com/300/200/logo/",
- )
+# end
 
-kfc = Venue.create(
- title: Faker::Company.name,
- category: type.sample,
- location: city.sample,
- photo_url: "http://lorempixel.com/300/200/business/",
-  )
-
-pizzahut = Venue.create(
- title: Faker::Company.name,
- category: type.sample,
- location: city.sample,
- photo_url: "http://lorempixel.com/300/200/business/",
-  )
-
-chipotle = Venue.create(
- title: Faker::Company.name,
- category: type.sample,
- location: city.sample,
- photo_url: "http://lorempixel.com/300/200/business/",
-  )
-
-p mcdo
-p kfc
-p pizzahut
-p chipotle
-
-###### end venues #####
+# ###### END FAKER ######
 
 
+# ##### venues ######
 
-##### user_venues ######
+# mcdo = Venue.create(
+#  title: Faker::Company.name,
+#  category: type.sample,
+#  location: city.sample,
+#  photo_url: "http://lorempixel.com/300/200/logo/",
+#  )
 
-a1 = UserVenue.create(
-  user_id: quentin.id,
-  venue_id: mcdo.id
-  )
+# kfc = Venue.create(
+#  title: Faker::Company.name,
+#  category: type.sample,
+#  location: city.sample,
+#  photo_url: "http://lorempixel.com/300/200/business/",
+#   )
 
-a2 = UserVenue.create(
-  user_id: joe.id,
-  venue_id: kfc.id
-  )
+# pizzahut = Venue.create(
+#  title: Faker::Company.name,
+#  category: type.sample,
+#  location: city.sample,
+#  photo_url: "http://lorempixel.com/300/200/business/",
+#   )
 
-a3 = UserVenue.create(
-  user_id: kilian.id,
-  venue_id: pizzahut.id
-  )
+# chipotle = Venue.create(
+#  title: Faker::Company.name,
+#  category: type.sample,
+#  location: city.sample,
+#  photo_url: "http://lorempixel.com/300/200/business/",
+#   )
 
-a4 = UserVenue.create(
-  user_id: cedric.id,
-  venue_id: pizzahut.id
-  )
+# p mcdo
+# p kfc
+# p pizzahut
+# p chipotle
 
-p a1
-p a2
-p a3
-p a4
+# ###### end venues #####
+
+
+
+# ##### user_venues ######
+
+# a1 = UserVenue.create(
+#   user_id: quentin.id,
+#   venue_id: mcdo.id
+#   )
+
+# a2 = UserVenue.create(
+#   user_id: joe.id,
+#   venue_id: kfc.id
+#   )
+
+# a3 = UserVenue.create(
+#   user_id: kilian.id,
+#   venue_id: pizzahut.id
+#   )
+
+# a4 = UserVenue.create(
+#   user_id: cedric.id,
+#   venue_id: pizzahut.id
+#   )
+
+# p a1
+# p a2
+# p a3
+# p a4
 
 
 ###### end user-venues #####
