@@ -112,7 +112,7 @@
   <% else %>
     <div class="content" >
       <%# @appt = Appointment.where(artwork_id: @artwork) %>
-      <h2>Number of Historical Requests: <%=  @appt.count%></h2>
+      <h2>Number of Historical Requests: <%=  @appt.count%> </h2>
       <ul>
         <li>Booked by  <%= @appt.last.venue.title   %>, in <%= @appt.last.venue.location  %> from: <%=  @appt.last.start_date %> to <%= @appt.last.end_date %> </li>
       </ul>
